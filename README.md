@@ -1,1 +1,1 @@
-# FGO-card
+# Fuck Giant Ouch-Card
