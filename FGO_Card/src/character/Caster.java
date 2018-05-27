@@ -1,0 +1,15 @@
+package character;
+
+public class Caster extends Character {
+	public static int level = 1;
+	public static int ID = 1;
+
+	public Caster() {
+		super.maxHP = 7 + Caster.level;
+		super.HP = maxHP;
+	}
+
+	public void interact(int itemID) {
+
+	}
+}
