@@ -10,15 +10,15 @@ public class Aoe extends Skill {
 		super.maxCD = 10;
 		super.CD = maxCD;
 	}
-	
+
 	public static void levelup() {
-		if(Aoe.level < 5) {
+		if (Aoe.level < 5) {
 			++Aoe.level;
 		}
 	}
 
 	public void interact(Object object) {
-		//object.hp -= Aoe.level;
+		// object.hp -= Aoe.level;
 		CD = maxCD;
 	}
 }

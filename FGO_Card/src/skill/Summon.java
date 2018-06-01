@@ -10,11 +10,11 @@ public class Summon extends Skill {
 	}
 
 	public static void levelup() {
-		if(Aoe.level < 5) {
+		if (Aoe.level < 5) {
 			++Aoe.level;
 		}
 	}
-	
+
 	public void interact(Object object) {
 		CD = maxCD;
 	}

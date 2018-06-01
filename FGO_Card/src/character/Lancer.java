@@ -9,12 +9,12 @@ public class Lancer extends Character {
 		super.HP = maxHP;
 	}
 
-	public void levelup() {
-		if(Lancer.level < 5) {
+	public static void levelup() {
+		if (Lancer.level < 5) {
 			++Lancer.level;
 		}
 	}
-	
+
 	public void interact(int itemID) {
 		// TODO Auto-generated method stub
 
