@@ -9,8 +9,13 @@ public class Summon extends Skill {
 		super.CD = maxCD;
 	}
 
-	public void interact() {
-		// TODO Auto-generated method stub
+	public static void levelup() {
+		if (Aoe.level < 5) {
+			++Aoe.level;
+		}
+	}
 
+	public void interact(Object object) {
+		CD = maxCD;
 	}
 }

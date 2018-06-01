@@ -1,5 +1,7 @@
 package skill;
 
+import character.Assassin;
+
 public class Aoe extends Skill {
 	public static int ID = 1;
 	public static int level = 1;
@@ -9,8 +11,14 @@ public class Aoe extends Skill {
 		super.CD = maxCD;
 	}
 
-	public void interact() {
-		// TODO Auto-generated method stub
+	public static void levelup() {
+		if (Aoe.level < 5) {
+			++Aoe.level;
+		}
+	}
+
+	public void interact(Object object) {
+		// object.hp -= Aoe.level;
 		CD = maxCD;
 	}
 }

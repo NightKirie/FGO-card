@@ -11,6 +11,37 @@ public class Skill {
 	public int CD;
 	public int maxCD;
 
+	public static int getID1() {
+		return ID1;
+	}
+	public static int getID2() {
+		return ID2;
+	}
+	public static int getID3() {
+		return ID3;
+	}
+	public int getCD() {
+		return CD;
+	}
+	public int getmaxCD() {
+		return maxCD;
+	}
+	public void setID1(int setID) {
+		ID1 = setID;
+	}
+	public void setID2(int setID) {
+		ID2 = setID;
+	}
+	public void setID3(int setID) {
+		ID3 = setID;
+	}
+	public void setCD(int setCD) {
+		CD = setCD;
+	}
+	public void setmaxCD(int setCD) {
+		maxCD = setCD;
+	}
+	
 	public void interact() {
 	}
 

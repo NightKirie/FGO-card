@@ -9,8 +9,18 @@ public class Recharge extends Skill {
 		super.CD = maxCD;
 	}
 
-	public void interact() {
-		// TODO Auto-generated method stub
+	public static void levelup() {
+		if (Recharge.level < 5) {
+			++Recharge.level;
+		}
+	}
+
+	public void interact(Skill skill) {
+		skill.CD = skill.CD - Recharge.level;
+		if (skill.CD < 0) {
+			skill.CD = 0;
+		}
+		CD = maxCD;
 
 	}
 }
