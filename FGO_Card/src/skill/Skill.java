@@ -11,6 +11,8 @@ public class Skill {
 	public int CD;
 	public int maxCD;
 
+	public static void levelup() {
+	}
 	public void interact() {
 	}
 

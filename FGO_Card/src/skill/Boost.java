@@ -9,8 +9,15 @@ public class Boost extends Skill {
 		super.CD = maxCD;
 	}
 
-	public void interact() {
+	public static void levelup() {
+		if(Boost.level < 5) {
+			++Boost.level;
+		}
+	}
+	
+	public void interact(Object object) {
 		// TODO Auto-generated method stub
-
+		//object.weaponHP += 3 + Boost.level;
+		CD = maxCD;
 	}
 }

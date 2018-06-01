@@ -11,10 +11,13 @@ public class Character {
 
 	public void interact(int itemID) {
 	}
+	public void levelup() {
+	}
 
 	public int HP;
 	public int maxHP;
 
+	
 	public static Character createCharacter(int characterID) {
 		switch (characterID) {
 		case 1:

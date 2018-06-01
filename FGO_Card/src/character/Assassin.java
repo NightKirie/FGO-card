@@ -8,6 +8,12 @@ public class Assassin extends Character {
 		super.maxHP = 5 + Assassin.level;
 		super.HP = maxHP;
 	}
+	
+	public void levelup() {
+		if(Assassin.level < 5) {
+			++Assassin.level;
+		}
+	}
 
 	public void interact(int itemID) {
 	}
