@@ -1,12 +1,12 @@
 package skill;
 
 public class Skill {
-	/*
-	這個class是主要的技能class，各個技能class涵有自己的interact function 和自己的ID,level
-	下方的三個static ID 表示使用者選擇了哪三個技能
-	在進入遊戲時，需要使用下方的createSkill 來創造一個skill object
-	createSkill 會依據skillID 來回傳不同的技能class
-	 */
+	/****
+	This is an parent class for skills,
+	each one has its own Id & level.
+	When entering the game, we need to use the "createSkill" to create a skill object,
+	createSkill will depend on skillID to return different skill class.
+	 ****/
 	public static int ID1 = 1, ID2 = 2, ID3 = 3;
 	public int CD;
 	public int maxCD;
