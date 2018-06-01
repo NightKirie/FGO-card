@@ -1,6 +1,8 @@
 package FGO_Card;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -10,6 +12,8 @@ import javax.swing.JButton;
 import javax.swing.ImageIcon;
 import java.awt.Toolkit;
 import javax.swing.JLabel;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class MainWindow extends JFrame {
 
@@ -45,13 +49,50 @@ public class MainWindow extends JFrame {
 		contentPane.setLayout(null);
 		
 		JButton skillButton = new JButton("");
-		skillButton.setSelectedIcon(new ImageIcon(MainWindow.class.getResource("/Images/Icon.png")));
 		skillButton.setIcon(new ImageIcon(MainWindow.class.getResource("/Images/Skill_Btn.png")));
-		skillButton.setBounds(253, 150, 127, 159);
-		///skillButton.setOpaque(false);
-		//skillButton.setContentAreaFilled(false);
-		//skillButton.setBorderPainted(false);
+		skillButton.setBounds(255, 152, 125, 159);
+		skillButton.setOpaque(false);
+		skillButton.setContentAreaFilled(false);
+		skillButton.setBorderPainted(false);
+		skillButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		skillButton.setFocusPainted(false);
 		contentPane.add(skillButton);
+		
+		JButton startButton = new JButton("");
+		startButton.setIcon(new ImageIcon(MainWindow.class.getResource("/Images/Start_Btn.png")));
+		startButton.setBounds(255, 352, 125, 133);
+		startButton.setOpaque(false);
+		startButton.setContentAreaFilled(false);
+		startButton.setBorderPainted(false);
+		startButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		startButton.setFocusPainted(false);
+		contentPane.add(startButton);
+		
+		JButton chararcterButton = new JButton("");
+		chararcterButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				System.out.println("lol");
+			}
+		});
+		chararcterButton.setIcon(new ImageIcon(MainWindow.class.getResource("/Images/Character_Btn.png")));
+		chararcterButton.setBounds(95, 152, 125, 159);
+		//chararcterButton.setOpaque(false);
+		chararcterButton.setBackground(new Color(0, 0, 0, 100));
+		//chararcterButton.setContentAreaFilled(false);
+		chararcterButton.setBorderPainted(false);
+		chararcterButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		chararcterButton.setFocusPainted(false);
+		contentPane.add(chararcterButton);
+		
+		JButton achievementButton = new JButton("");
+		achievementButton.setIcon(new ImageIcon(MainWindow.class.getResource("/Images/Reward_Btn.png")));
+		achievementButton.setBounds(95, 340, 125, 159);
+		achievementButton.setOpaque(false);
+		achievementButton.setContentAreaFilled(false);
+		achievementButton.setBorderPainted(false);
+		achievementButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		achievementButton.setFocusPainted(false);
+		contentPane.add(achievementButton);
 		
 		JLabel Menu_BackGround = new JLabel("");
 		Menu_BackGround.setIcon(new ImageIcon(MainWindow.class.getResource("/Images/MainBackgroun.png")));
