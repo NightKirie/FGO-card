@@ -9,12 +9,12 @@ public class Caster extends Character {
 		super.HP = maxHP;
 	}
 
-	public void levelup() {
-		if(Caster.level < 5) {
+	public static void levelup() {
+		if (Caster.level < 5) {
 			++Caster.level;
 		}
 	}
-	
+
 	public void interact(int itemID) {
 
 	}
