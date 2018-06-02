@@ -1,4 +1,4 @@
-package FGO_Card;
+package Menu;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -77,7 +77,7 @@ public class MainWindow extends JFrame {
 		chararcterButton.setIcon(new ImageIcon(MainWindow.class.getResource("/Images/Character_Btn.png")));
 		chararcterButton.setBounds(95, 152, 125, 159);
 		chararcterButton.setOpaque(false);
-		chararcterButton.setBackground(new Color(0, 0, 0, 100));
+		chararcterButton.setBackground(new Color(255, 255, 255, 100));
 		//chararcterButton.setContentAreaFilled(false);
 		chararcterButton.setBorderPainted(false);
 		chararcterButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
