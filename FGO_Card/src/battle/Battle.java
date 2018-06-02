@@ -3,26 +3,19 @@ import skill.*;
 import character.*;
 
 //import character.Caster;
-import card_total.*;
+import card.*;
 
 import java.awt.*;
 import javax.swing.*;
 import javax.swing.JFrame;
 public class Battle extends JFrame{
-	character.Character character;
-	Skill[] skill;
-	int difficulty;
-
+	Card map[][];
 	Battle(){
-		character=new Caster();
-		skill=new Skill[]{new Aoe(),new Boost(),new Heal()};
-		difficulty=1;
+		this(new Caster(),new Skill[]{new Aoe(),new Boost(),new Heal()},1);
 	}
 	Battle(character.Character c,Skill[] s,int d){
-		character=c;
-		skill=s;
-		difficulty=d;
-	
+		map=new Card[3][];
+		for(int i=0;i<3;++i) map[i]=new Card[3];
 	}
 
 }
