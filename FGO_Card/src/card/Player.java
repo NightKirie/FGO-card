@@ -1,12 +1,7 @@
 package card;
 
-public class PlayerCharacter extends PeopleAndMon{
+public class Player extends Creature{
 
-	@Override
-	public void special() {
-		// TODO Auto-generated method stub
-		
-	}
 
 	@Override
 	public void attack() {

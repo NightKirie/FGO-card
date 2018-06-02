@@ -1,9 +1,9 @@
 package battle;
 import skill.*;
 import character.*;
+import battle.card.*;
 
 //import character.Caster;
-import card.*;
 
 import java.awt.*;
 import javax.swing.*;
@@ -16,6 +16,7 @@ public class Battle extends JFrame{
 	Battle(character.Character c,Skill[] s,int d){
 		map=new Card[3][];
 		for(int i=0;i<3;++i) map[i]=new Card[3];
+		map[1][1]=new battle.card.object.creature.Player(c);
 	}
 
 }
