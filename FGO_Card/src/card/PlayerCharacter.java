@@ -14,11 +14,6 @@ public class PlayerCharacter extends PeopleAndMon{
 		
 	}
 
-	@Override
-	public void createcard() {
-		// TODO Auto-generated method stub
-		
-	}
 	public void ability() {
 		
 	}
