@@ -6,12 +6,12 @@ public abstract class Monster extends Creature {
 		if(monstertype.equals("Boss"))
 		{
 			hp=100;
-			cardPicture=new ImageIcon("boss.jpg");
+			cardPicture=new ImageIcon(this.getClass().getResource("/Images/Boss.jpg"));
 		}
 		if(monstertype.equals("midboss"))
 		{
 			hp=50;
-			cardPicture=new ImageIcon("midboss.jpg");
+			cardPicture=new ImageIcon(this.getClass().getResource("/Images/Midboss.jpg"));
 		}
 	}
 

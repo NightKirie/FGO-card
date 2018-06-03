@@ -12,11 +12,11 @@ public class Weapon extends Item {
 		this.hp=whp;
 		if(type.equals("sword"))
 		{
-			cardPicture=new ImageIcon("sword.jpg");
+			cardPicture=new ImageIcon(this.getClass().getResource("/Images/sword.jpg"));
 		}
 		else if(type.equals("wand"))
 		{
-			cardPicture=new ImageIcon("wand.jpg");
+			cardPicture=new ImageIcon(this.getClass().getResource("/Images/wand.jpg"));
 		}
 		setIcon(cardPicture);
 	}

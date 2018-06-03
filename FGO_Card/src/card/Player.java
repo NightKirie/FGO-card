@@ -12,22 +12,20 @@ public class Player extends Creature{
 		if(input.ID==1)
 		{
 			//set caster picture
-			cardPicture=new ImageIcon("caster.jpg");
+			cardPicture=new ImageIcon(this.getClass().getResource("/Images/caster.jpg"));
 		}
 		if(input.ID==2)
 		{
 			//set assassin picture
-			cardPicture=new ImageIcon("assassin.jpg");
+			cardPicture=new ImageIcon(this.getClass().getResource("/Images/assassin.jpg"));
 		}
 		if(input.ID==3)
 		{
 			//set lancer picture
-			cardPicture=new ImageIcon("lancer.jpg");
+			cardPicture=new ImageIcon(this.getClass().getResource("/Images/lancer.jpg"));
 			
 		}
 		setIcon(cardPicture);
-		//is this can run?
-		//setIcon(new ImageIcon(MainWindow.class.getResource("test")));
 	}
 	public void attack(Creature opponent) {
 		// TODO Auto-generated method stub
