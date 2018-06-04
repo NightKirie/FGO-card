@@ -23,7 +23,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.image.ImageObserver;
+import java.io.File;
 import java.text.AttributedCharacterIterator;
+
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 
 public class MainWindow extends JFrame {
 
@@ -183,13 +187,17 @@ public class MainWindow extends JFrame {
 		Menu_BackGround.setIcon(new ImageIcon(MainWindow.class.getResource("/Image/MainBackgroun.png")));
 		Menu_BackGround.setBounds(0, 0, 464, 681);
 		contentPane.add(Menu_BackGround);
+		
+		Media hit = new Media(new File("src/Audio/Menu_BGM.mp3").toURI().toString());
+		MediaPlayer mediaPlayer = new MediaPlayer(hit);
+		mediaPlayer.play();
 	}
 	/**
 	 * Create the frame.
 	 */
 	public MainWindow() {
 		setTitle("FGO Card");
-		setIconImage(Toolkit.getDefaultToolkit().getImage(MainWindow.class.getResource("/Images/Icon.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(MainWindow.class.getResource("/Image/Icon.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(0, 0, 480, 720);
 		contentPane = new JPanel();
