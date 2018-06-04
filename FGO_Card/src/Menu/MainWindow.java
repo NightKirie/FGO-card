@@ -58,21 +58,37 @@ public class MainWindow extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
-		JButton skillButton = new JButton("");
+		JButton skillButton = new JButton("")
+		{
+		    protected void paintComponent(Graphics g)
+		    {
+		    	
+		    	g.setColor(getBackground());
+		        g.fillRect(0, 0, getWidth(), getHeight());
+		        super.paintComponent(g);
+		    }
+		};	
 		skillButton.setIcon(new ImageIcon(MainWindow.class.getResource("/Images/Skill_Btn.png")));
 		skillButton.setBounds(255, 152, 125, 159);
-		//skillButton.setOpaque(false);
-		skillButton.setContentAreaFilled(false);
+		skillButton.setOpaque(false);
 		skillButton.setBorderPainted(false);
 		skillButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		skillButton.setFocusPainted(false);
 		contentPane.add(skillButton);
 
-		JButton startButton = new JButton("");
+		JButton startButton = new JButton("")
+		{
+		    protected void paintComponent(Graphics g)
+		    {
+		    	
+		    	g.setColor(getBackground());
+		        g.fillRect(0, 0, getWidth(), getHeight());
+		        super.paintComponent(g);
+		    }
+		};	
 		startButton.setIcon(new ImageIcon(MainWindow.class.getResource("/Images/Start_Btn.png")));
 		startButton.setBounds(255, 352, 125, 133);
-		//startButton.setOpaque(false);
-		startButton.setContentAreaFilled(false);
+		startButton.setOpaque(false);
 		startButton.setBorderPainted(false);
 		startButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		startButton.setFocusPainted(false);
@@ -84,38 +100,48 @@ public class MainWindow extends JFrame {
 		    protected void paintComponent(Graphics g)
 		    {
 		    	
-		    	g.setColor(new Color(0, 0, 0, 100));
+		    	g.setColor(getBackground());
 		        g.fillRect(0, 0, getWidth(), getHeight());
 		        super.paintComponent(g);
 		    }
-		};		
+		};	
 		chararcterButton.setIcon(new ImageIcon(MainWindow.class.getResource("/Images/Character_Btn.png")));
 		chararcterButton.setBounds(95, 152, 125, 159);
+		chararcterButton.setBackground(new Color(0, 0, 0, 0));
 		chararcterButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		chararcterButton.setFocusPainted(false);	
-		chararcterButton.setContentAreaFilled(false);
+		chararcterButton.setOpaque(false);
 		chararcterButton.setBorderPainted(false);
 		chararcterButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent arg0) {	
-				chararcterButton.paintComponents(Graphics );
+				chararcterButton.setBackground(new Color(0, 0, 0, 100));
 			}
 			@Override
-			public void mouseExited(MouseEvent e) {		
-				chararcterButton.setContentAreaFilled(false);			
+			public void mouseExited(MouseEvent e) {				
+				chararcterButton.setBackground(new Color(0, 0, 0, 0));
 			}
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				chararcterButton.setBackground(new Color(0, 0, 0, 200));
 				System.out.println("lol");
 			}
 		});
 		contentPane.add(chararcterButton);
 
-		JButton achievementButton = new JButton("");
+		JButton achievementButton = new JButton("")
+		{
+		    protected void paintComponent(Graphics g)
+		    {
+		    	
+		    	g.setColor(getBackground());
+		        g.fillRect(0, 0, getWidth(), getHeight());
+		        super.paintComponent(g);
+		    }
+		};	
 		achievementButton.setIcon(new ImageIcon(MainWindow.class.getResource("/Images/Reward_Btn.png")));
 		achievementButton.setBounds(95, 340, 125, 159);
-		//achievementButton.setOpaque(false);
-		achievementButton.setContentAreaFilled(false);
+		achievementButton.setOpaque(false);
 		achievementButton.setBorderPainted(false);
 		achievementButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		achievementButton.setFocusPainted(false);
