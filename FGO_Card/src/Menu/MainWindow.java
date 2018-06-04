@@ -188,9 +188,6 @@ public class MainWindow extends JFrame {
 		Menu_BackGround.setBounds(0, 0, 464, 681);
 		contentPane.add(Menu_BackGround);
 		
-		Media hit = new Media(new File("src/Audio/Menu_BGM.mp3").toURI().toString());
-		MediaPlayer mediaPlayer = new MediaPlayer(hit);
-		mediaPlayer.play();
 	}
 	/**
 	 * Create the frame.
