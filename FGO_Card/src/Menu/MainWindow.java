@@ -44,20 +44,8 @@ public class MainWindow extends JFrame {
 			}
 		});
 	}
-
-	/**
-	 * Create the frame.
-	 */
-	public MainWindow() {
-		setTitle("FGO Card");
-		setIconImage(Toolkit.getDefaultToolkit().getImage(MainWindow.class.getResource("/Images/Icon.png")));
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(0, 0, 480, 720);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
-		contentPane.setLayout(null);
-
+	
+	public void CreateMenuButton() {
 		JButton skillButton = new JButton("")
 		{
 		    protected void paintComponent(Graphics g)
@@ -70,10 +58,25 @@ public class MainWindow extends JFrame {
 		};	
 		skillButton.setIcon(new ImageIcon(MainWindow.class.getResource("/Images/Skill_Btn.png")));
 		skillButton.setBounds(255, 152, 125, 159);
+		skillButton.setBackground(new Color(255, 255, 255, 0));
 		skillButton.setOpaque(false);
 		skillButton.setBorderPainted(false);
 		skillButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		skillButton.setFocusPainted(false);
+		skillButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent arg0) {	
+				skillButton.setBackground(new Color(255, 255, 255, 100));
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {				
+				skillButton.setBackground(new Color(255, 255, 255, 0));
+			}
+			@Override
+			public void mousePressed(MouseEvent e) {
+				System.out.println("skill");
+			}
+		});
 		contentPane.add(skillButton);
 
 		JButton startButton = new JButton("")
@@ -87,11 +90,26 @@ public class MainWindow extends JFrame {
 		    }
 		};	
 		startButton.setIcon(new ImageIcon(MainWindow.class.getResource("/Images/Start_Btn.png")));
-		startButton.setBounds(255, 352, 125, 133);
+		startButton.setBounds(255, 340, 125, 145);
+		startButton.setBackground(new Color(255, 255, 255, 0));
 		startButton.setOpaque(false);
 		startButton.setBorderPainted(false);
 		startButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		startButton.setFocusPainted(false);
+		startButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent arg0) {	
+				startButton.setBackground(new Color(255, 255, 255, 100));
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {				
+				startButton.setBackground(new Color(255, 255, 255, 0));
+			}
+			@Override
+			public void mousePressed(MouseEvent e) {
+				System.out.println("start");
+			}
+		});
 		contentPane.add(startButton);
 
 		
@@ -107,7 +125,7 @@ public class MainWindow extends JFrame {
 		};	
 		chararcterButton.setIcon(new ImageIcon(MainWindow.class.getResource("/Images/Character_Btn.png")));
 		chararcterButton.setBounds(95, 152, 125, 159);
-		chararcterButton.setBackground(new Color(0, 0, 0, 0));
+		chararcterButton.setBackground(new Color(255, 255, 255, 0));
 		chararcterButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		chararcterButton.setFocusPainted(false);	
 		chararcterButton.setOpaque(false);
@@ -115,16 +133,15 @@ public class MainWindow extends JFrame {
 		chararcterButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent arg0) {	
-				chararcterButton.setBackground(new Color(0, 0, 0, 100));
+				chararcterButton.setBackground(new Color(255, 255, 255, 100));
 			}
 			@Override
 			public void mouseExited(MouseEvent e) {				
-				chararcterButton.setBackground(new Color(0, 0, 0, 0));
+				chararcterButton.setBackground(new Color(255, 255, 255, 0));
 			}
 			@Override
-			public void mouseClicked(MouseEvent e) {
-				chararcterButton.setBackground(new Color(0, 0, 0, 200));
-				System.out.println("lol");
+			public void mousePressed(MouseEvent arg0) {
+				System.out.println("character");
 			}
 		});
 		contentPane.add(chararcterButton);
@@ -140,16 +157,46 @@ public class MainWindow extends JFrame {
 		    }
 		};	
 		achievementButton.setIcon(new ImageIcon(MainWindow.class.getResource("/Images/Reward_Btn.png")));
-		achievementButton.setBounds(95, 340, 125, 159);
+		achievementButton.setBounds(95, 340, 125, 145);
+		achievementButton.setBackground(new Color(255, 255, 255, 0));
 		achievementButton.setOpaque(false);
 		achievementButton.setBorderPainted(false);
 		achievementButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		achievementButton.setFocusPainted(false);
+		achievementButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent arg0) {	
+				achievementButton.setBackground(new Color(255, 255, 255, 100));
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {				
+				achievementButton.setBackground(new Color(255, 255, 255, 0));
+			}
+			@Override
+			public void mousePressed(MouseEvent e) {
+				System.out.println("achievement");
+			}
+		});
 		contentPane.add(achievementButton);
 
 		JLabel Menu_BackGround = new JLabel("");
 		Menu_BackGround.setIcon(new ImageIcon(MainWindow.class.getResource("/Images/MainBackgroun.png")));
 		Menu_BackGround.setBounds(0, 0, 464, 681);
 		contentPane.add(Menu_BackGround);
+	}
+	/**
+	 * Create the frame.
+	 */
+	public MainWindow() {
+		setTitle("FGO Card");
+		setIconImage(Toolkit.getDefaultToolkit().getImage(MainWindow.class.getResource("/Images/Icon.png")));
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(0, 0, 480, 720);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+
+		CreateMenuButton();
 	}
 }
