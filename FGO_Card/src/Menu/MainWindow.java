@@ -4,6 +4,12 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.FontMetrics;
+import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.Rectangle;
+import java.awt.Shape;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -16,6 +22,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.image.ImageObserver;
+import java.text.AttributedCharacterIterator;
 
 public class MainWindow extends JFrame {
 
@@ -53,7 +61,7 @@ public class MainWindow extends JFrame {
 		JButton skillButton = new JButton("");
 		skillButton.setIcon(new ImageIcon(MainWindow.class.getResource("/Images/Skill_Btn.png")));
 		skillButton.setBounds(255, 152, 125, 159);
-		skillButton.setOpaque(false);
+		//skillButton.setOpaque(false);
 		skillButton.setContentAreaFilled(false);
 		skillButton.setBorderPainted(false);
 		skillButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
@@ -63,47 +71,50 @@ public class MainWindow extends JFrame {
 		JButton startButton = new JButton("");
 		startButton.setIcon(new ImageIcon(MainWindow.class.getResource("/Images/Start_Btn.png")));
 		startButton.setBounds(255, 352, 125, 133);
-		startButton.setOpaque(false);
+		//startButton.setOpaque(false);
 		startButton.setContentAreaFilled(false);
 		startButton.setBorderPainted(false);
 		startButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		startButton.setFocusPainted(false);
 		contentPane.add(startButton);
 
-		JButton chararcterButton = new JButton("");
+		
+		JButton chararcterButton = new JButton("")
+		{
+		    protected void paintComponent(Graphics g)
+		    {
+		    	
+		    	g.setColor(new Color(0, 0, 0, 100));
+		        g.fillRect(0, 0, getWidth(), getHeight());
+		        super.paintComponent(g);
+		    }
+		};		
+		chararcterButton.setIcon(new ImageIcon(MainWindow.class.getResource("/Images/Character_Btn.png")));
+		chararcterButton.setBounds(95, 152, 125, 159);
+		chararcterButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		chararcterButton.setFocusPainted(false);	
+		chararcterButton.setContentAreaFilled(false);
+		chararcterButton.setBorderPainted(false);
 		chararcterButton.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseEntered(MouseEvent arg0) {
-				chararcterButton.setOpaque(true);		
-				chararcterButton.setContentAreaFilled(true);
-				chararcterButton.setBorderPainted(true);	
-				chararcterButton.setBackground(new Color(0, 0, 0, 100));
+			public void mouseEntered(MouseEvent arg0) {	
+				chararcterButton.paintComponents(Graphics );
 			}
 			@Override
-			public void mouseExited(MouseEvent e) {
-				chararcterButton.setOpaque(false);		
-				chararcterButton.setContentAreaFilled(false);
-				chararcterButton.setBorderPainted(false);
-				chararcterButton.setBackground(null);
+			public void mouseExited(MouseEvent e) {		
+				chararcterButton.setContentAreaFilled(false);			
 			}
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				System.out.println("lol");
 			}
 		});
-		chararcterButton.setIcon(new ImageIcon(MainWindow.class.getResource("/Images/Character_Btn.png")));
-		chararcterButton.setBounds(95, 152, 125, 159);
-		chararcterButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
-		chararcterButton.setFocusPainted(false);
-		chararcterButton.setOpaque(false);		
-		chararcterButton.setContentAreaFilled(false);
-		chararcterButton.setBorderPainted(false);
 		contentPane.add(chararcterButton);
 
 		JButton achievementButton = new JButton("");
 		achievementButton.setIcon(new ImageIcon(MainWindow.class.getResource("/Images/Reward_Btn.png")));
 		achievementButton.setBounds(95, 340, 125, 159);
-		achievementButton.setOpaque(false);
+		//achievementButton.setOpaque(false);
 		achievementButton.setContentAreaFilled(false);
 		achievementButton.setBorderPainted(false);
 		achievementButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
