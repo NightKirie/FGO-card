@@ -56,7 +56,7 @@ public class MainWindow extends JFrame {
 		        super.paintComponent(g);
 		    }
 		};	
-		skillButton.setIcon(new ImageIcon(MainWindow.class.getResource("/Images/Skill_Btn.png")));
+		skillButton.setIcon(new ImageIcon(MainWindow.class.getResource("/Image/Skill_Btn.png")));
 		skillButton.setBounds(255, 152, 125, 159);
 		skillButton.setBackground(new Color(255, 255, 255, 0));
 		skillButton.setOpaque(false);
@@ -89,7 +89,7 @@ public class MainWindow extends JFrame {
 		        super.paintComponent(g);
 		    }
 		};	
-		startButton.setIcon(new ImageIcon(MainWindow.class.getResource("/Images/Start_Btn.png")));
+		startButton.setIcon(new ImageIcon(MainWindow.class.getResource("/Image/Start_Btn.png")));
 		startButton.setBounds(255, 340, 125, 145);
 		startButton.setBackground(new Color(255, 255, 255, 0));
 		startButton.setOpaque(false);
@@ -123,7 +123,7 @@ public class MainWindow extends JFrame {
 		        super.paintComponent(g);
 		    }
 		};	
-		chararcterButton.setIcon(new ImageIcon(MainWindow.class.getResource("/Images/Character_Btn.png")));
+		chararcterButton.setIcon(new ImageIcon(MainWindow.class.getResource("/Image/Character_Btn.png")));
 		chararcterButton.setBounds(95, 152, 125, 159);
 		chararcterButton.setBackground(new Color(255, 255, 255, 0));
 		chararcterButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
@@ -156,7 +156,7 @@ public class MainWindow extends JFrame {
 		        super.paintComponent(g);
 		    }
 		};	
-		achievementButton.setIcon(new ImageIcon(MainWindow.class.getResource("/Images/Reward_Btn.png")));
+		achievementButton.setIcon(new ImageIcon(MainWindow.class.getResource("/Image/Reward_Btn.png")));
 		achievementButton.setBounds(95, 340, 125, 145);
 		achievementButton.setBackground(new Color(255, 255, 255, 0));
 		achievementButton.setOpaque(false);
@@ -180,7 +180,7 @@ public class MainWindow extends JFrame {
 		contentPane.add(achievementButton);
 
 		JLabel Menu_BackGround = new JLabel("");
-		Menu_BackGround.setIcon(new ImageIcon(MainWindow.class.getResource("/Images/MainBackgroun.png")));
+		Menu_BackGround.setIcon(new ImageIcon(MainWindow.class.getResource("/Image/MainBackgroun.png")));
 		Menu_BackGround.setBounds(0, 0, 464, 681);
 		contentPane.add(Menu_BackGround);
 	}
