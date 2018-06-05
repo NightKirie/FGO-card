@@ -1,5 +1,7 @@
 package Menu;
 
+import Menu.Button;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Cursor;
@@ -42,7 +44,17 @@ public class MainWindow extends JFrame{
 	private JPanel contentPane;
 	private JFXPanel fxPanel = new JFXPanel();
 	private MediaPlayer menuBGM = new MediaPlayer(new Media(getClass().getResource("/Audio/Menu_BGM.mp3").toString()));
-	private MediaPlayer trolling_Fx = new MediaPlayer(new Media(getClass().getResource("/Audio/Trolling_Sound.mp3").toString()));	
+	private MediaPlayer gameBGM = new MediaPlayer(new Media(getClass().getResource("/Audio/InGame_BGM.mp3").toString()));
+	private MediaPlayer trolling_Fx = new MediaPlayer(new Media(getClass().getResource("/Audio/Trolling_Sound.mp3").toString()));
+	
+	private final Button skillButton = new Button();
+	private final Button startButton = new Button();
+	private final Button chararcterButton = new Button();
+	private final Button achievementButton = new Button();
+	private final Button backButton = new Button();
+	private final JLabel menuTitle = new JLabel("");
+	private final JLabel menuBackGround = new JLabel("");
+	private final JLabel nothingIsHere = new JLabel("");
 
 	/**********
 	  Launch the application.
@@ -60,140 +72,35 @@ public class MainWindow extends JFrame{
 		});
 	}
 	
-	public void CreateMenuButton() {
-		JButton skillButton = new JButton("")
-		{
-		    protected void paintComponent(Graphics g)
-		    {
-		    	
-		    	g.setColor(getBackground());
-		        g.fillRect(0, 0, getWidth(), getHeight());
-		        super.paintComponent(g);
-		    }
-		};	
+	public void SetUpMenuPage() {
+		//Add skillButton in Menu
 		skillButton.setIcon(new ImageIcon(MainWindow.class.getResource("/Image/Skill_Btn.png")));
 		skillButton.setBounds(250, 255, 115, 155);
-		skillButton.setBackground(new Color(255, 255, 255, 0));
-		skillButton.setOpaque(false);
-		skillButton.setBorderPainted(false);
-		skillButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
-		skillButton.setFocusPainted(false);
-		skillButton.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseEntered(MouseEvent arg0) {	
-				skillButton.setBackground(new Color(255, 255, 255, 100));
-			}
-			@Override
-			public void mouseExited(MouseEvent e) {				
-				skillButton.setBackground(new Color(255, 255, 255, 0));
-			}
-			@Override
-			public void mousePressed(MouseEvent e) {
-				System.out.println("skill");
-			}
-		});
 		contentPane.add(skillButton);
-
-		JButton startButton = new JButton("")
-		{
-		    protected void paintComponent(Graphics g)
-		    {
-		    	
-		    	g.setColor(getBackground());
-		        g.fillRect(0, 0, getWidth(), getHeight());
-		        super.paintComponent(g);
-		    }
-		};	
+		
+		//Add start Button in Menu
 		startButton.setIcon(new ImageIcon(MainWindow.class.getResource("/Image/Start_Btn.png")));
 		startButton.setBounds(250, 410, 115, 130);
-		startButton.setBackground(new Color(255, 255, 255, 0));
-		startButton.setOpaque(false);
-		startButton.setBorderPainted(false);
-		startButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
-		startButton.setFocusPainted(false);
-		startButton.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseEntered(MouseEvent arg0) {	
-				startButton.setBackground(new Color(255, 255, 255, 100));
-			}
-			@Override
-			public void mouseExited(MouseEvent e) {				
-				startButton.setBackground(new Color(255, 255, 255, 0));
-			}
-			@Override
-			public void mousePressed(MouseEvent e) {
-				System.out.println("start");
-			}
-		});
 		contentPane.add(startButton);
-
 		
-		JButton chararcterButton = new JButton("")
-		{
-		    protected void paintComponent(Graphics g)
-		    {
-		    	
-		    	g.setColor(getBackground());
-		        g.fillRect(0, 0, getWidth(), getHeight());
-		        super.paintComponent(g);
-		    }
-		};	
+		//Add characterButton in Menu
 		chararcterButton.setIcon(new ImageIcon(MainWindow.class.getResource("/Image/Character_Btn.png")));
 		chararcterButton.setBounds(115, 255, 115, 155);
-		chararcterButton.setBackground(new Color(255, 255, 255, 0));
-		chararcterButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
-		chararcterButton.setFocusPainted(false);	
-		chararcterButton.setOpaque(false);
-		chararcterButton.setBorderPainted(false);
-		chararcterButton.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseEntered(MouseEvent arg0) {	
-				chararcterButton.setBackground(new Color(255, 255, 255, 100));
-			}
-			@Override
-			public void mouseExited(MouseEvent e) {				
-				chararcterButton.setBackground(new Color(255, 255, 255, 0));
-			}
-			@Override
-			public void mousePressed(MouseEvent arg0) {
-				System.out.println("character");
-			}
-		});
 		contentPane.add(chararcterButton);
 
-		JButton achievementButton = new JButton("")
-		{
-		    protected void paintComponent(Graphics g)
-		    {		    	
-		    	g.setColor(getBackground());
-		        g.fillRect(0, 0, getWidth(), getHeight());
-		        super.paintComponent(g);
-		    }
-		};	
+		//Add achievementButton in Menu
 		achievementButton.setIcon(new ImageIcon(MainWindow.class.getResource("/Image/Reward_Btn.png")));
 		achievementButton.setBounds(115, 410, 115, 130);
-		achievementButton.setBackground(new Color(255, 255, 255, 0));
-		achievementButton.setOpaque(false);
-		achievementButton.setBorderPainted(false);
-		achievementButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
-		achievementButton.setFocusPainted(false);
-		achievementButton.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseEntered(MouseEvent arg0) {	
-				achievementButton.setBackground(new Color(255, 255, 255, 100));
-			}
-			@Override
-			public void mouseExited(MouseEvent e) {				
-				achievementButton.setBackground(new Color(255, 255, 255, 0));
-			}
-			@Override
-			public void mousePressed(MouseEvent e) {
-				System.out.println("achievement");
-			}
-		});
 		contentPane.add(achievementButton);
 		
-		JLabel menuTitle = new JLabel("");
+		//Add backButton in Menu
+		backButton.setIcon(new ImageIcon(MainWindow.class.getResource("/Image/Back_Btn.png")));
+		backButton.setBounds(0, 625, 98, 95);
+		contentPane.add(backButton);
+		
+		//Add menuTitle in Menu	
+		menuTitle.setIcon(new ImageIcon(MainWindow.class.getResource("/Image/MenuTitle.png")));
+		menuTitle.setBounds(120, 60, 240, 180);
 		menuTitle.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent arg0) {	
@@ -201,17 +108,127 @@ public class MainWindow extends JFrame{
 				trolling_Fx.play();				
 			}
 		});
-		menuTitle.setIcon(new ImageIcon(MainWindow.class.getResource("/Image/MenuTitle.png")));
-		menuTitle.setBounds(120, 60, 240, 180);
 		contentPane.add(menuTitle);
-
-		JLabel Menu_BackGround = new JLabel("");
-		Menu_BackGround.setIcon(new ImageIcon(MainWindow.class.getResource("/Image/MainBackgroun.png")));
-		Menu_BackGround.setBounds(0, 0, 480, 720);
-		contentPane.add(Menu_BackGround);
 		
+		//Add nothingIsHere in Menu
+		nothingIsHere.setIcon(new ImageIcon(MainWindow.class.getResource("/Image/SorryForNothing.png")));
+		nothingIsHere.setBounds(115, 320, 250, 400);
+		contentPane.add(nothingIsHere);
+
+		//Add menuBackGround in Menu
+		menuBackGround.setIcon(new ImageIcon(MainWindow.class.getResource("/Image/MainBackground.png")));
+		menuBackGround.setBounds(0, 0, 480, 720);
+		contentPane.add(menuBackGround);
+		
+
+		
+		skillButton.setVisible(false);
+		startButton.setVisible(false);
+		chararcterButton.setVisible(false);
+		achievementButton.setVisible(false);
+		backButton.setVisible(false);
+		menuTitle.setVisible(false);
+		nothingIsHere.setVisible(false);
+	}
+	
+	public void MenuPage() {
+		//start Menu BGM
 		menuBGM.setCycleCount(MediaPlayer.INDEFINITE);
 		menuBGM.play();	
+		skillButton.setVisible(true);
+		startButton.setVisible(true);
+		chararcterButton.setVisible(true);
+		achievementButton.setVisible(true);
+		backButton.setVisible(false);
+		menuTitle.setVisible(true);
+		nothingIsHere.setVisible(false);
+		menuBackGround.setVisible(true);
+		
+		startButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {		
+				
+				StartGame();
+			}
+		});	
+		skillButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {	
+				SkillPage();
+			}
+		});	
+		chararcterButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {	
+				CharacterPage();
+			}
+		});
+		achievementButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {	
+				AchievementPage();
+			}
+		});	
+	}
+	public void CharacterPage() {
+		skillButton.setVisible(false);
+		startButton.setVisible(false);
+		chararcterButton.setVisible(false);
+		achievementButton.setVisible(false);
+		backButton.setVisible(true);
+		menuTitle.setVisible(false);
+		nothingIsHere.setVisible(false);
+		backButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {	
+				MenuPage();
+			}
+		});	
+	}
+	
+	public void SkillPage() {
+		skillButton.setVisible(false);
+		startButton.setVisible(false);
+		chararcterButton.setVisible(false);
+		achievementButton.setVisible(false);
+		backButton.setVisible(true);
+		menuTitle.setVisible(false);
+		nothingIsHere.setVisible(false);
+		backButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {	
+				MenuPage();
+			}
+		});	
+	}
+	
+	public void AchievementPage() {
+		skillButton.setVisible(false);
+		startButton.setVisible(false);
+		chararcterButton.setVisible(false);
+		achievementButton.setVisible(false);
+		backButton.setVisible(true);
+		menuTitle.setVisible(false);
+		nothingIsHere.setVisible(true);
+		menuBackGround.setVisible(false);
+		backButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {	
+				MenuPage();
+			}
+		});	
+	}
+	
+	public void StartGame() {
+		menuBGM.stop();
+		gameBGM.setCycleCount(MediaPlayer.INDEFINITE);
+		gameBGM.play();
+		skillButton.setVisible(false);
+		startButton.setVisible(false);
+		chararcterButton.setVisible(false);
+		achievementButton.setVisible(false);
+		menuTitle.setVisible(false);
+		nothingIsHere.setVisible(false);
 	}
 	/**
 	 * Create the frame.
@@ -224,9 +241,11 @@ public class MainWindow extends JFrame{
 		setBounds(0, 0, 485, 748);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		contentPane.setBackground(Color.BLACK);
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
-		CreateMenuButton();
+		SetUpMenuPage();
+		MenuPage();
 	}
 }
