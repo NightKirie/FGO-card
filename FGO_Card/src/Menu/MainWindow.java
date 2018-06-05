@@ -24,14 +24,25 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.image.ImageObserver;
 import java.io.File;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.text.AttributedCharacterIterator;
 
+import java.net.URL;
+
+import javafx.application.Application;
+import javafx.embed.swing.JFXPanel;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import javafx.scene.media.MediaPlayer.Status;
+import javafx.stage.Stage;
 
-public class MainWindow extends JFrame {
+public class MainWindow extends JFrame{
 
 	private JPanel contentPane;
+	private JFXPanel fxPanel = new JFXPanel();
+	private MediaPlayer menuBGM = new MediaPlayer(new Media(getClass().getResource("/Audio/Menu_BGM.mp3").toString()));
+	private MediaPlayer trolling_Fx = new MediaPlayer(new Media(getClass().getResource("/Audio/Trolling_Sound.mp3").toString()));	
 
 	/**********
 	  Launch the application.
@@ -61,7 +72,7 @@ public class MainWindow extends JFrame {
 		    }
 		};	
 		skillButton.setIcon(new ImageIcon(MainWindow.class.getResource("/Image/Skill_Btn.png")));
-		skillButton.setBounds(255, 152, 125, 159);
+		skillButton.setBounds(250, 255, 115, 155);
 		skillButton.setBackground(new Color(255, 255, 255, 0));
 		skillButton.setOpaque(false);
 		skillButton.setBorderPainted(false);
@@ -94,7 +105,7 @@ public class MainWindow extends JFrame {
 		    }
 		};	
 		startButton.setIcon(new ImageIcon(MainWindow.class.getResource("/Image/Start_Btn.png")));
-		startButton.setBounds(255, 340, 125, 145);
+		startButton.setBounds(250, 410, 115, 130);
 		startButton.setBackground(new Color(255, 255, 255, 0));
 		startButton.setOpaque(false);
 		startButton.setBorderPainted(false);
@@ -128,7 +139,7 @@ public class MainWindow extends JFrame {
 		    }
 		};	
 		chararcterButton.setIcon(new ImageIcon(MainWindow.class.getResource("/Image/Character_Btn.png")));
-		chararcterButton.setBounds(95, 152, 125, 159);
+		chararcterButton.setBounds(115, 255, 115, 155);
 		chararcterButton.setBackground(new Color(255, 255, 255, 0));
 		chararcterButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		chararcterButton.setFocusPainted(false);	
@@ -153,15 +164,14 @@ public class MainWindow extends JFrame {
 		JButton achievementButton = new JButton("")
 		{
 		    protected void paintComponent(Graphics g)
-		    {
-		    	
+		    {		    	
 		    	g.setColor(getBackground());
 		        g.fillRect(0, 0, getWidth(), getHeight());
 		        super.paintComponent(g);
 		    }
 		};	
 		achievementButton.setIcon(new ImageIcon(MainWindow.class.getResource("/Image/Reward_Btn.png")));
-		achievementButton.setBounds(95, 340, 125, 145);
+		achievementButton.setBounds(115, 410, 115, 130);
 		achievementButton.setBackground(new Color(255, 255, 255, 0));
 		achievementButton.setOpaque(false);
 		achievementButton.setBorderPainted(false);
@@ -182,21 +192,36 @@ public class MainWindow extends JFrame {
 			}
 		});
 		contentPane.add(achievementButton);
+		
+		JLabel menuTitle = new JLabel("");
+		menuTitle.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent arg0) {	
+				trolling_Fx.stop();
+				trolling_Fx.play();				
+			}
+		});
+		menuTitle.setIcon(new ImageIcon(MainWindow.class.getResource("/Image/MenuTitle.png")));
+		menuTitle.setBounds(120, 60, 240, 180);
+		contentPane.add(menuTitle);
 
 		JLabel Menu_BackGround = new JLabel("");
 		Menu_BackGround.setIcon(new ImageIcon(MainWindow.class.getResource("/Image/MainBackgroun.png")));
-		Menu_BackGround.setBounds(0, 0, 464, 681);
+		Menu_BackGround.setBounds(0, 0, 480, 720);
 		contentPane.add(Menu_BackGround);
 		
+		menuBGM.setCycleCount(MediaPlayer.INDEFINITE);
+		menuBGM.play();	
 	}
 	/**
 	 * Create the frame.
 	 */
 	public MainWindow() {
+		setResizable(false);
 		setTitle("FGO Card");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(MainWindow.class.getResource("/Image/Icon.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(0, 0, 480, 720);
+		setBounds(0, 0, 485, 748);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
