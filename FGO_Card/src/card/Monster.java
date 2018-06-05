@@ -3,6 +3,8 @@ import javax.swing.ImageIcon;
 public abstract class Monster extends Creature {
 	public Monster(String monstertype)
 	{
+		super("Monster");
+		ImageIcon cardPicture=null;
 		if(monstertype.equals("Boss"))
 		{
 			hp=100;
@@ -13,6 +15,7 @@ public abstract class Monster extends Creature {
 			hp=50;
 			cardPicture=new ImageIcon(this.getClass().getResource("/Images/Midboss.jpg"));
 		}
+		setIcon(cardPicture);
 	}
 
 	public void attack() {

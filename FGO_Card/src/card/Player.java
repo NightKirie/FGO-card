@@ -7,8 +7,11 @@ public class Player extends Creature{
 	public int maxhp;
 	public Player(Character input)
 	{
+		super("Player");
 		hp=input.maxHP;
 		maxhp=input.maxHP;
+		ImageIcon cardPicture=null;
+
 		if(input.ID==1)
 		{
 			//set caster picture
