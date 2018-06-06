@@ -1,6 +1,7 @@
 package Menu;
 
 import Menu.Button;
+import card.Player;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -42,21 +43,22 @@ import javafx.stage.Stage;
 public class MainWindow extends JFrame{
 
 	private JPanel contentPane;
-	private JFXPanel fxPanel = new JFXPanel();
-	private MediaPlayer menuBGM = new MediaPlayer(new Media(getClass().getResource("/Audio/Menu_BGM.mp3").toString()));
-	private MediaPlayer gameBGM = new MediaPlayer(new Media(getClass().getResource("/Audio/InGame_BGM.mp3").toString()));
+	private JFXPanel fxPanel = new JFXPanel();				//for FX to play, not sure why
+	private MediaPlayer BGM;				
+//	private MediaPlayer gameBGM = new MediaPlayer(new Media(getClass().getResource("/Audio/InGame_BGM.mp3").toString()));
 	private MediaPlayer trolling_Fx = new MediaPlayer(new Media(getClass().getResource("/Audio/Trolling_Sound.mp3").toString()));
 	
-	private final Button skillButton = new Button();
-	private final Button startButton = new Button();
-	private final Button chararcterButton = new Button();
-	private final Button achievementButton = new Button();
-	private final Button backButton = new Button();
-	private final Button leftButton = new Button();
-	private final Button rightButton = new Button();
-	private final JLabel menuTitle = new JLabel("");
-	private final JLabel menuBackGround = new JLabel("");
-	private final JLabel nothingIsHere = new JLabel("");
+	private final Button skillButton = new Button();		//for go to skill page
+	private final Button startButton = new Button();		//for start the game
+	private final Button chararcterButton = new Button();	//for go to character page
+	private final Button achievementButton = new Button();	//for go to achievement page
+	private final Button backButton = new Button();			//for any page to go back to the menu
+	private final Button leftButton = new Button();			//for character page to preview next character
+	private final Button rightButton = new Button();		//for character page to preview previous character
+	private final JLabel menuTitle = new JLabel("");		//for menu title picture
+	private final JLabel backGround = new JLabel("");	//for menu background picture
+	private final JLabel nothingIsHere = new JLabel("");	//for the page is not done
+	private final JLabel showCharacter = new JLabel("");	//for character page to show the character
 
 	/**********
 	  Launch the application.
@@ -127,14 +129,13 @@ public class MainWindow extends JFrame{
 		nothingIsHere.setBounds(115, 320, 250, 400);
 		contentPane.add(nothingIsHere);
 		
-		JLabel showCharacter = new JLabel("");
-		showCharacter.setBounds(221, 236, 46, 14);
+		//Add showCharater in Menu
+		showCharacter.setBounds(140, 75, 200, 255);
 		contentPane.add(showCharacter);
 
-		//Add menuBackGround in Menu
-		menuBackGround.setIcon(new ImageIcon(MainWindow.class.getResource("/Image/MainBackground.png")));
-		menuBackGround.setBounds(0, 0, 480, 720);
-		contentPane.add(menuBackGround);
+		//Add back ground image
+		backGround.setBounds(0, 0, 480, 720);
+		contentPane.add(backGround);
 		
 
 		
@@ -147,12 +148,18 @@ public class MainWindow extends JFrame{
 		rightButton.setVisible(false);
 		menuTitle.setVisible(false);
 		nothingIsHere.setVisible(false);
+		showCharacter.setVisible(false);
+		backGround.setVisible(false);
 	}
 	
 	public void MenuPage() {
 		//start Menu BGM
-		menuBGM.setCycleCount(MediaPlayer.INDEFINITE);
-		menuBGM.play();	
+		BGM = new MediaPlayer(new Media(getClass().getResource("/Audio/Menu_BGM.mp3").toString()));
+		BGM.setCycleCount(MediaPlayer.INDEFINITE);
+		BGM.play();	
+		
+		backGround.setIcon(new ImageIcon(MainWindow.class.getResource("/Image/MainBackground.png")));
+		
 		skillButton.setVisible(true);
 		startButton.setVisible(true);
 		chararcterButton.setVisible(true);
@@ -162,7 +169,8 @@ public class MainWindow extends JFrame{
 		rightButton.setVisible(false);
 		menuTitle.setVisible(true);
 		nothingIsHere.setVisible(false);
-		menuBackGround.setVisible(true);
+		showCharacter.setVisible(false);
+		backGround.setVisible(true);
 		
 		startButton.addMouseListener(new MouseAdapter() {
 			@Override
@@ -202,6 +210,9 @@ public class MainWindow extends JFrame{
 		rightButton.setVisible(true);
 		menuTitle.setVisible(false);
 		nothingIsHere.setVisible(false);
+		showCharacter.setVisible(true);
+		backGround.setVisible(true);
+		
 		backButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {	
@@ -220,6 +231,9 @@ public class MainWindow extends JFrame{
 		rightButton.setVisible(false);
 		menuTitle.setVisible(false);
 		nothingIsHere.setVisible(false);
+		showCharacter.setVisible(false);
+		backGround.setVisible(true);
+		
 		backButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {	
@@ -238,7 +252,9 @@ public class MainWindow extends JFrame{
 		rightButton.setVisible(false);
 		menuTitle.setVisible(false);
 		nothingIsHere.setVisible(true);
-		menuBackGround.setVisible(false);
+		showCharacter.setVisible(false);
+		backGround.setVisible(false);
+		
 		backButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {	
@@ -248,9 +264,12 @@ public class MainWindow extends JFrame{
 	}
 	
 	public void StartGame() {
-		menuBGM.stop();
-		gameBGM.setCycleCount(MediaPlayer.INDEFINITE);
-		gameBGM.play();
+		BGM.stop();
+		BGM = new MediaPlayer(new Media(getClass().getResource("/Audio/InGame_BGM.mp3").toString()));
+		BGM.setCycleCount(MediaPlayer.INDEFINITE);
+		BGM.play();
+		
+		backGround.setIcon(new ImageIcon(MainWindow.class.getResource("/Image/InGameBackground.jpg")));
 		
 		skillButton.setVisible(false);
 		startButton.setVisible(false);
@@ -261,6 +280,8 @@ public class MainWindow extends JFrame{
 		rightButton.setVisible(false);
 		menuTitle.setVisible(false);
 		nothingIsHere.setVisible(false);
+		showCharacter.setVisible(false);
+		backGround.setVisible(true);
 	}
 	/**
 	 * Create the frame.
