@@ -1,9 +1,14 @@
 package character;
 
+import javax.swing.ImageIcon;
+
+import Menu.MainWindow;
+
 public class Caster extends Character {
 	public static int level = 1;
 	public static int ID = 1;
-
+	public static final ImageIcon characterimage = new ImageIcon(MainWindow.class.getResource("/Image/Caster_Choice.png"));
+	
 	public Caster() {
 		super.maxHP = 7 + Caster.level;
 		super.HP = maxHP;
