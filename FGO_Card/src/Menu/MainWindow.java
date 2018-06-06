@@ -52,6 +52,8 @@ public class MainWindow extends JFrame{
 	private final Button chararcterButton = new Button();
 	private final Button achievementButton = new Button();
 	private final Button backButton = new Button();
+	private final Button leftButton = new Button();
+	private final Button rightButton = new Button();
 	private final JLabel menuTitle = new JLabel("");
 	private final JLabel menuBackGround = new JLabel("");
 	private final JLabel nothingIsHere = new JLabel("");
@@ -94,9 +96,19 @@ public class MainWindow extends JFrame{
 		contentPane.add(achievementButton);
 		
 		//Add backButton in Menu
-		backButton.setIcon(new ImageIcon(MainWindow.class.getResource("/Image/Back_Btn.png")));
+		//backButton.setIcon(new ImageIcon(MainWindow.class.getResource("/Image/Back_Btn.png")));
 		backButton.setBounds(0, 625, 98, 95);
 		contentPane.add(backButton);
+		
+		//Add leftButton in Menu
+		leftButton.setIcon(new ImageIcon(MainWindow.class.getResource("/Image/Left_Btn.png")));
+		leftButton.setBounds(0, 150, 98, 95);
+		contentPane.add(leftButton);
+			
+		//Add rightButton in Menu
+		rightButton.setIcon(new ImageIcon(MainWindow.class.getResource("/Image/Right_Btn.png")));
+		rightButton.setBounds(382, 150, 98, 95);
+		contentPane.add(rightButton);
 		
 		//Add menuTitle in Menu	
 		menuTitle.setIcon(new ImageIcon(MainWindow.class.getResource("/Image/MenuTitle.png")));
@@ -114,6 +126,10 @@ public class MainWindow extends JFrame{
 		nothingIsHere.setIcon(new ImageIcon(MainWindow.class.getResource("/Image/SorryForNothing.png")));
 		nothingIsHere.setBounds(115, 320, 250, 400);
 		contentPane.add(nothingIsHere);
+		
+		JLabel showCharacter = new JLabel("");
+		showCharacter.setBounds(221, 236, 46, 14);
+		contentPane.add(showCharacter);
 
 		//Add menuBackGround in Menu
 		menuBackGround.setIcon(new ImageIcon(MainWindow.class.getResource("/Image/MainBackground.png")));
@@ -127,6 +143,8 @@ public class MainWindow extends JFrame{
 		chararcterButton.setVisible(false);
 		achievementButton.setVisible(false);
 		backButton.setVisible(false);
+		leftButton.setVisible(false);
+		rightButton.setVisible(false);
 		menuTitle.setVisible(false);
 		nothingIsHere.setVisible(false);
 	}
@@ -140,6 +158,8 @@ public class MainWindow extends JFrame{
 		chararcterButton.setVisible(true);
 		achievementButton.setVisible(true);
 		backButton.setVisible(false);
+		leftButton.setVisible(false);
+		rightButton.setVisible(false);
 		menuTitle.setVisible(true);
 		nothingIsHere.setVisible(false);
 		menuBackGround.setVisible(true);
@@ -170,12 +190,16 @@ public class MainWindow extends JFrame{
 			}
 		});	
 	}
+	
+	//Go to select character
 	public void CharacterPage() {
 		skillButton.setVisible(false);
 		startButton.setVisible(false);
 		chararcterButton.setVisible(false);
 		achievementButton.setVisible(false);
 		backButton.setVisible(true);
+		leftButton.setVisible(true);
+		rightButton.setVisible(true);
 		menuTitle.setVisible(false);
 		nothingIsHere.setVisible(false);
 		backButton.addMouseListener(new MouseAdapter() {
@@ -192,6 +216,8 @@ public class MainWindow extends JFrame{
 		chararcterButton.setVisible(false);
 		achievementButton.setVisible(false);
 		backButton.setVisible(true);
+		leftButton.setVisible(false);
+		rightButton.setVisible(false);
 		menuTitle.setVisible(false);
 		nothingIsHere.setVisible(false);
 		backButton.addMouseListener(new MouseAdapter() {
@@ -208,6 +234,8 @@ public class MainWindow extends JFrame{
 		chararcterButton.setVisible(false);
 		achievementButton.setVisible(false);
 		backButton.setVisible(true);
+		leftButton.setVisible(false);
+		rightButton.setVisible(false);
 		menuTitle.setVisible(false);
 		nothingIsHere.setVisible(true);
 		menuBackGround.setVisible(false);
@@ -223,10 +251,14 @@ public class MainWindow extends JFrame{
 		menuBGM.stop();
 		gameBGM.setCycleCount(MediaPlayer.INDEFINITE);
 		gameBGM.play();
+		
 		skillButton.setVisible(false);
 		startButton.setVisible(false);
 		chararcterButton.setVisible(false);
 		achievementButton.setVisible(false);
+		backButton.setVisible(false);
+		leftButton.setVisible(false);
+		rightButton.setVisible(false);
 		menuTitle.setVisible(false);
 		nothingIsHere.setVisible(false);
 	}
