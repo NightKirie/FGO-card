@@ -3,32 +3,22 @@ import character.Character;
 import javax.swing.ImageIcon;
 
 public class Player extends Creature{
-	public Weapon weapon=new Weapon(0,0,"");
-	public int maxhp;
-	public Player(Character input)
+	public Weapon weapon=null;
+	public Player(String scientifficName,int hp)
 	{
-		super("Player");
-		hp=input.maxHP;
-		maxhp=input.maxHP;
+		super("Player."+scientifficName);
+		//hp=input.maxHP;
+		//maxhp=input.maxHP;
 		ImageIcon cardPicture=null;
-
-		if(input.ID==1)
-		{
-			//set caster picture
-			cardPicture=new ImageIcon(this.getClass().getResource("/Images/caster.jpg"));
-		}
-		if(input.ID==2)
-		{
-			//set assassin picture
-			cardPicture=new ImageIcon(this.getClass().getResource("/Images/assassin.jpg"));
-		}
-		if(input.ID==3)
-		{
-			//set lancer picture
-			cardPicture=new ImageIcon(this.getClass().getResource("/Images/lancer.jpg"));
-			
-		}
-		setIcon(cardPicture);
+		
+		/*
+		//set caster picture
+		cardPicture=new ImageIcon(this.getClass().getResource("/Images/caster.jpg"));
+		//set assassin picture
+		cardPicture=new ImageIcon(this.getClass().getResource("/Images/assassin.jpg"));
+		//set lancer picture
+		cardPicture=new ImageIcon(this.getClass().getResource("/Images/lancer.jpg"));
+		*/
 	}
 	public void attack(Creature opponent) {
 		// TODO Auto-generated method stub
@@ -58,9 +48,9 @@ public class Player extends Creature{
 			}
 		}
 	}
-
+	
 	public void ability() {
-		
+		//default Do nothing~!
 	}
 	
 }

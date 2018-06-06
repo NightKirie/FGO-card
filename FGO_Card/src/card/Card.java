@@ -3,10 +3,11 @@ import javax.swing.JButton;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public abstract class Card extends JButton{
+public class Card extends JButton{
 	public Card(String scientificName){
 		super(scientificName);
 	}
+	String name=null;
 	//public String scientificName=null;
 	//use getUIClassID() to get scientificName;(method in JButton)
 	//the scientificName should be in type:"class.class.name"

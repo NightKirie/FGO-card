@@ -1,9 +1,9 @@
 package card;
 import javax.swing.ImageIcon;
-public abstract class Monster extends Creature {
-	public Monster(String monstertype)
+public class Monster extends Creature {
+	public Monster(String scientificName)
 	{
-		super("Monster");
+		super("Monster."+scientificName);
 		ImageIcon cardPicture=null;
 		if(monstertype.equals("Boss"))
 		{
