@@ -39,6 +39,10 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaPlayer.Status;
 import javafx.stage.Stage;
+import javax.swing.JSlider;
+import javax.swing.JTextPane;
+import javax.swing.event.ChangeListener;
+import javax.swing.event.ChangeEvent;
 
 public class MainWindow extends JFrame{
 
@@ -64,6 +68,10 @@ public class MainWindow extends JFrame{
 	private final JLabel nothingIsHere = new JLabel("");	//for the page is not done
 	private final JLabel showCharacter = new JLabel("");	//for character page to show the character
 	
+	private final JSlider musicSlider = new JSlider();
+	private final JSlider fxSlider = new JSlider();
+	
+	private static double fxVolumn;
 	
 
 	/**********
@@ -82,7 +90,7 @@ public class MainWindow extends JFrame{
 		});
 	}
 	
-	public void SetUpMenuPage() {
+	public void InitialPage() {		
 		//Add skillButton in Menu
 		skillButton.setIcon(new ImageIcon(MainWindow.class.getResource("/Image/Skill_Btn.png")));
 		skillButton.setBounds(250, 255, 115, 155);
@@ -166,9 +174,32 @@ public class MainWindow extends JFrame{
 			@Override
 			public void mousePressed(MouseEvent arg0) {	
 				trolling_Fx.stop();
+				trolling_Fx.setVolume(fxVolumn);
 				trolling_Fx.play();				
 			}
 		});
+		
+		musicSlider.setBounds(212, 373, 200, 26);
+		musicSlider.setOpaque(false);
+		musicSlider.addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent arg0) {
+				menuBGM.setVolume((double)musicSlider.getValue()/100.0);
+				gameBGM.setVolume((double)musicSlider.getValue()/100.0);
+			}
+		});
+		contentPane.add(musicSlider);
+		
+
+		fxSlider.setBounds(212, 421, 200, 26);
+		fxSlider.setOpaque(false);
+		fxSlider.addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent arg0) {
+				fxVolumn = (double)fxSlider.getValue()/100.0;
+			}
+		});
+		contentPane.add(fxSlider);
+		
+		
 		contentPane.add(menuTitle);
 		
 		//Add nothingIsHere in Menu
@@ -193,10 +224,13 @@ public class MainWindow extends JFrame{
 		leftButton.setVisible(false);
 		rightButton.setVisible(false);
 		settingButton.setVisible(false);
+		musicSlider.setVisible(false);
+		fxSlider.setVisible(false);
 		menuTitle.setVisible(false);
 		nothingIsHere.setVisible(false);
 		showCharacter.setVisible(false);
 		backGround.setVisible(false);
+		
 	}
 	
 	//for show the menu
@@ -216,6 +250,8 @@ public class MainWindow extends JFrame{
 		leftButton.setVisible(false);
 		rightButton.setVisible(false);
 		settingButton.setVisible(true);
+		musicSlider.setVisible(false);
+		fxSlider.setVisible(false);
 		menuTitle.setVisible(true);
 		nothingIsHere.setVisible(false);
 		showCharacter.setVisible(false);
@@ -232,6 +268,8 @@ public class MainWindow extends JFrame{
 		leftButton.setVisible(true);
 		rightButton.setVisible(true);
 		settingButton.setVisible(false);
+		musicSlider.setVisible(false);
+		fxSlider.setVisible(false);
 		menuTitle.setVisible(false);
 		nothingIsHere.setVisible(false);
 		showCharacter.setVisible(true);
@@ -250,6 +288,8 @@ public class MainWindow extends JFrame{
 		leftButton.setVisible(false);
 		rightButton.setVisible(false);
 		settingButton.setVisible(false);
+		musicSlider.setVisible(false);
+		fxSlider.setVisible(false);
 		menuTitle.setVisible(false);
 		nothingIsHere.setVisible(false);
 		showCharacter.setVisible(false);
@@ -268,6 +308,8 @@ public class MainWindow extends JFrame{
 		leftButton.setVisible(false);
 		rightButton.setVisible(false);
 		settingButton.setVisible(false);
+		musicSlider.setVisible(false);
+		fxSlider.setVisible(false);
 		menuTitle.setVisible(false);
 		nothingIsHere.setVisible(true);
 		showCharacter.setVisible(false);
@@ -284,10 +326,15 @@ public class MainWindow extends JFrame{
 		leftButton.setVisible(false);
 		rightButton.setVisible(false);
 		settingButton.setVisible(true);
+		musicSlider.setVisible(true);
+		fxSlider.setVisible(true);
 		menuTitle.setVisible(false);
 		nothingIsHere.setVisible(false);
 		showCharacter.setVisible(false);
 		backGround.setVisible(true);
+		
+		musicSlider.setValue((int)(menuBGM.getVolume()*100.0));
+		fxSlider.setValue((int)(fxVolumn*100.0));
 	}
 	//for start the game
 	public void StartGame() {
@@ -327,7 +374,7 @@ public class MainWindow extends JFrame{
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
-		SetUpMenuPage();
+		InitialPage();
 		MenuPage();
 	}
 }
