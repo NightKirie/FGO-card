@@ -195,6 +195,14 @@ public class MainWindow extends JFrame{
 		fxSlider.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent arg0) {
 				fxVolumn = (double)fxSlider.getValue()/100.0;
+				skillButton.setVolumn(fxVolumn);
+				startButton.setVolumn(fxVolumn);
+				chararcterButton.setVolumn(fxVolumn);
+				achievementButton.setVolumn(fxVolumn);
+				backButton.setVolumn(fxVolumn);
+				leftButton.setVolumn(fxVolumn);
+				rightButton.setVolumn(fxVolumn);
+				settingButton.setVolumn(fxVolumn);
 			}
 		});
 		contentPane.add(fxSlider);
@@ -325,7 +333,7 @@ public class MainWindow extends JFrame{
 		backButton.setVisible(true);
 		leftButton.setVisible(false);
 		rightButton.setVisible(false);
-		settingButton.setVisible(true);
+		settingButton.setVisible(false);
 		musicSlider.setVisible(true);
 		fxSlider.setVisible(true);
 		menuTitle.setVisible(false);

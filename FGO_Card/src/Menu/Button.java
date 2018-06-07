@@ -11,12 +11,15 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 
 public class Button extends JButton{
+	private double volumn = 1.0;
+	
 	public Button(){
 		addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent arg0) {	
 				setBackground(new Color(255, 255, 255, 100));
 				MediaPlayer mouseEnterFX = new MediaPlayer(new Media(getClass().getResource("/Audio/Btn_hoveron.mp3").toString()));
+				mouseEnterFX.setVolume(volumn);
 				mouseEnterFX.play();
 			}
 			@Override
@@ -24,8 +27,9 @@ public class Button extends JButton{
 				setBackground(new Color(255, 255, 255, 0));
 			}
 			public void mousePressed(MouseEvent e) {				
-				MediaPlayer mouseEnterFX = new MediaPlayer(new Media(getClass().getResource("/Audio/Btn_Clicked.mp3").toString()));
-				mouseEnterFX.play();
+				MediaPlayer mousePressFX = new MediaPlayer(new Media(getClass().getResource("/Audio/Btn_Clicked.mp3").toString()));
+				mousePressFX.setVolume(volumn);
+				mousePressFX.play();
 			}
 		});		
 		setBackground(new Color(255, 255, 255, 0));
@@ -40,6 +44,9 @@ public class Button extends JButton{
 		g.setColor(getBackground());
 		g.fillRect(0, 0, getWidth(), getHeight());
 		super.paintComponent(g);
+	}
+	public void setVolumn(double volumn) {
+		this.volumn = volumn;
 	}
 
 	
