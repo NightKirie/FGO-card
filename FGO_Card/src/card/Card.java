@@ -17,7 +17,27 @@ public class Card extends JButton{
 	//if need to change ImageIcon,use setIcon in set;(method in JButton)
 	private class buttonListener implements ActionListener{
 		public void actionPerformed(ActionEvent e){
-			
+			String[] scientificName=getUIClassID().split(".");
+			if(scientificName[0].equals("Object")){
+				if(scientificName[1].equals("Creature")&&scientificName[2].equals("Monster")){
+					
+				}
+				else{
+					
+				}
+			}
+			else{
+				switch(scientificName[2]){
+					case "Weapon":
+						break;
+					case "Potion":
+						break;
+					case "Trap":
+						break;
+					case "Bomb":
+						break;
+				}
+			}
 		}
 	} 
 }
