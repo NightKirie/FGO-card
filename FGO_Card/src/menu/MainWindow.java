@@ -152,12 +152,34 @@ public class MainWindow extends JFrame{
 		leftButton.setIcon(new ImageIcon(MainWindow.class.getResource("/image/Left_Btn.png")));
 		leftButton.setBounds(0, 150, 98, 95);
 		leftButton.setVolume(fxVolume);
+		leftButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {	
+				if(showCharacter.getIcon().equals(character.Caster.characterimage))
+					showCharacter.setIcon(character.Lancer.characterimage);
+				else if(showCharacter.getIcon().equals(character.Assassin.characterimage))
+					showCharacter.setIcon(character.Caster.characterimage);					
+				else if(showCharacter.getIcon().equals(character.Lancer.characterimage))
+					showCharacter.setIcon(character.Assassin.characterimage);					
+			}
+		});
 		contentPane.add(leftButton);
 			
 		//Initial rightButton in Menu
 		rightButton.setIcon(new ImageIcon(MainWindow.class.getResource("/image/Right_Btn.png")));
 		rightButton.setBounds(382, 150, 98, 95);
 		rightButton.setVolume(fxVolume);
+		rightButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {	
+				if(showCharacter.getIcon().equals(character.Caster.characterimage))
+					showCharacter.setIcon(character.Assassin.characterimage);
+				else if(showCharacter.getIcon().equals(character.Assassin.characterimage))
+					showCharacter.setIcon(character.Lancer.characterimage);
+				else if(showCharacter.getIcon().equals(character.Lancer.characterimage))
+					showCharacter.setIcon(character.Caster.characterimage);
+			}
+		});
 		contentPane.add(rightButton);
 
 
