@@ -6,8 +6,9 @@ import javax.swing.ImageIcon;
 public class Weapon extends Item {
 	public int attackrange;
 	public String weapontype;
-	public Weapon(int whp,int attackrange,String type)
+	public Weapon(String scientificName,int whp,int attackrange,String type)
 	{
+		super("Weapon."+scientificName);
 		this.attackrange=attackrange;
 		this.hp=whp;
 		if(type.equals("sword"))

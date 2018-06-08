@@ -2,8 +2,9 @@ package card;
 import javax.swing.ImageIcon;
 public class Potion extends Item {
 	public String potiontype;
-	public Potion(String type,int size)
+	public Potion(String scientificName,int size)
 	{
+		super("Potion."+scientificName);
 		hp=size;
 		potiontype=type;
 		if(type.equals("heal"))

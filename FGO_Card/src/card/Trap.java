@@ -1,7 +1,9 @@
 package card;
 
 public class Trap extends Item {
-
+	public Trap(String scientifficName){
+		super("Trap."+scientifficName);
+	}
 
 	@Override
 	public void effect(Player input) {
