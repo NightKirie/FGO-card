@@ -27,6 +27,10 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.image.ImageObserver;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.text.AttributedCharacterIterator;
@@ -93,7 +97,7 @@ public class MainWindow extends JFrame{
 	}
 	
 	public void InitialPage() {		
-		//Add skillButton in Menu
+		//Initial skillButton in Menu
 		skillButton.setIcon(new ImageIcon(MainWindow.class.getResource("/image/Skill_Btn.png")));
 		skillButton.setBounds(250, 255, 115, 155);
 		skillButton.addMouseListener(new MouseAdapter() {
@@ -104,7 +108,7 @@ public class MainWindow extends JFrame{
 		});	
 		contentPane.add(skillButton);
 		
-		//Add start Button in Menu
+		//Initial start Button in Menu
 		startButton.setIcon(new ImageIcon(MainWindow.class.getResource("/image/Start_Btn.png")));
 		startButton.setBounds(250, 410, 115, 130);
 		startButton.addMouseListener(new MouseAdapter() {
@@ -115,7 +119,7 @@ public class MainWindow extends JFrame{
 		});
 		contentPane.add(startButton);
 		
-		//Add characterButton in Menu
+		//Initial characterButton in Menu
 		chararcterButton.setIcon(new ImageIcon(MainWindow.class.getResource("/image/Character_Btn.png")));
 		chararcterButton.setBounds(115, 255, 115, 155);
 		chararcterButton.addMouseListener(new MouseAdapter() {
@@ -126,7 +130,7 @@ public class MainWindow extends JFrame{
 		});
 		contentPane.add(chararcterButton);
 
-		//Add achievementButton in Menu
+		//Initial achievementButton in Menu
 		achievementButton.setIcon(new ImageIcon(MainWindow.class.getResource("/image/Reward_Btn.png")));
 		achievementButton.setBounds(115, 410, 115, 130);
 		achievementButton.addMouseListener(new MouseAdapter() {
@@ -136,8 +140,9 @@ public class MainWindow extends JFrame{
 			}
 		});
 		contentPane.add(achievementButton);
+		backButton.setIcon(new ImageIcon(MainWindow.class.getResource("/image/Back_Btn.png")));
 		
-		//Add backButton in Menu
+		//Initial backButton in Menu
 		backButton.setBounds(0, 625, 98, 95);
 		backButton.addMouseListener(new MouseAdapter() {
 			@Override
@@ -147,30 +152,30 @@ public class MainWindow extends JFrame{
 		});
 		contentPane.add(backButton);
 		
-		//Add leftButton in Menu
+		//Initial leftButton in Menu
 		leftButton.setIcon(new ImageIcon(MainWindow.class.getResource("/image/Left_Btn.png")));
 		leftButton.setBounds(0, 150, 98, 95);
 		contentPane.add(leftButton);
 			
-		//Add rightButton in Menu
+		//Initial rightButton in Menu
 		rightButton.setIcon(new ImageIcon(MainWindow.class.getResource("/image/Right_Btn.png")));
 		rightButton.setBounds(382, 150, 98, 95);
 		contentPane.add(rightButton);
-		settingButton.setIcon(new ImageIcon(MainWindow.class.getResource("/image/Setting_Btn.png")));
-		settingButton.setSelectedIcon(null);
+
+
 		
-		//Add settingButton in Menu
+		//Initial settingButton in Menu
+		settingButton.setIcon(new ImageIcon(MainWindow.class.getResource("/image/Setting_Btn.png")));
 		settingButton.setBounds(0, 0, 50, 50);
 		settingButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent arg0) {	
-				Setting();
-				
+				Setting();			
 			}
 		});
 		contentPane.add(settingButton);		
 		
-		//Add menuTitle in Menu	
+		//Initial menuTitle label in Menu	
 		menuTitle.setIcon(new ImageIcon(MainWindow.class.getResource("/image/MenuTitle.png")));
 		menuTitle.setBounds(120, 60, 240, 180);
 		menuTitle.addMouseListener(new MouseAdapter() {
@@ -269,6 +274,8 @@ public class MainWindow extends JFrame{
 		nothingIsHere.setVisible(false);
 		showCharacter.setVisible(false);
 		backGround.setVisible(true);
+		
+		SaveData();
 	}
 	
 	/**
@@ -359,16 +366,42 @@ public class MainWindow extends JFrame{
 	
 	/**
 	 * call to load data
+	 * @throws FileNotFoundException 
 	 */
 	private void LoadData() {
+		try {
+			FileInputStream is = new FileInputStream("./SaveData/savedata.data");
+			System.out.println("file open ok");
+			//is.read();
+			System.out.println("file read ok");
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
 	
 	/**
 	 * call to save data
+	 * @throws FileNotFoundException 
 	 */
 	private void SaveData() {
-		
+		try {
+			FileOutputStream os = new FileOutputStream("./SaveData/savedata.data");
+			String st = "character:1/1 2/1 3/1\nskill:1/1 2/1 3/1 4/1 5/1\ncharacter_chosen:1\nskill_chosen:0/0/0\ngold:0\nmusic:1.0\nfx:1.0";
+			System.out.println("file open ok");
+			try {
+				os.write(st.getBytes());
+				os.close();
+				System.out.println("file write ok");
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	/**
@@ -393,6 +426,8 @@ public class MainWindow extends JFrame{
 		nothingIsHere.setVisible(false);
 		showCharacter.setVisible(false);
 		backGround.setVisible(true);
+		
+
 	}
 	
 	

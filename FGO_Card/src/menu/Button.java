@@ -30,7 +30,6 @@ public class Button extends JButton{
 				MediaPlayer mousePressFX = new MediaPlayer(new Media(getClass().getResource("/audio/Btn_Clicked.mp3").toString()));
 				mousePressFX.setVolume(volume);
 				mousePressFX.play();
-				setBounds(0, 0, 115, 130);
 			}
 		});		
 		setBackground(new Color(255, 255, 255, 0));
