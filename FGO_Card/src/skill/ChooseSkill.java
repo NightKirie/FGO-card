@@ -17,14 +17,8 @@ public class ChooseSkill {
 	public static int skill5Level = 1;
 	
 	//this partition is for battle
-	public static int getChooseID1() {
-		return chooseSkillID1;
-	}
-	public static int getChooseID2() {
-		return chooseSkillID2;
-	}
-	public static int getChooseID3() {
-		return chooseSkillID1;
+	public static int[] getChooseID() {
+		return new int[] {chooseSkillID1, chooseSkillID2, chooseSkillID3};
 	}
 	
 	public static int getCD(int ID){
