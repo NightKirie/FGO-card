@@ -1,6 +1,6 @@
-package Menu;
+package menu;
 
-import Menu.Button;
+import menu.Button;
 import card.Player;
 
 import java.awt.BorderLayout;
@@ -50,9 +50,9 @@ public class MainWindow extends JFrame{
 	
 	private final JFXPanel fxPanel = new JFXPanel();		//for FX to play, not sure why
 	
-	private final MediaPlayer menuBGM = new MediaPlayer(new Media(getClass().getResource("/Audio/Menu_BGM.mp3").toString()));		//for menu BGM
-	private final MediaPlayer gameBGM = new MediaPlayer(new Media(getClass().getResource("/Audio/InGame_BGM.mp3").toString()));		//for in game BGM
-	private final MediaPlayer trolling_Fx = new MediaPlayer(new Media(getClass().getResource("/Audio/Trolling_Sound.mp3").toString()));	//for LOLs
+	private final MediaPlayer menuBGM = new MediaPlayer(new Media(getClass().getResource("/audio/Menu_BGM.mp3").toString()));		//for menu BGM
+	private final MediaPlayer gameBGM = new MediaPlayer(new Media(getClass().getResource("/audio/InGame_BGM.mp3").toString()));		//for in game BGM
+	private final MediaPlayer trolling_Fx = new MediaPlayer(new Media(getClass().getResource("/audio/Trolling_Sound.mp3").toString()));	//for LOLs
 	
 	private final Button skillButton = new Button();		//for go to skill page
 	private final Button startButton = new Button();		//for start the game
@@ -71,7 +71,9 @@ public class MainWindow extends JFrame{
 	private final JSlider musicSlider = new JSlider();
 	private final JSlider fxSlider = new JSlider();
 	
-	private static double fxVolumn;
+	
+	private static double musicVolume;
+	private static double fxVolume;
 	
 
 	/**********
@@ -92,7 +94,7 @@ public class MainWindow extends JFrame{
 	
 	public void InitialPage() {		
 		//Add skillButton in Menu
-		skillButton.setIcon(new ImageIcon(MainWindow.class.getResource("/Image/Skill_Btn.png")));
+		skillButton.setIcon(new ImageIcon(MainWindow.class.getResource("/image/Skill_Btn.png")));
 		skillButton.setBounds(250, 255, 115, 155);
 		skillButton.addMouseListener(new MouseAdapter() {
 			@Override
@@ -103,19 +105,18 @@ public class MainWindow extends JFrame{
 		contentPane.add(skillButton);
 		
 		//Add start Button in Menu
-		startButton.setIcon(new ImageIcon(MainWindow.class.getResource("/Image/Start_Btn.png")));
+		startButton.setIcon(new ImageIcon(MainWindow.class.getResource("/image/Start_Btn.png")));
 		startButton.setBounds(250, 410, 115, 130);
 		startButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {		
-				
 				StartGame();
 			}
 		});
 		contentPane.add(startButton);
 		
 		//Add characterButton in Menu
-		chararcterButton.setIcon(new ImageIcon(MainWindow.class.getResource("/Image/Character_Btn.png")));
+		chararcterButton.setIcon(new ImageIcon(MainWindow.class.getResource("/image/Character_Btn.png")));
 		chararcterButton.setBounds(115, 255, 115, 155);
 		chararcterButton.addMouseListener(new MouseAdapter() {
 			@Override
@@ -126,7 +127,7 @@ public class MainWindow extends JFrame{
 		contentPane.add(chararcterButton);
 
 		//Add achievementButton in Menu
-		achievementButton.setIcon(new ImageIcon(MainWindow.class.getResource("/Image/Reward_Btn.png")));
+		achievementButton.setIcon(new ImageIcon(MainWindow.class.getResource("/image/Reward_Btn.png")));
 		achievementButton.setBounds(115, 410, 115, 130);
 		achievementButton.addMouseListener(new MouseAdapter() {
 			@Override
@@ -137,7 +138,6 @@ public class MainWindow extends JFrame{
 		contentPane.add(achievementButton);
 		
 		//Add backButton in Menu
-		//backButton.setIcon(new ImageIcon(MainWindow.class.getResource("/Image/Back_Btn.png")));
 		backButton.setBounds(0, 625, 98, 95);
 		backButton.addMouseListener(new MouseAdapter() {
 			@Override
@@ -148,14 +148,16 @@ public class MainWindow extends JFrame{
 		contentPane.add(backButton);
 		
 		//Add leftButton in Menu
-		leftButton.setIcon(new ImageIcon(MainWindow.class.getResource("/Image/Left_Btn.png")));
+		leftButton.setIcon(new ImageIcon(MainWindow.class.getResource("/image/Left_Btn.png")));
 		leftButton.setBounds(0, 150, 98, 95);
 		contentPane.add(leftButton);
 			
 		//Add rightButton in Menu
-		rightButton.setIcon(new ImageIcon(MainWindow.class.getResource("/Image/Right_Btn.png")));
+		rightButton.setIcon(new ImageIcon(MainWindow.class.getResource("/image/Right_Btn.png")));
 		rightButton.setBounds(382, 150, 98, 95);
 		contentPane.add(rightButton);
+		settingButton.setIcon(new ImageIcon(MainWindow.class.getResource("/image/Setting_Btn.png")));
+		settingButton.setSelectedIcon(null);
 		
 		//Add settingButton in Menu
 		settingButton.setBounds(0, 0, 50, 50);
@@ -163,22 +165,24 @@ public class MainWindow extends JFrame{
 			@Override
 			public void mousePressed(MouseEvent arg0) {	
 				Setting();
+				
 			}
 		});
 		contentPane.add(settingButton);		
 		
 		//Add menuTitle in Menu	
-		menuTitle.setIcon(new ImageIcon(MainWindow.class.getResource("/Image/MenuTitle.png")));
+		menuTitle.setIcon(new ImageIcon(MainWindow.class.getResource("/image/MenuTitle.png")));
 		menuTitle.setBounds(120, 60, 240, 180);
 		menuTitle.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent arg0) {	
 				trolling_Fx.stop();
-				trolling_Fx.setVolume(fxVolumn);
+				trolling_Fx.setVolume(fxVolume);
 				trolling_Fx.play();				
 			}
 		});
 		
+		//Initial the musicSlider, for setting the music sound volume
 		musicSlider.setBounds(212, 373, 200, 26);
 		musicSlider.setOpaque(false);
 		musicSlider.addChangeListener(new ChangeListener() {
@@ -189,37 +193,37 @@ public class MainWindow extends JFrame{
 		});
 		contentPane.add(musicSlider);
 		
-
+		//Initial the fxSlider, for setting the fx sound volume
 		fxSlider.setBounds(212, 421, 200, 26);
 		fxSlider.setOpaque(false);
 		fxSlider.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent arg0) {
-				fxVolumn = (double)fxSlider.getValue()/100.0;
-				skillButton.setVolumn(fxVolumn);
-				startButton.setVolumn(fxVolumn);
-				chararcterButton.setVolumn(fxVolumn);
-				achievementButton.setVolumn(fxVolumn);
-				backButton.setVolumn(fxVolumn);
-				leftButton.setVolumn(fxVolumn);
-				rightButton.setVolumn(fxVolumn);
-				settingButton.setVolumn(fxVolumn);
+				fxVolume = (double)fxSlider.getValue()/100.0;
+				skillButton.setVolume(fxVolume);
+				startButton.setVolume(fxVolume);
+				chararcterButton.setVolume(fxVolume);
+				achievementButton.setVolume(fxVolume);
+				backButton.setVolume(fxVolume);
+				leftButton.setVolume(fxVolume);
+				rightButton.setVolume(fxVolume);
+				settingButton.setVolume(fxVolume);
 			}
 		});
 		contentPane.add(fxSlider);
 		
-		
+		//Initial menu title label
 		contentPane.add(menuTitle);
 		
-		//Add nothingIsHere in Menu
-		nothingIsHere.setIcon(new ImageIcon(MainWindow.class.getResource("/Image/SorryForNothing.png")));
+		//Initial nothingIsHere page in Menu
+		nothingIsHere.setIcon(new ImageIcon(MainWindow.class.getResource("/image/SorryForNothing.png")));
 		nothingIsHere.setBounds(115, 320, 250, 400);
 		contentPane.add(nothingIsHere);
 		
-		//Add character preview picture in character page
+		//Initial character preview picture in character page
 		showCharacter.setBounds(140, 75, 200, 255);
 		contentPane.add(showCharacter);
 
-		//Add back ground image
+		//Initial back ground image
 		backGround.setBounds(0, 0, 480, 720);
 		contentPane.add(backGround);
 		
@@ -241,14 +245,15 @@ public class MainWindow extends JFrame{
 		
 	}
 	
-	//for show the menu
+	//call to show the menu page
 	public void MenuPage() {
 		//start Menu BGM
 		gameBGM.stop();
 		menuBGM.setCycleCount(MediaPlayer.INDEFINITE);
 		menuBGM.play();	
 		
-		backGround.setIcon(new ImageIcon(MainWindow.class.getResource("/Image/MainBackground.png")));
+		//set the menu background
+		backGround.setIcon(new ImageIcon(MainWindow.class.getResource("/image/MainBackground.png")));
 		
 		skillButton.setVisible(true);
 		startButton.setVisible(true);
@@ -266,7 +271,9 @@ public class MainWindow extends JFrame{
 		backGround.setVisible(true);
 	}
 	
-	//Go to select character
+	/**
+	 * call to go to character page
+	 */
 	public void CharacterPage() {
 		skillButton.setVisible(false);
 		startButton.setVisible(false);
@@ -286,7 +293,7 @@ public class MainWindow extends JFrame{
 			
 	}
 	
-	//for select the skill
+	//call to go to skill page
 	public void SkillPage() {
 		skillButton.setVisible(false);
 		startButton.setVisible(false);
@@ -306,7 +313,9 @@ public class MainWindow extends JFrame{
 
 	}
 	
-	//for check the achievement
+	/**
+	 * call to go to achievement page
+	 */
 	public void AchievementPage() {
 		skillButton.setVisible(false);
 		startButton.setVisible(false);
@@ -324,7 +333,9 @@ public class MainWindow extends JFrame{
 		backGround.setVisible(false);	
 	}
 	
-	//for set audio 
+	/**
+	 * call to go to setting page 
+	 */
 	public void Setting() {
 		skillButton.setVisible(false);
 		startButton.setVisible(false);
@@ -341,16 +352,34 @@ public class MainWindow extends JFrame{
 		showCharacter.setVisible(false);
 		backGround.setVisible(true);
 		
+		//set the slider to the previous value
 		musicSlider.setValue((int)(menuBGM.getVolume()*100.0));
-		fxSlider.setValue((int)(fxVolumn*100.0));
+		fxSlider.setValue((int)(fxVolume*100.0));
 	}
-	//for start the game
+	
+	/**
+	 * call to load data
+	 */
+	private void LoadData() {
+		
+	}
+	
+	/**
+	 * call to save data
+	 */
+	private void SaveData() {
+		
+	}
+	
+	/**
+	 * call to start the game
+	 */
 	public void StartGame() {
 		menuBGM.stop();
 		gameBGM.setCycleCount(MediaPlayer.INDEFINITE);
 		gameBGM.play();
 		
-		backGround.setIcon(new ImageIcon(MainWindow.class.getResource("/Image/InGameBackground.jpg")));
+		backGround.setIcon(new ImageIcon(MainWindow.class.getResource("/image/InGameBackground.jpg")));
 		
 		skillButton.setVisible(false);
 		startButton.setVisible(false);
@@ -373,7 +402,7 @@ public class MainWindow extends JFrame{
 	public MainWindow() {
 		setResizable(false);
 		setTitle("FGO Card");
-		setIconImage(Toolkit.getDefaultToolkit().getImage(MainWindow.class.getResource("/Image/Icon.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(MainWindow.class.getResource("/image/Icon.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(0, 0, 485, 748);
 		contentPane = new JPanel();
