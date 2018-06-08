@@ -11,14 +11,6 @@ public class Player extends Creature{
 		//maxhp=input.maxHP;
 		ImageIcon cardPicture=null;
 		
-		/*
-		//set caster picture
-		cardPicture=new ImageIcon(this.getClass().getResource("/Images/caster.jpg"));
-		//set assassin picture
-		cardPicture=new ImageIcon(this.getClass().getResource("/Images/assassin.jpg"));
-		//set lancer picture
-		cardPicture=new ImageIcon(this.getClass().getResource("/Images/lancer.jpg"));
-		*/
 	}
 	public void attack(Creature opponent) {
 		// TODO Auto-generated method stub
