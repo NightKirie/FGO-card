@@ -5,6 +5,7 @@ public class Monster extends Creature {
 	{
 		super("Monster."+scientificName);
 		/*ImageIcon cardPicture=null;
+
 		if(scientificName.equals("Boss"))
 		{
 			hp=100;
