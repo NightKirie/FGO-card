@@ -5,12 +5,12 @@ public class Monster extends Creature {
 	{
 		super("Monster."+scientificName);
 		ImageIcon cardPicture=null;
-		if(monstertype.equals("Boss"))
+		if(scientificName.equals("Boss"))
 		{
 			hp=100;
 			cardPicture=new ImageIcon(this.getClass().getResource("/Images/Boss.jpg"));
 		}
-		if(monstertype.equals("midboss"))
+		if(scientificName.equals("midboss"))
 		{
 			hp=50;
 			cardPicture=new ImageIcon(this.getClass().getResource("/Images/Midboss.jpg"));
@@ -18,7 +18,7 @@ public class Monster extends Creature {
 		setIcon(cardPicture);
 	}
 
-	public void attack() {
+	public void attack(Creature opponent) {
 		// TODO Auto-generated method stub
 		
 	}

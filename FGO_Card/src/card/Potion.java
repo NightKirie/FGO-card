@@ -4,12 +4,14 @@ public class Potion extends Item {
 	public String potiontype;
 	public Potion(String scientificName,int size)
 	{
+		
 		super("Potion."+scientificName);
+		ImageIcon cardPicture=null;
 		hp=size;
-		potiontype=type;
-		if(type.equals("heal"))
+		potiontype=scientificName;
+		if(potiontype.equals("heal"))
 		{
-			cardPicture=new ImageIcon("healpotion.jpg");
+			cardPicture=new ImageIcon(this.getClass().getResource("/Images/heal.jpg"));
 		}
 		setIcon(cardPicture);
 	}
@@ -20,9 +22,9 @@ public class Potion extends Item {
 		if(potiontype.equals("heal"))
 		{
 			input.hp+=this.hp;
-			if(input.hp>input.maxhp)
+			if(input.hp>input.maxHP)
 			{
-				input.hp=input.maxhp;
+				input.hp=input.maxHP;
 			}
 		}
 	}

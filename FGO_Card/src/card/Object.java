@@ -11,4 +11,24 @@ public class Object extends Card {
 	 	hp-=damage;
 	 }
 	 */
+	public void getSwordDamage(int damage)//sword damage
+	{
+		hp-=damage;
+	}
+	public void getFireDamage(int damage)//fire ward
+	{
+		hp-=damage;
+	}
+	public void getIceDamage(int damage)//ice ward
+	{
+		hp-=damage;
+	}
+	public void getTrapDamage(int damage)//step trap
+	{
+		hp-=damage;
+	}
+	public void getBombDamage(int damage)//touch bomb 
+	{
+		hp-=damage;
+	}
 }

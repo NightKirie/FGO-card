@@ -1,6 +1,6 @@
 package card;
 
-public class Creature extends Object{
+public abstract class Creature extends Object{
 	public Creature(String ScientificName){
 		super("Creature."+ScientificName);
 	}
