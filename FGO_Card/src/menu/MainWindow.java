@@ -35,8 +35,10 @@ import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.nio.DoubleBuffer;
 import java.text.AttributedCharacterIterator;
 
 import java.net.URL;
@@ -52,6 +54,9 @@ import javax.swing.JSlider;
 import javax.swing.JTextPane;
 import javax.swing.event.ChangeListener;
 import javax.swing.event.ChangeEvent;
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeEvent;
+import java.beans.VetoableChangeListener;
 
 public class MainWindow extends JFrame{
 
@@ -80,10 +85,14 @@ public class MainWindow extends JFrame{
 	private final JSlider musicSlider = new JSlider();
 	private final JSlider fxSlider = new JSlider();
 	
-	
+	private static int charaterLV[] = new int[3];
+	private static int skillLV[] = new int[5];
+	private static int characterChoice;
+	private static int skillChoice[] = new int[3];
+	private static int goldAmount;
 	private static double musicVolume;
 	private static double fxVolume;
-	
+
 
 	/**********
 	  Launch the application.
@@ -102,9 +111,14 @@ public class MainWindow extends JFrame{
 	}
 	
 	public void InitialPage() {		
+		
+		//Load previous data
+		LoadData();
+		
 		//Initial skillButton in Menu
 		skillButton.setIcon(new ImageIcon(MainWindow.class.getResource("/image/Skill_Btn.png")));
 		skillButton.setBounds(250, 255, 115, 155);
+		skillButton.setVolume(fxVolume);
 		skillButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {	
@@ -116,6 +130,7 @@ public class MainWindow extends JFrame{
 		//Initial start Button in Menu
 		startButton.setIcon(new ImageIcon(MainWindow.class.getResource("/image/Start_Btn.png")));
 		startButton.setBounds(250, 410, 115, 130);
+		startButton.setVolume(fxVolume);
 		startButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {		
@@ -127,6 +142,7 @@ public class MainWindow extends JFrame{
 		//Initial characterButton in Menu
 		chararcterButton.setIcon(new ImageIcon(MainWindow.class.getResource("/image/Character_Btn.png")));
 		chararcterButton.setBounds(115, 255, 115, 155);
+		chararcterButton.setVolume(fxVolume);
 		chararcterButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {	
@@ -138,6 +154,7 @@ public class MainWindow extends JFrame{
 		//Initial achievementButton in Menu
 		achievementButton.setIcon(new ImageIcon(MainWindow.class.getResource("/image/Reward_Btn.png")));
 		achievementButton.setBounds(115, 410, 115, 130);
+		achievementButton.setVolume(fxVolume);
 		achievementButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {	
@@ -145,10 +162,12 @@ public class MainWindow extends JFrame{
 			}
 		});
 		contentPane.add(achievementButton);
-		backButton.setIcon(new ImageIcon(MainWindow.class.getResource("/image/Back_Btn.png")));
+		
 		
 		//Initial backButton in Menu
+		backButton.setIcon(new ImageIcon(MainWindow.class.getResource("/image/Back_Btn.png")));
 		backButton.setBounds(0, 625, 98, 95);
+		backButton.setVolume(fxVolume);
 		backButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {	
@@ -160,11 +179,13 @@ public class MainWindow extends JFrame{
 		//Initial leftButton in Menu
 		leftButton.setIcon(new ImageIcon(MainWindow.class.getResource("/image/Left_Btn.png")));
 		leftButton.setBounds(0, 150, 98, 95);
+		leftButton.setVolume(fxVolume);
 		contentPane.add(leftButton);
 			
 		//Initial rightButton in Menu
 		rightButton.setIcon(new ImageIcon(MainWindow.class.getResource("/image/Right_Btn.png")));
 		rightButton.setBounds(382, 150, 98, 95);
+		rightButton.setVolume(fxVolume);
 		contentPane.add(rightButton);
 
 
@@ -172,6 +193,7 @@ public class MainWindow extends JFrame{
 		//Initial settingButton in Menu
 		settingButton.setIcon(new ImageIcon(MainWindow.class.getResource("/image/Setting_Btn.png")));
 		settingButton.setBounds(0, 0, 50, 50);
+		settingButton.setVolume(fxVolume);
 		settingButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent arg0) {	
@@ -197,12 +219,15 @@ public class MainWindow extends JFrame{
 		musicSlider.setOpaque(false);
 		musicSlider.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent arg0) {
+				musicVolume = (double)musicSlider.getValue()/100.0;
 				menuBGM.setVolume((double)musicSlider.getValue()/100.0);
 				gameBGM.setVolume((double)musicSlider.getValue()/100.0);
+				SaveData();
 			}
 		});
 		contentPane.add(musicSlider);
 		
+
 		//Initial the fxSlider, for setting the fx sound volume
 		fxSlider.setBounds(212, 421, 200, 26);
 		fxSlider.setOpaque(false);
@@ -217,6 +242,7 @@ public class MainWindow extends JFrame{
 				leftButton.setVolume(fxVolume);
 				rightButton.setVolume(fxVolume);
 				settingButton.setVolume(fxVolume);
+				SaveData();
 			}
 		});
 		contentPane.add(fxSlider);
@@ -236,7 +262,10 @@ public class MainWindow extends JFrame{
 		//Initial back ground image
 		backGround.setBounds(0, 0, 480, 720);
 		contentPane.add(backGround);
-		
+	
+		//Initial the volume of BGM
+		menuBGM.setVolume(musicVolume);
+		gameBGM.setVolume(musicVolume);
 	
 		skillButton.setVisible(false);
 		startButton.setVisible(false);
@@ -252,7 +281,6 @@ public class MainWindow extends JFrame{
 		nothingIsHere.setVisible(false);
 		showCharacter.setVisible(false);
 		backGround.setVisible(false);
-		
 	}
 	
 	//call to show the menu page
@@ -280,8 +308,7 @@ public class MainWindow extends JFrame{
 		showCharacter.setVisible(false);
 		backGround.setVisible(true);
 		
-		SaveData();
-		LoadData();
+
 	}
 	
 	/**
@@ -366,10 +393,10 @@ public class MainWindow extends JFrame{
 		backGround.setVisible(true);
 		
 		//set the slider to the previous value
-		musicSlider.setValue((int)(menuBGM.getVolume()*100.0));
+		musicSlider.setValue((int)(musicVolume*100.0));
 		fxSlider.setValue((int)(fxVolume*100.0));
 	}
-	
+
 	/**
 	 * call to load data
 	 * @throws FileNotFoundException 
@@ -378,10 +405,39 @@ public class MainWindow extends JFrame{
 		try {
 			BufferedReader br = new BufferedReader(new FileReader("./SaveData/savedata.data"));
 			System.out.println("file open ok");
-			String line = null;
-			while((line = br.readLine()) != null)
-				System.out.println(line);
+			
+			String characterData = br.readLine().split("character:")[1];
+			for(String i: characterData.split(" ")) {
+				String data[] = i.split("/");
+				charaterLV[Integer.parseInt(data[0])-1] = Integer.parseInt(data[1]);
+			}
+			
+			String skillData = br.readLine().split("skill:")[1];
+			for(String i: skillData.split(" ")) {
+				String data[] = i.split("/");
+				skillLV[Integer.parseInt(data[0])-1] = Integer.parseInt(data[1]);
+			}
+			
+			String characterChosenData = br.readLine().split("character_chosen:")[1];
+			characterChoice = Integer.parseInt(characterChosenData);
+			
+			String skillChosenData = br.readLine().split("skill_chosen:")[1];
+			for(int i = 0; i < 3; i++) {
+				String data[] = skillChosenData.split(" ");
+				skillChoice[i] = Integer.parseInt(data[i]);
+			}
+			
+			String goldData = br.readLine().split("gold:")[1];
+			goldAmount = Integer.parseInt(goldData);
+			
+			String musicData = br.readLine().split("music:")[1];
+			musicVolume = Double.parseDouble(musicData);
+			
+			String fxData = br.readLine().split("fx:")[1];
+			fxVolume = Double.parseDouble(fxData);
+
 			System.out.println("file read ok");
+			br.close();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -395,13 +451,18 @@ public class MainWindow extends JFrame{
 	 */
 	private void SaveData() {
 		try {
-			BufferedWriter bw = new BufferedWriter(new FileWriter("./SaveData/savedata.data"));
-			String st = "character:1/1 2/1 3/1\nskill:1/1 2/1 3/1 4/1 5/1\ncharacter_chosen:1\nskill_chosen:0/0/0\ngold:0\nmusic:1.0\nfx:1.0";
+			PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter("./SaveData/savedata.data")));
+
 			System.out.println("file open ok");
-			
-			bw.write(st);
-			bw.close();
+			pw.println("character:1/" + charaterLV[0] + " 2/" + charaterLV[1] + " 3/" + charaterLV[2]);
+			pw.println("skill:1/" + skillLV[0] + " 2/" + skillLV[1] + " 3/" + skillLV[2] + " 4/" + skillLV[3] + " 5/" + skillLV[4]);
+			pw.println("character_chosen:" + characterChoice);
+			pw.println("skill_chosen:" + skillChoice[0] + " " + skillChoice[1] + " " + skillChoice[2]);
+			pw.println("gold:" + goldAmount);
+			pw.println("music:" + musicVolume);
+			pw.println("fx:" + fxVolume);
 			System.out.println("file write ok");
+			pw.close();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
