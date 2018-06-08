@@ -1,62 +1,32 @@
 package menu;
 
 import menu.Button;
-import card.Player;
-
-import java.awt.BorderLayout;
+import character.*;
 import java.awt.Color;
-import java.awt.Cursor;
 import java.awt.EventQueue;
-import java.awt.Font;
-import java.awt.FontMetrics;
-import java.awt.Graphics;
-import java.awt.Image;
-import java.awt.Rectangle;
-import java.awt.Shape;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import javax.swing.JButton;
 import javax.swing.ImageIcon;
 import java.awt.Toolkit;
 import javax.swing.JLabel;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.image.ImageObserver;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.net.URISyntaxException;
-import java.net.URL;
-import java.nio.DoubleBuffer;
-import java.text.AttributedCharacterIterator;
+import java.util.function.Predicate;
 
-import java.net.URL;
-
-import javafx.application.Application;
 import javafx.embed.swing.JFXPanel;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
-import javafx.scene.media.MediaPlayer.Status;
-import javafx.scene.shape.Line;
-import javafx.stage.Stage;
 import javax.swing.JSlider;
-import javax.swing.JTextPane;
 import javax.swing.event.ChangeListener;
 import javax.swing.event.ChangeEvent;
-import java.beans.PropertyChangeListener;
-import java.beans.PropertyChangeEvent;
-import java.beans.VetoableChangeListener;
 
 public class MainWindow extends JFrame{
 
@@ -81,6 +51,8 @@ public class MainWindow extends JFrame{
 	private final JLabel backGround = new JLabel("");		//for menu background picture
 	private final JLabel nothingIsHere = new JLabel("");	//for the page is not done
 	private final JLabel showCharacter = new JLabel("");	//for character page to show the character
+	private final JLabel settingText = new JLabel("");		//for setting page's title
+
 	
 	private final JSlider musicSlider = new JSlider();
 	private final JSlider fxSlider = new JSlider();
@@ -215,7 +187,7 @@ public class MainWindow extends JFrame{
 		});
 		
 		//Initial the musicSlider, for setting the music sound volume
-		musicSlider.setBounds(212, 373, 200, 26);
+		musicSlider.setBounds(220, 360, 200, 26);
 		musicSlider.setOpaque(false);
 		musicSlider.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent arg0) {
@@ -229,7 +201,7 @@ public class MainWindow extends JFrame{
 		
 
 		//Initial the fxSlider, for setting the fx sound volume
-		fxSlider.setBounds(212, 421, 200, 26);
+		fxSlider.setBounds(220, 420, 200, 26);
 		fxSlider.setOpaque(false);
 		fxSlider.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent arg0) {
@@ -258,6 +230,10 @@ public class MainWindow extends JFrame{
 		//Initial character preview picture in character page
 		showCharacter.setBounds(140, 75, 200, 255);
 		contentPane.add(showCharacter);
+		
+		settingText.setIcon(new ImageIcon(MainWindow.class.getResource("/image/test.png")));
+		settingText.setBounds(0, 0, 480, 720);
+		contentPane.add(settingText);
 
 		//Initial back ground image
 		backGround.setBounds(0, 0, 480, 720);
@@ -280,6 +256,7 @@ public class MainWindow extends JFrame{
 		menuTitle.setVisible(false);
 		nothingIsHere.setVisible(false);
 		showCharacter.setVisible(false);
+		settingText.setVisible(false);
 		backGround.setVisible(false);
 	}
 	
@@ -306,6 +283,7 @@ public class MainWindow extends JFrame{
 		menuTitle.setVisible(true);
 		nothingIsHere.setVisible(false);
 		showCharacter.setVisible(false);
+		settingText.setVisible(false);
 		backGround.setVisible(true);
 		
 
@@ -328,9 +306,20 @@ public class MainWindow extends JFrame{
 		menuTitle.setVisible(false);
 		nothingIsHere.setVisible(false);
 		showCharacter.setVisible(true);
+		settingText.setVisible(false);
 		backGround.setVisible(true);
 		
-			
+		switch (characterChoice) {
+		case 1:
+			showCharacter.setIcon(character.Caster.characterimage);
+			break;
+		case 2:
+			showCharacter.setIcon(character.Assassin.characterimage);
+			break;
+		case 3:
+			showCharacter.setIcon(character.Lancer.characterimage);
+			break;
+		}	
 	}
 	
 	//call to go to skill page
@@ -348,6 +337,7 @@ public class MainWindow extends JFrame{
 		menuTitle.setVisible(false);
 		nothingIsHere.setVisible(false);
 		showCharacter.setVisible(false);
+		settingText.setVisible(false);
 		backGround.setVisible(true);
 		
 
@@ -370,6 +360,7 @@ public class MainWindow extends JFrame{
 		menuTitle.setVisible(false);
 		nothingIsHere.setVisible(true);
 		showCharacter.setVisible(false);
+		settingText.setVisible(false);
 		backGround.setVisible(false);	
 	}
 	
@@ -390,11 +381,39 @@ public class MainWindow extends JFrame{
 		menuTitle.setVisible(false);
 		nothingIsHere.setVisible(false);
 		showCharacter.setVisible(false);
+		settingText.setVisible(true);
 		backGround.setVisible(true);
 		
 		//set the slider to the previous value
 		musicSlider.setValue((int)(musicVolume*100.0));
 		fxSlider.setValue((int)(fxVolume*100.0));
+	}
+	
+	/**
+	 * call to start the game
+	 */
+	public void StartGame() {
+		menuBGM.stop();
+		gameBGM.setCycleCount(MediaPlayer.INDEFINITE);
+		gameBGM.play();
+		
+		backGround.setIcon(new ImageIcon(MainWindow.class.getResource("/image/InGameBackground.jpg")));
+		
+		skillButton.setVisible(false);
+		startButton.setVisible(false);
+		chararcterButton.setVisible(false);
+		achievementButton.setVisible(false);
+		backButton.setVisible(true);
+		leftButton.setVisible(false);
+		rightButton.setVisible(false);
+		settingButton.setVisible(false);
+		menuTitle.setVisible(false);
+		nothingIsHere.setVisible(false);
+		showCharacter.setVisible(false);
+		settingText.setVisible(false);
+		backGround.setVisible(true);
+		
+
 	}
 
 	/**
@@ -469,31 +488,7 @@ public class MainWindow extends JFrame{
 		}
 	}
 	
-	/**
-	 * call to start the game
-	 */
-	public void StartGame() {
-		menuBGM.stop();
-		gameBGM.setCycleCount(MediaPlayer.INDEFINITE);
-		gameBGM.play();
-		
-		backGround.setIcon(new ImageIcon(MainWindow.class.getResource("/image/InGameBackground.jpg")));
-		
-		skillButton.setVisible(false);
-		startButton.setVisible(false);
-		chararcterButton.setVisible(false);
-		achievementButton.setVisible(false);
-		backButton.setVisible(true);
-		leftButton.setVisible(false);
-		rightButton.setVisible(false);
-		settingButton.setVisible(false);
-		menuTitle.setVisible(false);
-		nothingIsHere.setVisible(false);
-		showCharacter.setVisible(false);
-		backGround.setVisible(true);
-		
 
-	}
 	
 	
 	/**

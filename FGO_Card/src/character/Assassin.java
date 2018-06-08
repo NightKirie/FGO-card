@@ -1,4 +1,5 @@
 package character;
+import menu.MainWindow;
 
 import javax.swing.ImageIcon;
 
