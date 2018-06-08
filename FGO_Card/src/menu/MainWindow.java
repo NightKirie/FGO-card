@@ -26,10 +26,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.image.ImageObserver;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
@@ -42,6 +46,7 @@ import javafx.embed.swing.JFXPanel;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaPlayer.Status;
+import javafx.scene.shape.Line;
 import javafx.stage.Stage;
 import javax.swing.JSlider;
 import javax.swing.JTextPane;
@@ -276,6 +281,7 @@ public class MainWindow extends JFrame{
 		backGround.setVisible(true);
 		
 		SaveData();
+		LoadData();
 	}
 	
 	/**
@@ -370,11 +376,13 @@ public class MainWindow extends JFrame{
 	 */
 	private void LoadData() {
 		try {
-			FileInputStream is = new FileInputStream("./SaveData/savedata.data");
+			BufferedReader br = new BufferedReader(new FileReader("./SaveData/savedata.data"));
 			System.out.println("file open ok");
-			//is.read();
+			String line = null;
+			while((line = br.readLine()) != null)
+				System.out.println(line);
 			System.out.println("file read ok");
-		} catch (FileNotFoundException e) {
+		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
@@ -387,18 +395,14 @@ public class MainWindow extends JFrame{
 	 */
 	private void SaveData() {
 		try {
-			FileOutputStream os = new FileOutputStream("./SaveData/savedata.data");
+			BufferedWriter bw = new BufferedWriter(new FileWriter("./SaveData/savedata.data"));
 			String st = "character:1/1 2/1 3/1\nskill:1/1 2/1 3/1 4/1 5/1\ncharacter_chosen:1\nskill_chosen:0/0/0\ngold:0\nmusic:1.0\nfx:1.0";
 			System.out.println("file open ok");
-			try {
-				os.write(st.getBytes());
-				os.close();
-				System.out.println("file write ok");
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		} catch (FileNotFoundException e) {
+			
+			bw.write(st);
+			bw.close();
+			System.out.println("file write ok");
+		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

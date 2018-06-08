@@ -32,7 +32,7 @@ public class Button extends JButton{
 				mousePressFX.play();
 			}
 		});		
-		setBackground(new Color(255, 255, 255, 0));
+		setBackground(new Color(0, 0, 0, 0));
 		setCursor(new Cursor(Cursor.HAND_CURSOR));
 		setFocusPainted(false);	
 		setOpaque(false);
