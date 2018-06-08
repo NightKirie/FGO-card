@@ -4,7 +4,8 @@ public class Monster extends Creature {
 	public Monster(String scientificName)
 	{
 		super("Monster."+scientificName);
-		ImageIcon cardPicture=null;
+		/*ImageIcon cardPicture=null;
+
 		if(scientificName.equals("Boss"))
 		{
 			hp=100;
@@ -15,7 +16,7 @@ public class Monster extends Creature {
 			hp=50;
 			cardPicture=new ImageIcon(this.getClass().getResource("/Images/Midboss.jpg"));
 		}
-		setIcon(cardPicture);
+		setIcon(cardPicture);*/
 	}
 
 	public void attack(Creature opponent) {
