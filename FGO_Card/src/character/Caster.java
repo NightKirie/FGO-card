@@ -3,7 +3,6 @@ import menu.MainWindow;
 
 import javax.swing.ImageIcon;
 
-import Menu.MainWindow;
 
 public class Caster extends Character {
 	public static int level = 1;

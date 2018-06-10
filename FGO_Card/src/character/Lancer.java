@@ -2,8 +2,6 @@ package character;
 import menu.MainWindow;
 import javax.swing.ImageIcon;
 
-import Menu.MainWindow;
-
 public class Lancer extends Character {
 	public static int level = 1;
 	public static int ID = 3;

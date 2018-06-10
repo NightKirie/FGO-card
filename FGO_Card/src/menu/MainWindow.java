@@ -26,7 +26,11 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javax.swing.JSlider;
 import javax.swing.event.ChangeListener;
+
+import com.sun.glass.ui.Window.Level;
+
 import javax.swing.event.ChangeEvent;
+import javax.swing.JButton;
 
 public class MainWindow extends JFrame{
 
@@ -46,6 +50,8 @@ public class MainWindow extends JFrame{
 	private final Button leftButton = new Button();			//for character page to preview next character
 	private final Button rightButton = new Button();		//for character page to preview previous character
 	private final Button settingButton = new Button();		//for go to setting
+	private final Button confirmButton = new Button();
+	private final Button upgradeButton = new Button();
 	
 	private final JLabel menuTitle = new JLabel("");		//for menu title picture
 	private final JLabel backGround = new JLabel("");		//for menu background picture
@@ -57,9 +63,9 @@ public class MainWindow extends JFrame{
 	private final JSlider musicSlider = new JSlider();
 	private final JSlider fxSlider = new JSlider();
 	
-	private static int charaterLV[] = new int[3];
+	//private static int charaterLV[] = new int[3];
 	private static int skillLV[] = new int[5];
-	private static int characterChoice;
+	//private static int characterChoice;
 	private static int skillChoice[] = new int[3];
 	private static int goldAmount;
 	private static double musicVolume;
@@ -138,7 +144,7 @@ public class MainWindow extends JFrame{
 		
 		//Initial backButton in Menu
 		backButton.setIcon(new ImageIcon(MainWindow.class.getResource("/image/Back_Btn.png")));
-		backButton.setBounds(0, 625, 98, 95);
+		backButton.setBounds(0, 621, 97, 99);
 		backButton.setVolume(fxVolume);
 		backButton.addMouseListener(new MouseAdapter() {
 			@Override
@@ -148,36 +154,26 @@ public class MainWindow extends JFrame{
 		});
 		contentPane.add(backButton);
 		
-		//Initial leftButton in Menu
+		//Initial leftButton in character page
 		leftButton.setIcon(new ImageIcon(MainWindow.class.getResource("/image/Left_Btn.png")));
 		leftButton.setBounds(0, 150, 98, 95);
 		leftButton.setVolume(fxVolume);
 		leftButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {	
-				if(showCharacter.getIcon().equals(character.Caster.characterimage))
-					showCharacter.setIcon(character.Lancer.characterimage);
-				else if(showCharacter.getIcon().equals(character.Assassin.characterimage))
-					showCharacter.setIcon(character.Caster.characterimage);					
-				else if(showCharacter.getIcon().equals(character.Lancer.characterimage))
-					showCharacter.setIcon(character.Assassin.characterimage);					
+				showCharacter.setIcon(ChooseCharacter.getPrevious(showCharacter.getIcon()));
 			}
 		});
 		contentPane.add(leftButton);
 			
-		//Initial rightButton in Menu
+		//Initial rightButton in character page
 		rightButton.setIcon(new ImageIcon(MainWindow.class.getResource("/image/Right_Btn.png")));
 		rightButton.setBounds(382, 150, 98, 95);
 		rightButton.setVolume(fxVolume);
 		rightButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {	
-				if(showCharacter.getIcon().equals(character.Caster.characterimage))
-					showCharacter.setIcon(character.Assassin.characterimage);
-				else if(showCharacter.getIcon().equals(character.Assassin.characterimage))
-					showCharacter.setIcon(character.Lancer.characterimage);
-				else if(showCharacter.getIcon().equals(character.Lancer.characterimage))
-					showCharacter.setIcon(character.Caster.characterimage);
+				showCharacter.setIcon(ChooseCharacter.getNext(showCharacter.getIcon()));
 			}
 		});
 		contentPane.add(rightButton);
@@ -195,6 +191,46 @@ public class MainWindow extends JFrame{
 			}
 		});
 		contentPane.add(settingButton);		
+		
+		//Initial confirmButton in character page & skill page 
+		confirmButton.setIcon(new ImageIcon(MainWindow.class.getResource("/image/Confirm_Btn.png")));
+		confirmButton.setBounds(383, 621, 97, 99);
+		confirmButton.setVolume(fxVolume);
+		confirmButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent arg0) {	
+				//when in the character page
+				if(showCharacter.isVisible()) {
+					ChooseCharacter.setID(showCharacter.getIcon());
+					SaveData();
+				}
+				//when in the skill page
+				else {
+
+				}
+			}
+		});
+		contentPane.add(confirmButton);
+		
+		//Initial upgradeButton in character page & skill page
+		upgradeButton.setIcon(new ImageIcon(MainWindow.class.getResource("/image/Upgrade_Btn.png")));
+		upgradeButton.setBounds(193, 621, 97, 99);
+		upgradeButton.setVolume(fxVolume);
+		upgradeButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent arg0) {	
+				//when in the character page
+				if(showCharacter.isVisible()) {
+					goldAmount = ChooseCharacter.levelUp(showCharacter.getIcon(), goldAmount);
+					SaveData();
+				}
+				//when in the skill page
+				else {
+					
+				}
+			}
+		});
+		contentPane.add(upgradeButton);
 		
 		//Initial menuTitle label in Menu	
 		menuTitle.setIcon(new ImageIcon(MainWindow.class.getResource("/image/MenuTitle.png")));
@@ -236,6 +272,8 @@ public class MainWindow extends JFrame{
 				leftButton.setVolume(fxVolume);
 				rightButton.setVolume(fxVolume);
 				settingButton.setVolume(fxVolume);
+				confirmButton.setVolume(fxVolume);
+				upgradeButton.setVolume(fxVolume);
 				SaveData();
 			}
 		});
@@ -253,7 +291,8 @@ public class MainWindow extends JFrame{
 		showCharacter.setBounds(140, 75, 200, 255);
 		contentPane.add(showCharacter);
 		
-		settingText.setIcon(new ImageIcon(MainWindow.class.getResource("/image/test.png")));
+		//Initial the settingText in setting page
+		settingText.setIcon(new ImageIcon(MainWindow.class.getResource("/image/Setting_Text.png")));
 		settingText.setBounds(0, 0, 480, 720);
 		contentPane.add(settingText);
 
@@ -273,6 +312,8 @@ public class MainWindow extends JFrame{
 		leftButton.setVisible(false);
 		rightButton.setVisible(false);
 		settingButton.setVisible(false);
+		confirmButton.setVisible(false);
+		upgradeButton.setVisible(false);
 		musicSlider.setVisible(false);
 		fxSlider.setVisible(false);
 		menuTitle.setVisible(false);
@@ -300,6 +341,8 @@ public class MainWindow extends JFrame{
 		leftButton.setVisible(false);
 		rightButton.setVisible(false);
 		settingButton.setVisible(true);
+		confirmButton.setVisible(false);
+		upgradeButton.setVisible(false);
 		musicSlider.setVisible(false);
 		fxSlider.setVisible(false);
 		menuTitle.setVisible(true);
@@ -323,6 +366,8 @@ public class MainWindow extends JFrame{
 		leftButton.setVisible(true);
 		rightButton.setVisible(true);
 		settingButton.setVisible(false);
+		confirmButton.setVisible(true);
+		upgradeButton.setVisible(true);
 		musicSlider.setVisible(false);
 		fxSlider.setVisible(false);
 		menuTitle.setVisible(false);
@@ -331,17 +376,8 @@ public class MainWindow extends JFrame{
 		settingText.setVisible(false);
 		backGround.setVisible(true);
 		
-		switch (characterChoice) {
-		case 1:
-			showCharacter.setIcon(character.Caster.characterimage);
-			break;
-		case 2:
-			showCharacter.setIcon(character.Assassin.characterimage);
-			break;
-		case 3:
-			showCharacter.setIcon(character.Lancer.characterimage);
-			break;
-		}	
+		//show the previous chosen character
+		showCharacter.setIcon(ChooseCharacter.getChosenCharater());
 	}
 	
 	//call to go to skill page
@@ -354,6 +390,8 @@ public class MainWindow extends JFrame{
 		leftButton.setVisible(false);
 		rightButton.setVisible(false);
 		settingButton.setVisible(false);
+		confirmButton.setVisible(true);
+		upgradeButton.setVisible(true);
 		musicSlider.setVisible(false);
 		fxSlider.setVisible(false);
 		menuTitle.setVisible(false);
@@ -377,6 +415,8 @@ public class MainWindow extends JFrame{
 		leftButton.setVisible(false);
 		rightButton.setVisible(false);
 		settingButton.setVisible(false);
+		confirmButton.setVisible(false);
+		upgradeButton.setVisible(false);
 		musicSlider.setVisible(false);
 		fxSlider.setVisible(false);
 		menuTitle.setVisible(false);
@@ -398,6 +438,8 @@ public class MainWindow extends JFrame{
 		leftButton.setVisible(false);
 		rightButton.setVisible(false);
 		settingButton.setVisible(false);
+		confirmButton.setVisible(false);
+		upgradeButton.setVisible(false);
 		musicSlider.setVisible(true);
 		fxSlider.setVisible(true);
 		menuTitle.setVisible(false);
@@ -429,13 +471,13 @@ public class MainWindow extends JFrame{
 		leftButton.setVisible(false);
 		rightButton.setVisible(false);
 		settingButton.setVisible(false);
+		confirmButton.setVisible(false);
+		upgradeButton.setVisible(false);
 		menuTitle.setVisible(false);
 		nothingIsHere.setVisible(false);
 		showCharacter.setVisible(false);
 		settingText.setVisible(false);
 		backGround.setVisible(true);
-		
-
 	}
 
 	/**
@@ -450,7 +492,7 @@ public class MainWindow extends JFrame{
 			String characterData = br.readLine().split("character:")[1];
 			for(String i: characterData.split(" ")) {
 				String data[] = i.split("/");
-				charaterLV[Integer.parseInt(data[0])-1] = Integer.parseInt(data[1]);
+				ChooseCharacter.setLevel(Integer.parseInt(data[0]), Integer.parseInt(data[1]));
 			}
 			
 			String skillData = br.readLine().split("skill:")[1];
@@ -460,7 +502,7 @@ public class MainWindow extends JFrame{
 			}
 			
 			String characterChosenData = br.readLine().split("character_chosen:")[1];
-			characterChoice = Integer.parseInt(characterChosenData);
+			ChooseCharacter.setID(Integer.parseInt(characterChosenData));
 			
 			String skillChosenData = br.readLine().split("skill_chosen:")[1];
 			for(int i = 0; i < 3; i++) {
@@ -495,9 +537,9 @@ public class MainWindow extends JFrame{
 			PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter("./SaveData/savedata.data")));
 
 			System.out.println("file open ok");
-			pw.println("character:1/" + charaterLV[0] + " 2/" + charaterLV[1] + " 3/" + charaterLV[2]);
+			pw.println("character:1/" + ChooseCharacter.getLevel(1) + " 2/" + ChooseCharacter.getLevel(2) + " 3/" + ChooseCharacter.getLevel(3));
 			pw.println("skill:1/" + skillLV[0] + " 2/" + skillLV[1] + " 3/" + skillLV[2] + " 4/" + skillLV[3] + " 5/" + skillLV[4]);
-			pw.println("character_chosen:" + characterChoice);
+			pw.println("character_chosen:" + ChooseCharacter.getChosenID());
 			pw.println("skill_chosen:" + skillChoice[0] + " " + skillChoice[1] + " " + skillChoice[2]);
 			pw.println("gold:" + goldAmount);
 			pw.println("music:" + musicVolume);

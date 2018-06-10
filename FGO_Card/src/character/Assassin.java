@@ -3,7 +3,6 @@ import menu.MainWindow;
 
 import javax.swing.ImageIcon;
 
-import Menu.MainWindow;
 
 public class Assassin extends Character {
 	public static int level = 1;
