@@ -31,6 +31,9 @@ import com.sun.glass.ui.Window.Level;
 
 import javax.swing.event.ChangeEvent;
 import javax.swing.JButton;
+import javax.swing.JTextPane;
+import javax.swing.JTextArea;
+import java.awt.Font;
 
 public class MainWindow extends JFrame{
 
@@ -70,6 +73,8 @@ public class MainWindow extends JFrame{
 	private static int goldAmount;
 	private static double musicVolume;
 	private static double fxVolume;
+	private final JLabel goldAmountIcon = new JLabel("");
+	private final JLabel goldAmountNumber = new JLabel("");
 
 
 	/**********
@@ -234,6 +239,7 @@ public class MainWindow extends JFrame{
 						upgradeButton.setEnabled(false);
 					else
 						upgradeButton.setEnabled(true);
+					goldAmountNumber.setText(Integer.toString(goldAmount));
 					SaveData();
 				}
 				//when in the skill page
@@ -290,6 +296,15 @@ public class MainWindow extends JFrame{
 			}
 		});
 		contentPane.add(fxSlider);
+		goldAmountIcon.setIcon(new ImageIcon(MainWindow.class.getResource("/image/Gold_Amount.png")));
+		goldAmountIcon.setBounds(297, 0, 50, 50);
+		
+		contentPane.add(goldAmountIcon);
+		goldAmountNumber.setFont(new Font("Arial", Font.PLAIN, 36));
+		goldAmountNumber.setForeground(Color.RED);
+		goldAmountNumber.setBounds(357, 0, 123, 50);
+		goldAmountNumber.setText(Integer.toString(goldAmount));
+		contentPane.add(goldAmountNumber);
 		
 		//Initial menu title label
 		contentPane.add(menuTitle);
@@ -300,7 +315,7 @@ public class MainWindow extends JFrame{
 		contentPane.add(nothingIsHere);
 		
 		//Initial character preview picture in character page
-		showCharacter.setBounds(140, 75, 200, 255);
+		showCharacter.setBounds(0, 0, 480, 720);
 		contentPane.add(showCharacter);
 		
 		//Initial the settingText in setting page
@@ -344,6 +359,9 @@ public class MainWindow extends JFrame{
 		
 		//set the menu background
 		backGround.setIcon(new ImageIcon(MainWindow.class.getResource("/image/MainBackground.png")));
+		
+		goldAmountNumber.setText(Integer.toString(goldAmount));
+
 		
 		skillButton.setVisible(true);
 		startButton.setVisible(true);
@@ -391,8 +409,9 @@ public class MainWindow extends JFrame{
 		//show the previous chosen character
 		showCharacter.setIcon(ChooseCharacter.getChosenCharater());
 		if(ChooseCharacter.getLevel(showCharacter.getIcon()) == 5)
-			upgradeButton.setSelected(false);		else
-			upgradeButton.setSelected(false);
+			upgradeButton.setEnabled(false);
+		else
+			upgradeButton.setEnabled(true);
 	}
 	
 	//call to go to skill page
