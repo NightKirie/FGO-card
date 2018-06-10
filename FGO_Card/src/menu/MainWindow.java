@@ -162,6 +162,10 @@ public class MainWindow extends JFrame{
 			@Override
 			public void mousePressed(MouseEvent e) {	
 				showCharacter.setIcon(ChooseCharacter.getPrevious(showCharacter.getIcon()));
+				if(ChooseCharacter.getLevel(showCharacter.getIcon()) == 5)
+					upgradeButton.setEnabled(false);
+				else
+					upgradeButton.setEnabled(true);
 			}
 		});
 		contentPane.add(leftButton);
@@ -174,6 +178,10 @@ public class MainWindow extends JFrame{
 			@Override
 			public void mousePressed(MouseEvent e) {	
 				showCharacter.setIcon(ChooseCharacter.getNext(showCharacter.getIcon()));
+				if(ChooseCharacter.getLevel(showCharacter.getIcon()) == 5)
+					upgradeButton.setEnabled(false);
+				else
+					upgradeButton.setEnabled(true);
 			}
 		});
 		contentPane.add(rightButton);
@@ -222,6 +230,10 @@ public class MainWindow extends JFrame{
 				//when in the character page
 				if(showCharacter.isVisible()) {
 					goldAmount = ChooseCharacter.levelUp(showCharacter.getIcon(), goldAmount);
+					if(ChooseCharacter.getLevel(showCharacter.getIcon()) == 5)
+						upgradeButton.setEnabled(false);
+					else
+						upgradeButton.setEnabled(true);
 					SaveData();
 				}
 				//when in the skill page
@@ -378,6 +390,9 @@ public class MainWindow extends JFrame{
 		
 		//show the previous chosen character
 		showCharacter.setIcon(ChooseCharacter.getChosenCharater());
+		if(ChooseCharacter.getLevel(showCharacter.getIcon()) == 5)
+			upgradeButton.setSelected(false);		else
+			upgradeButton.setSelected(false);
 	}
 	
 	//call to go to skill page
