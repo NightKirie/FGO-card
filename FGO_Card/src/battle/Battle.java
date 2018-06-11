@@ -22,10 +22,10 @@ public class Battle extends JFrame{
 			map[i]=new Card[size];
 			for(int j=0;j<size;++j){
 				if(i==1&&j==1){
-					switch(character.ChooseCharacter.getID()){
-						case 1:map[1][1]=new card.Caster(character.ChooseCharacter.getMaxHP());break;
-						case 2:map[1][1]=new card.Assassin(character.ChooseCharacter.getMaxHP());break;
-						case 3:map[1][1]=new card.Lancer(character.ChooseCharacter.getMaxHP());break;
+					switch(character.ChooseCharacter.getChosenID()){
+						case 1:map[1][1]=new card.Caster(character.ChooseCharacter.getChosenMaxHP());break;
+						case 2:map[1][1]=new card.Assassin(character.ChooseCharacter.getChosenMaxHP());break;
+						case 3:map[1][1]=new card.Lancer(character.ChooseCharacter.getChosenMaxHP());break;
 					}
 				}
 			
