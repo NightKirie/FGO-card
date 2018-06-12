@@ -2,10 +2,22 @@ package card;
 import javax.swing.ImageIcon;
 public class Potion extends Item {
 	public String potiontype;
+	public Potion(String scientificName) {
+		super("Potion."+scientificName);
+	}
+	
+	@Override
+	public void effect(Player input) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	
+	/*
 	public Potion(String scientificName,int size)
 	{
-		
 		super("Potion."+scientificName);
+		
 		ImageIcon cardPicture=null;
 		hp=size;
 		potiontype=scientificName;
@@ -14,10 +26,12 @@ public class Potion extends Item {
 			cardPicture=new ImageIcon(this.getClass().getResource("/Images/heal.jpg"));
 		}
 		setIcon(cardPicture);
+		
 	}
 
 	@Override
 	public void effect(Player input) {
+
 		// TODO Auto-generated method stub
 		if(potiontype.equals("heal"))
 		{
@@ -27,6 +41,8 @@ public class Potion extends Item {
 				input.hp=input.maxHP;
 			}
 		}
+		
 	}
+*/
 
 }
