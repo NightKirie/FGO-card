@@ -33,7 +33,7 @@ public class Battle extends JFrame{
 					}
 				}
 				else{
-					map[i][j]=randomCard();
+					map[i][j]=generater.nextCard();
 					map[i][j].setLocation(5+i*160,120+j*200);
 				}
 			}
