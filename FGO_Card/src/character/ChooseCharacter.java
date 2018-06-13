@@ -22,7 +22,7 @@ public class ChooseCharacter {
 	/** 
 	 * set the chosen character's ID, for pressing confirm button
 	 */
-	public static void setID(Icon img) {
+	public static void setChooseID(Icon img) {
 		if(img.equals(characterPageImage[0]))
 			chooseID = 1;
 		else if(img.equals(characterPageImage[1]))
@@ -34,7 +34,7 @@ public class ChooseCharacter {
 	/**
 	 * set the chosen character's ID, for initial
 	 */
-	public static void setID(int ID) {
+	public static void setChooseID(int ID) {
 		chooseID = ID;
 	}
 	
