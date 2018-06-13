@@ -4,11 +4,11 @@ import javax.swing.ImageIcon;
 
 
 public class Weapon extends Item {
-	public int attackrange;
 	public String weapontype;
-	public Weapon(String scientificName,int whp,int attackrange,String type)
+	public Weapon(String scientificName)//,int whp,int attackrange,String type)
 	{
 		super("Weapon."+scientificName);
+		/*
 		this.attackrange=attackrange;
 		this.hp=whp;
 		this.weapontype=type;
@@ -22,6 +22,7 @@ public class Weapon extends Item {
 			cardPicture=new ImageIcon(this.getClass().getResource("/Images/wand.jpg"));
 		}
 		setIcon(cardPicture);
+		*/
 	}
 	@Override
 	public void effect(Player input) {

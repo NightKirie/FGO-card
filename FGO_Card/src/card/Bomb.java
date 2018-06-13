@@ -1,8 +1,12 @@
 package card;
 
+import javax.swing.ImageIcon;
+
 public class Bomb extends Item {
-	public Bomb(String scientificName){
-		super("Bomb."+scientificName);
+	public Bomb(int size){
+		super("Bomb");
+		hp=size;
+		setIcon(new ImageIcon(getClass().getResource("/Images/Bomb_Game.png")));
 	}
 
 	@Override

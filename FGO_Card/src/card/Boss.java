@@ -2,15 +2,15 @@ package card;
 
 import javax.swing.ImageIcon;
 
-public class Monsterboss extends Monster {
+public class Boss extends Monster {
 
-	public Monsterboss(String scientificName) {
-		super(scientificName);
+	public Boss(int size) {
+		super("Boss");
 		name="boss";
 		ImageIcon cardPicture=null;
 		cardPicture=new ImageIcon(this.getClass().getResource("/Images/Boss.jpg"));
 		setIcon(cardPicture);
-		hp=100;
+		hp=size;
 	}
 
 }

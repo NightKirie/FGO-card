@@ -1,8 +1,8 @@
 package card;
 import javax.swing.ImageIcon;
-public class Greenpotion extends Potion{
-	public Greenpotion(String scientificName,int size) {
-		super(scientificName);
+public class GreenPotion extends Potion{
+	public GreenPotion(int size) {
+		super("GreenPotion");
 		ImageIcon cardPicture=null;
 		hp=size;
 		cardPicture=new ImageIcon(this.getClass().getResource("/Images/greenpotion.jpg"));

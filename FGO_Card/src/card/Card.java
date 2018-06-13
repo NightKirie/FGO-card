@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 public class Card extends JButton{
 	public Card(String scientificName){
 		super(scientificName);
+		setSize(150,200);
 	}
 	String name=null;
 	//public String scientificName=null;

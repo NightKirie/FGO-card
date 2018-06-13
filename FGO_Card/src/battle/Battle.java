@@ -12,16 +12,16 @@ import java.util.Random;
 
 public class Battle extends JFrame{
 	int size,difficulty;
-	Random random=new Random();
+	randomCard generater;
 
 	public static Card map[][];
 
 	public Battle(){this(1);}
 	public Battle(int difficulty){
-		setBounds(0,0,485,748);
+		setSize(485,748);
 		size=3;
 		map=new Card[size][];
-		setDifficulty(difficulty);
+		generater=new randomCard(difficulty);
 		for(int i=0;i<size;++i){
 			map[i]=new Card[size];
 			for(int j=0;j<size;++j){
@@ -34,7 +34,7 @@ public class Battle extends JFrame{
 				}
 				else{
 					map[i][j]=randomCard();
-					map[i][j].setBounds();
+					map[i][j].setLocation(5+i*160,120+j*200);
 				}
 			}
 		}

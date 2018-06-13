@@ -4,11 +4,11 @@ import javax.swing.ImageIcon;
 
 public class Minion extends Monster {
 
-	public Minion(String scientificName) {
-		super(scientificName);
+	public Minion(int size) {
+		super("minion");
 		name="minion";
 		ImageIcon cardPicture=null;
-		hp=50;
+		hp=size;
 		cardPicture=new ImageIcon(this.getClass().getResource("/Images/Midboss.jpg"));
 		setIcon(cardPicture);
 	}
