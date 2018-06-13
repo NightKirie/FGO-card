@@ -12,11 +12,11 @@ public class ChooseSkill {
 	public static int[] skillCD = new int[] {10, 8, 12, 10, 15};
 	private static final int levelUpGold[] = {100, 200, 500, 1000};
 	private static final ImageIcon[] skillImage = {
-			new ImageIcon(MainWindow.class.getResource("/Image/AllDamege.png")),
-			new ImageIcon(MainWindow.class.getResource("/Image/WeaponUp.png")),
-			new ImageIcon(MainWindow.class.getResource("/Image/ReduceCharge.png")),
-			new ImageIcon(MainWindow.class.getResource("/Image/HealthUp.png")),
-			new ImageIcon(MainWindow.class.getResource("/Image/SumonSword.png"))
+			new ImageIcon(MainWindow.class.getResource("/Image/Skill_AllDamage.png")),
+			new ImageIcon(MainWindow.class.getResource("/Image/Skill_WeaponUp.png")),
+			new ImageIcon(MainWindow.class.getResource("/Image/Skill_ReduceCharge.png")),
+			new ImageIcon(MainWindow.class.getResource("/Image/Skill_HealthUp.png")),
+			new ImageIcon(MainWindow.class.getResource("/Image/Skill_SumonSword.png"))
 	};
 	
 	
