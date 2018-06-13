@@ -37,6 +37,7 @@ import java.awt.Font;
 import javax.swing.JTextField;
 import java.awt.Insets;
 import javax.swing.SwingConstants;
+import java.awt.Cursor;
 
 public class MainWindow extends JFrame{
 
@@ -65,6 +66,7 @@ public class MainWindow extends JFrame{
 	private final JLabel showCharacter = new JLabel("");	//for character page to show the character
 	private final JLabel settingText = new JLabel("");		//for setting page's title
 	private final JLabel goldAmountIcon = new JLabel("");	//for show the gold amount icon
+	private final JLabel chosenCharacterMenu = new JLabel("");	//for show the chosen character's image in menu
 	
 	private final JTextField goldAmountNumber = new JTextField("");	//for show the gold	amount player has
 	private final JTextField levelText = new JTextField("");		//for show the level of character or skill 
@@ -129,6 +131,11 @@ public class MainWindow extends JFrame{
 			}
 		});
 		contentPane.add(startButton);
+		
+		//Initial chosen character show in Menu, MUST ABOVE THE CHARACTER BUTTON!!!
+		chosenCharacterMenu.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		chosenCharacterMenu.setBounds(115, 255, 115, 125);		
+		contentPane.add(chosenCharacterMenu);
 		
 		//Initial characterButton in Menu
 		chararcterButton.setIcon(new ImageIcon(MainWindow.class.getResource("/image/Character_Btn.png")));
@@ -387,6 +394,7 @@ public class MainWindow extends JFrame{
 	
 		skillButton.setVisible(false);
 		startButton.setVisible(false);
+		chosenCharacterMenu.setVisible(false);
 		chararcterButton.setVisible(false);
 		achievementButton.setVisible(false);
 		backButton.setVisible(false);
@@ -417,12 +425,15 @@ public class MainWindow extends JFrame{
 		
 		//set the menu background
 		backGround.setIcon(new ImageIcon(MainWindow.class.getResource("/image/MainBackground.png")));
-		
+		//set the gold amount
 		goldAmountNumber.setText(Integer.toString(goldAmount));
+		//set the chosen character's image
+		chosenCharacterMenu.setIcon(ChooseCharacter.getMenuChosenCharacter());
 
 		
 		skillButton.setVisible(true);
 		startButton.setVisible(true);
+		chosenCharacterMenu.setVisible(true);
 		chararcterButton.setVisible(true);
 		achievementButton.setVisible(true);
 		backButton.setVisible(false);
@@ -452,6 +463,7 @@ public class MainWindow extends JFrame{
 	public void CharacterPage() {
 		skillButton.setVisible(false);
 		startButton.setVisible(false);
+		chosenCharacterMenu.setVisible(false);
 		chararcterButton.setVisible(false);
 		achievementButton.setVisible(false);
 		backButton.setVisible(true);
@@ -473,7 +485,7 @@ public class MainWindow extends JFrame{
 		backGround.setVisible(true);
 		
 		//show the previous chosen character
-		showCharacter.setIcon(ChooseCharacter.getChosenCharater());
+		showCharacter.setIcon(ChooseCharacter.getCharacterPageChosenCharater());
 		
 		//set the upgrade button unable if the character's level is max
 		if(ChooseCharacter.getLevel(showCharacter.getIcon()) == 5)
@@ -492,6 +504,7 @@ public class MainWindow extends JFrame{
 	public void SkillPage() {
 		skillButton.setVisible(false);
 		startButton.setVisible(false);
+		chosenCharacterMenu.setVisible(false);
 		chararcterButton.setVisible(false);
 		achievementButton.setVisible(false);
 		backButton.setVisible(true);
@@ -519,6 +532,7 @@ public class MainWindow extends JFrame{
 	public void AchievementPage() {
 		skillButton.setVisible(false);
 		startButton.setVisible(false);
+		chosenCharacterMenu.setVisible(false);
 		chararcterButton.setVisible(false);
 		achievementButton.setVisible(false);
 		backButton.setVisible(true);
@@ -544,6 +558,7 @@ public class MainWindow extends JFrame{
 	public void Setting() {
 		skillButton.setVisible(false);
 		startButton.setVisible(false);
+		chosenCharacterMenu.setVisible(false);
 		chararcterButton.setVisible(false);
 		achievementButton.setVisible(false);
 		backButton.setVisible(true);
@@ -579,6 +594,7 @@ public class MainWindow extends JFrame{
 		
 		skillButton.setVisible(false);
 		startButton.setVisible(false);
+		chosenCharacterMenu.setVisible(false);
 		chararcterButton.setVisible(false);
 		achievementButton.setVisible(false);
 		backButton.setVisible(true);
