@@ -4,6 +4,8 @@ public class Assassin extends Player{
 	public Assassin(int hp){
 		super("Assassin",hp);
 		name="Assassin";
-		setIcon(new ImageIcon(getClass().getResource("/Images/assassin.png")));
+		this.hp=hp;
+		this.maxHP=hp;
+		setIcon(new ImageIcon(this.getClass().getResource("/Images/Assassin.png")));
 	}
 }

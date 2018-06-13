@@ -4,6 +4,8 @@ public class Lancer extends Player{
 	public Lancer(int hp){
 		super("Lancer",hp);
 		name="lancer";
-		setIcon(new ImageIcon(getClass().getResource("/Images/lancer.png")));
+		this.hp=hp;
+		this.maxHP=hp;
+		setIcon(new ImageIcon(this.getClass().getResource("Images/Lancer.png")));
 	}
 }
