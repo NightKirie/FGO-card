@@ -2,6 +2,7 @@ package card;
 import javax.swing.JButton;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import battle.Battle;
 
 public class Card extends JButton{
 	public Card(String scientificName){
@@ -18,6 +19,7 @@ public class Card extends JButton{
 	//if need to change ImageIcon,use setIcon in set;(method in JButton)
 	private class buttonListener implements ActionListener{
 		public void actionPerformed(ActionEvent e){
+			Point position=Battle.findCard(Outer.this);
 			String[] scientificName=getUIClassID().split(".");
 			if(scientificName[0].equals("Object")){
 				if(scientificName[1].equals("Creature")&&scientificName[2].equals("Monster")){
