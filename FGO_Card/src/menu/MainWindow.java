@@ -1,6 +1,7 @@
 package menu;
 
 import menu.Button;
+import skill.ChooseSkill;
 import character.*;
 import java.awt.Color;
 import java.awt.EventQueue;
@@ -240,7 +241,7 @@ public class MainWindow extends JFrame{
 				//when in the character page
 				if(showCharacter.isVisible()) {
 					//store the chosen character's id
-					ChooseCharacter.setID(showCharacter.getIcon());
+					ChooseCharacter.setChooseID(showCharacter.getIcon());
 					SaveData();
 				}
 				//when in the skill page
@@ -632,16 +633,16 @@ public class MainWindow extends JFrame{
 			String skillData = br.readLine().split("skill:")[1];
 			for(String i: skillData.split(" ")) {
 				String data[] = i.split("/");
-				skillLV[Integer.parseInt(data[0])-1] = Integer.parseInt(data[1]);
+				ChooseSkill.setLevel(Integer.parseInt(data[0]), Integer.parseInt(data[1]));
 			}
 			
 			String characterChosenData = br.readLine().split("character_chosen:")[1];
-			ChooseCharacter.setID(Integer.parseInt(characterChosenData));
+			ChooseCharacter.setChooseID(Integer.parseInt(characterChosenData));
 			
 			String skillChosenData = br.readLine().split("skill_chosen:")[1];
 			for(int i = 0; i < 3; i++) {
 				String data[] = skillChosenData.split(" ");
-				skillChoice[i] = Integer.parseInt(data[i]);
+				ChooseSkill.setChooseSkill(Integer.parseInt(data[i]), i);
 			}
 			
 			String goldData = br.readLine().split("gold:")[1];

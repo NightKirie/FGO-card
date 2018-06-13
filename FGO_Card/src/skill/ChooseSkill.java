@@ -6,15 +6,7 @@ import javax.swing.ImageIcon;
 import menu.MainWindow;
 
 public class ChooseSkill {
-	public static int chooseSkillID1 = 1;
-	public static int chooseSkillID2 = 2;
-	public static int chooseSkillID3 = 3;
-	public static int chooseSkill1Level;
-	public static int chooseSkill2Level;
-	public static int chooseSkill3Level;
-	public static int chooseSkill1MaxCD;
-	public static int chooseSkill2MaxCD;
-	public static int chooseSkill3MaxCD;
+	public static int[] chooseSkillID = new int[3];
 	public static int[] skillLevel = new int[5];
 	public static int[] skillPower = new int[5];
 	public static int[] skillCD = new int[] {10, 8, 12, 10, 15};
@@ -26,21 +18,23 @@ public class ChooseSkill {
 			new ImageIcon(MainWindow.class.getResource("/Image/HealthUp.png")),
 			new ImageIcon(MainWindow.class.getResource("/Image/SumonSword.png"))
 	};
+	
+	
 	//get the skillID of three skill you choice
 	public static int[] getChooseID() {
-		return new int[] {chooseSkillID1, chooseSkillID2, chooseSkillID3};
+		return chooseSkillID;
 	}
 	//get the skill MaxCD of three skill you choice
 	public static int[] getChooseSkillMaxCD() {
-		return new int[] {chooseSkill1MaxCD, chooseSkill2MaxCD, chooseSkill3MaxCD};
+		return new int[] {skillLevel[chooseSkillID[0]], skillLevel[chooseSkillID[1]], skillLevel[chooseSkillID[2]]};
 	}
 	//get the skill level of three skill you choice
 	public static int[] getChooseLevel() {
-		return new int[] {skillLevel[chooseSkillID1 - 1], skillLevel[chooseSkillID2 - 1], skillLevel[chooseSkillID3 - 1]};
+		return new int[] {skillLevel[chooseSkillID[0]], skillLevel[chooseSkillID[1]], skillLevel[chooseSkillID[2]]};
 	}
 	//get the skill power of three skill you choice
 	public static int[] getChoosePower() {
-		return new int[] {skillPower[chooseSkillID1 - 1], skillPower[chooseSkillID2 - 1], skillPower[chooseSkillID3 - 1]};
+		return new int[] {skillPower[chooseSkillID[0]], skillPower[chooseSkillID[1]], skillPower[chooseSkillID[2]]};
 	}
 	
 	//return the maxCD of skill
@@ -57,14 +51,8 @@ public class ChooseSkill {
 	}
 	
 	//the partition is for user choose skill 1,2,3
-	public static void chooseSkill1(int ID) {
-		chooseSkillID1 = ID;
-	}
-	public static void chooseSkill2(int ID) {
-		chooseSkillID2 = ID;
-	}
-	public static void chooseSkill3(int ID) {
-		chooseSkillID3 = ID;
+	public static void setChooseSkill(int ID, int i) {
+		chooseSkillID[i] = ID;
 	}
 	
 	//to set the skill level
