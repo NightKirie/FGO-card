@@ -34,6 +34,9 @@ import javax.swing.JButton;
 import javax.swing.JTextPane;
 import javax.swing.JTextArea;
 import java.awt.Font;
+import javax.swing.JTextField;
+import java.awt.Insets;
+import javax.swing.SwingConstants;
 
 public class MainWindow extends JFrame{
 
@@ -61,8 +64,12 @@ public class MainWindow extends JFrame{
 	private final JLabel nothingIsHere = new JLabel("");	//for the page is not done
 	private final JLabel showCharacter = new JLabel("");	//for character page to show the character
 	private final JLabel settingText = new JLabel("");		//for setting page's title
-
+	private final JLabel goldAmountIcon = new JLabel("");	//for show the gold amount icon
 	
+	private final JTextField goldAmountNumber = new JTextField("");	//for show the gold	amount player has
+	private final JTextField levelText = new JTextField("");		//for show the level of character or skill 
+	private final JTextField upgradeText = new JTextField("");		//for show the upgrade needed of character or skill
+
 	private final JSlider musicSlider = new JSlider();
 	private final JSlider fxSlider = new JSlider();
 	
@@ -73,8 +80,9 @@ public class MainWindow extends JFrame{
 	private static int goldAmount;
 	private static double musicVolume;
 	private static double fxVolume;
-	private final JLabel goldAmountIcon = new JLabel("");
-	private final JLabel goldAmountNumber = new JLabel("");
+	private static String levelString[] = {"LV.1", "LV.2", "LV.3", "LV.4", "LV.MAX"};
+	private static String upgradeString[] = {"100Gold¡÷LV.2", "200Gold¡÷LV.3", "500Gold¡÷LV.4", "1000Gold¡÷LV.MAX", "No Upgrade"};
+	
 
 
 	/**********
@@ -159,6 +167,18 @@ public class MainWindow extends JFrame{
 		});
 		contentPane.add(backButton);
 		
+		//Initial settingButton in Menu
+		settingButton.setIcon(new ImageIcon(MainWindow.class.getResource("/image/Setting_Btn.png")));
+		settingButton.setBounds(0, 0, 50, 50);
+		settingButton.setVolume(fxVolume);
+		settingButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent arg0) {	
+				Setting();			
+			}
+		});
+		contentPane.add(settingButton);	
+		
 		//Initial leftButton in character page
 		leftButton.setIcon(new ImageIcon(MainWindow.class.getResource("/image/Left_Btn.png")));
 		leftButton.setBounds(0, 150, 98, 95);
@@ -166,7 +186,13 @@ public class MainWindow extends JFrame{
 		leftButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {	
+				//show previous character
 				showCharacter.setIcon(ChooseCharacter.getPrevious(showCharacter.getIcon()));
+				//set the level to previous character's level
+				levelText.setText(levelString[ChooseCharacter.getLevel(showCharacter.getIcon())-1]);
+				//set the upgrade detail of previous character
+				upgradeText.setText(upgradeString[ChooseCharacter.getLevel(showCharacter.getIcon())-1]);
+				//if the level of previous character is max, set the upgrade button disable
 				if(ChooseCharacter.getLevel(showCharacter.getIcon()) == 5)
 					upgradeButton.setEnabled(false);
 				else
@@ -182,7 +208,13 @@ public class MainWindow extends JFrame{
 		rightButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {	
+				//show next character
 				showCharacter.setIcon(ChooseCharacter.getNext(showCharacter.getIcon()));
+				//set the level to next character's level
+				levelText.setText(levelString[ChooseCharacter.getLevel(showCharacter.getIcon())-1]);
+				//set the upgrade detail of next character
+				upgradeText.setText(upgradeString[ChooseCharacter.getLevel(showCharacter.getIcon())-1]);
+				//if the level of next character is max, set the upgrade button disable
 				if(ChooseCharacter.getLevel(showCharacter.getIcon()) == 5)
 					upgradeButton.setEnabled(false);
 				else
@@ -190,20 +222,6 @@ public class MainWindow extends JFrame{
 			}
 		});
 		contentPane.add(rightButton);
-
-
-		
-		//Initial settingButton in Menu
-		settingButton.setIcon(new ImageIcon(MainWindow.class.getResource("/image/Setting_Btn.png")));
-		settingButton.setBounds(0, 0, 50, 50);
-		settingButton.setVolume(fxVolume);
-		settingButton.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mousePressed(MouseEvent arg0) {	
-				Setting();			
-			}
-		});
-		contentPane.add(settingButton);		
 		
 		//Initial confirmButton in character page & skill page 
 		confirmButton.setIcon(new ImageIcon(MainWindow.class.getResource("/image/Confirm_Btn.png")));
@@ -214,6 +232,7 @@ public class MainWindow extends JFrame{
 			public void mousePressed(MouseEvent arg0) {	
 				//when in the character page
 				if(showCharacter.isVisible()) {
+					//store the chosen character's id
 					ChooseCharacter.setID(showCharacter.getIcon());
 					SaveData();
 				}
@@ -234,11 +253,18 @@ public class MainWindow extends JFrame{
 			public void mousePressed(MouseEvent arg0) {	
 				//when in the character page
 				if(showCharacter.isVisible()) {
+					//reduce the gold amount after upgrade
 					goldAmount = ChooseCharacter.levelUp(showCharacter.getIcon(), goldAmount);
+					//reset the level of the character after upgrade
+					levelText.setText(levelString[ChooseCharacter.getLevel(showCharacter.getIcon())-1]);
+					//reset the upgrade detail of character after upgrade
+					upgradeText.setText(upgradeString[ChooseCharacter.getLevel(showCharacter.getIcon())-1]);
+					//if character's level is max, disable the upgrade button
 					if(ChooseCharacter.getLevel(showCharacter.getIcon()) == 5)
 						upgradeButton.setEnabled(false);
 					else
 						upgradeButton.setEnabled(true);
+					//reset the gold amount
 					goldAmountNumber.setText(Integer.toString(goldAmount));
 					SaveData();
 				}
@@ -296,15 +322,43 @@ public class MainWindow extends JFrame{
 			}
 		});
 		contentPane.add(fxSlider);
-		goldAmountIcon.setIcon(new ImageIcon(MainWindow.class.getResource("/image/Gold_Amount.png")));
-		goldAmountIcon.setBounds(297, 0, 50, 50);
 		
+		//Initial gold amount icon
+		goldAmountIcon.setIcon(new ImageIcon(MainWindow.class.getResource("/image/Gold_Amount.png")));
+		goldAmountIcon.setBounds(297, 0, 50, 50);		
 		contentPane.add(goldAmountIcon);
+
+		
+		//Initial gold amount number
+		goldAmountNumber.setEditable(false);
+		goldAmountNumber.setBackground(Color.DARK_GRAY);
+		goldAmountNumber.setBorder(null);
 		goldAmountNumber.setFont(new Font("Arial", Font.PLAIN, 36));
-		goldAmountNumber.setForeground(Color.RED);
+		goldAmountNumber.setForeground(Color.WHITE);
 		goldAmountNumber.setBounds(357, 0, 123, 50);
 		goldAmountNumber.setText(Integer.toString(goldAmount));
 		contentPane.add(goldAmountNumber);
+
+		
+		//Initial character or skill level text
+		levelText.setBorder(null);
+		levelText.setEditable(false);
+		levelText.setBackground(Color.DARK_GRAY);
+		levelText.setForeground(Color.WHITE);
+		levelText.setFont(new Font("Arial", Font.BOLD, 36));
+		levelText.setBounds(0, 0, 143, 50);
+		contentPane.add(levelText);
+
+		
+		//Initial character or skill upgrade text
+		upgradeText.setEditable(false);
+		upgradeText.setHorizontalAlignment(SwingConstants.CENTER);
+		upgradeText.setBorder(null);
+		upgradeText.setBackground(Color.DARK_GRAY);
+		upgradeText.setFont(new Font("Arial", Font.BOLD, 36));
+		upgradeText.setForeground(Color.WHITE);
+		upgradeText.setBounds(90, 510, 300, 50);
+		contentPane.add(upgradeText);
 		
 		//Initial menu title label
 		contentPane.add(menuTitle);
@@ -343,6 +397,10 @@ public class MainWindow extends JFrame{
 		upgradeButton.setVisible(false);
 		musicSlider.setVisible(false);
 		fxSlider.setVisible(false);
+		goldAmountIcon.setVisible(false);
+		goldAmountNumber.setVisible(false);
+		levelText.setVisible(false);
+		upgradeText.setVisible(false);
 		menuTitle.setVisible(false);
 		nothingIsHere.setVisible(false);
 		showCharacter.setVisible(false);
@@ -375,6 +433,10 @@ public class MainWindow extends JFrame{
 		upgradeButton.setVisible(false);
 		musicSlider.setVisible(false);
 		fxSlider.setVisible(false);
+		goldAmountIcon.setVisible(true);
+		goldAmountNumber.setVisible(true);
+		levelText.setVisible(false);
+		upgradeText.setVisible(false);
 		menuTitle.setVisible(true);
 		nothingIsHere.setVisible(false);
 		showCharacter.setVisible(false);
@@ -400,6 +462,10 @@ public class MainWindow extends JFrame{
 		upgradeButton.setVisible(true);
 		musicSlider.setVisible(false);
 		fxSlider.setVisible(false);
+		goldAmountIcon.setVisible(true);
+		goldAmountNumber.setVisible(true);
+		levelText.setVisible(true);
+		upgradeText.setVisible(true);
 		menuTitle.setVisible(false);
 		nothingIsHere.setVisible(false);
 		showCharacter.setVisible(true);
@@ -408,10 +474,18 @@ public class MainWindow extends JFrame{
 		
 		//show the previous chosen character
 		showCharacter.setIcon(ChooseCharacter.getChosenCharater());
+		
+		//set the upgrade button unable if the character's level is max
 		if(ChooseCharacter.getLevel(showCharacter.getIcon()) == 5)
 			upgradeButton.setEnabled(false);
 		else
 			upgradeButton.setEnabled(true);
+		
+		//show the previous chosen character's level
+		levelText.setText(levelString[ChooseCharacter.getChosenLevel()-1]);
+		
+		//show the previous chosen character's upgrade needed
+		upgradeText.setText(upgradeString[ChooseCharacter.getChosenLevel()-1]);
 	}
 	
 	//call to go to skill page
@@ -429,6 +503,8 @@ public class MainWindow extends JFrame{
 		musicSlider.setVisible(false);
 		fxSlider.setVisible(false);
 		menuTitle.setVisible(false);
+		goldAmountIcon.setVisible(true);
+		goldAmountNumber.setVisible(true);
 		nothingIsHere.setVisible(false);
 		showCharacter.setVisible(false);
 		settingText.setVisible(false);
@@ -453,6 +529,8 @@ public class MainWindow extends JFrame{
 		upgradeButton.setVisible(false);
 		musicSlider.setVisible(false);
 		fxSlider.setVisible(false);
+		goldAmountIcon.setVisible(true);
+		goldAmountNumber.setVisible(true);
 		menuTitle.setVisible(false);
 		nothingIsHere.setVisible(true);
 		showCharacter.setVisible(false);
@@ -476,6 +554,8 @@ public class MainWindow extends JFrame{
 		upgradeButton.setVisible(false);
 		musicSlider.setVisible(true);
 		fxSlider.setVisible(true);
+		goldAmountIcon.setVisible(false);
+		goldAmountNumber.setVisible(false);
 		menuTitle.setVisible(false);
 		nothingIsHere.setVisible(false);
 		showCharacter.setVisible(false);
@@ -507,6 +587,10 @@ public class MainWindow extends JFrame{
 		settingButton.setVisible(false);
 		confirmButton.setVisible(false);
 		upgradeButton.setVisible(false);
+		musicSlider.setVisible(false);
+		fxSlider.setVisible(false);
+		goldAmountIcon.setVisible(false);
+		goldAmountNumber.setVisible(false);
 		menuTitle.setVisible(false);
 		nothingIsHere.setVisible(false);
 		showCharacter.setVisible(false);
