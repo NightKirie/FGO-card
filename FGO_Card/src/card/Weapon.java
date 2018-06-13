@@ -11,6 +11,7 @@ public class Weapon extends Item {
 		super("Weapon."+scientificName);
 		this.attackrange=attackrange;
 		this.hp=whp;
+		this.weapontype=type;
 		ImageIcon cardPicture=null;
 		if(type.equals("sword"))
 		{
