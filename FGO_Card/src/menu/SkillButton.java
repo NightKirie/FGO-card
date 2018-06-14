@@ -12,6 +12,7 @@ import javafx.scene.media.MediaPlayer;
 
 public class SkillButton extends JButton{
 	private static double volume = 1.0;
+	private static int chosenSkillNumber = 0;
 	private boolean selected;
 	
 	public SkillButton(){
@@ -32,11 +33,18 @@ public class SkillButton extends JButton{
 				MediaPlayer mousePressFX = new MediaPlayer(new Media(getClass().getResource("/audio/Btn_Clicked.mp3").toString()));
 				mousePressFX.setVolume(volume);
 				mousePressFX.play();
-				selected = !selected;
-				if(selected) 				
-					setBackground(new Color(255, 255, 255, 255));
-				else 
+				if(selected) { 
+					selected = false;
 					setBackground(new Color(255, 255, 255, 0));
+					--chosenSkillNumber;
+				}
+				else if(!selected && chosenSkillNumber < 3) {
+					selected = true;
+					setBackground(new Color(255, 255, 255, 255));
+					++chosenSkillNumber;
+				}
+				System.out.println(chosenSkillNumber);
+
 			}
 		});		
 		setBackground(new Color(0, 0, 0, 0));

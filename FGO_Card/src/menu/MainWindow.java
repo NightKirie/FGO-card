@@ -70,6 +70,7 @@ public class MainWindow extends JFrame{
 	private final JLabel settingText = new JLabel("");		//for setting page's title
 	private final JLabel goldAmountIcon = new JLabel("");	//for show the gold amount icon
 	private final JLabel chosenCharacterMenu = new JLabel("");	//for show the chosen character's image in menu
+	private final JLabel showSkillDetail = new JLabel("");	//for show the hover on skill's detail
 	
 	private final JTextField goldAmountNumber = new RoundedTextField(15);	//for show the gold	amount player has
 	private final JTextField levelText = new RoundedTextField(15);		//for show the level of character or skill 
