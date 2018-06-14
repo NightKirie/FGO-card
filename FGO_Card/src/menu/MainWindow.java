@@ -61,6 +61,8 @@ public class MainWindow extends JFrame{
 	private final Button confirmButton = new Button();
 	private final Button upgradeButton = new Button();
 	
+	private final SkillButton[] showSkill = {new SkillButton(), new SkillButton(), new SkillButton(), new SkillButton(), new SkillButton()};
+	
 	private final JLabel menuTitle = new JLabel("");		//for menu title picture
 	private final JLabel backGround = new JLabel("");		//for menu background picture
 	private final JLabel nothingIsHere = new JLabel("");	//for the page is not done
@@ -110,7 +112,8 @@ public class MainWindow extends JFrame{
 		LoadData();
 		
 		//Set Button FX volume
-		Button.setVolume(fxVolume);	
+		Button.setVolume(fxVolume);
+		SkillButton.setVolume(fxVolume);
 		
 		//Initial skillButton in Menu
 		skillButton.setIcon(new ImageIcon(MainWindow.class.getResource("/image/Skill_Btn.png")));
@@ -277,6 +280,13 @@ public class MainWindow extends JFrame{
 		});
 		contentPane.add(upgradeButton);
 		
+		//Initial the skills in skill page
+		for(int i = 0; i < showSkill.length; ++i) {
+			showSkill[i].setBounds(40+i*80, 100, 80, 80);
+			showSkill[i].setIcon(ChooseSkill.getSkillImage(i));
+			contentPane.add(showSkill[i]);
+		}
+		
 		//Initial menuTitle label in Menu	
 		menuTitle.setIcon(new ImageIcon(MainWindow.class.getResource("/image/MenuTitle.png")));
 		menuTitle.setBounds(120, 60, 240, 180);
@@ -344,7 +354,6 @@ public class MainWindow extends JFrame{
 		nothingIsHere.setIcon(new ImageIcon(MainWindow.class.getResource("/image/SorryForNothing.png")));
 		nothingIsHere.setBounds(115, 320, 250, 400);
 		contentPane.add(nothingIsHere);
-		showCharacter.setIcon(new ImageIcon(MainWindow.class.getResource("/image/Assassin_Choice.png")));
 		
 		//Initial character preview picture in character page
 		showCharacter.setBounds(0, 0, 480, 720);
@@ -374,6 +383,8 @@ public class MainWindow extends JFrame{
 		settingButton.setVisible(false);
 		confirmButton.setVisible(false);
 		upgradeButton.setVisible(false);
+		for(int i = 0; i < showSkill.length; ++i)
+			showSkill[i].setVisible(false);
 		musicSlider.setVisible(false);
 		fxSlider.setVisible(false);
 		goldAmountIcon.setVisible(false);
@@ -413,6 +424,8 @@ public class MainWindow extends JFrame{
 		settingButton.setVisible(true);
 		confirmButton.setVisible(false);
 		upgradeButton.setVisible(false);
+		for(int i = 0; i < showSkill.length; ++i)
+			showSkill[i].setVisible(false);
 		musicSlider.setVisible(false);
 		fxSlider.setVisible(false);
 		goldAmountIcon.setVisible(true);
@@ -443,6 +456,8 @@ public class MainWindow extends JFrame{
 		settingButton.setVisible(false);
 		confirmButton.setVisible(true);
 		upgradeButton.setVisible(true);
+		for(int i = 0; i < showSkill.length; ++i)
+			showSkill[i].setVisible(false);
 		musicSlider.setVisible(false);
 		fxSlider.setVisible(false);
 		goldAmountIcon.setVisible(true);
@@ -484,11 +499,15 @@ public class MainWindow extends JFrame{
 		settingButton.setVisible(false);
 		confirmButton.setVisible(true);
 		upgradeButton.setVisible(true);
+		for(int i = 0; i < showSkill.length; ++i)
+			showSkill[i].setVisible(true);
 		musicSlider.setVisible(false);
 		fxSlider.setVisible(false);
 		menuTitle.setVisible(false);
 		goldAmountIcon.setVisible(true);
 		goldAmountNumber.setVisible(true);
+		levelText.setVisible(true);
+		upgradeText.setVisible(true);
 		nothingIsHere.setVisible(false);
 		showCharacter.setVisible(false);
 		settingText.setVisible(false);
@@ -512,10 +531,14 @@ public class MainWindow extends JFrame{
 		settingButton.setVisible(false);
 		confirmButton.setVisible(false);
 		upgradeButton.setVisible(false);
+		for(int i = 0; i < showSkill.length; ++i)
+			showSkill[i].setVisible(false);
 		musicSlider.setVisible(false);
 		fxSlider.setVisible(false);
 		goldAmountIcon.setVisible(true);
 		goldAmountNumber.setVisible(true);
+		levelText.setVisible(false);
+		upgradeText.setVisible(false);
 		menuTitle.setVisible(false);
 		nothingIsHere.setVisible(true);
 		showCharacter.setVisible(false);
@@ -538,10 +561,14 @@ public class MainWindow extends JFrame{
 		settingButton.setVisible(false);
 		confirmButton.setVisible(false);
 		upgradeButton.setVisible(false);
+		for(int i = 0; i < showSkill.length; ++i)
+			showSkill[i].setVisible(false);
 		musicSlider.setVisible(true);
 		fxSlider.setVisible(true);
 		goldAmountIcon.setVisible(false);
 		goldAmountNumber.setVisible(false);
+		levelText.setVisible(false);
+		upgradeText.setVisible(false);
 		menuTitle.setVisible(false);
 		nothingIsHere.setVisible(false);
 		showCharacter.setVisible(false);
@@ -574,10 +601,14 @@ public class MainWindow extends JFrame{
 		settingButton.setVisible(false);
 		confirmButton.setVisible(false);
 		upgradeButton.setVisible(false);
+		for(int i = 0; i < showSkill.length; ++i)
+			showSkill[i].setVisible(false);
 		musicSlider.setVisible(false);
 		fxSlider.setVisible(false);
 		goldAmountIcon.setVisible(false);
 		goldAmountNumber.setVisible(false);
+		levelText.setVisible(false);
+		upgradeText.setVisible(false);
 		menuTitle.setVisible(false);
 		nothingIsHere.setVisible(false);
 		showCharacter.setVisible(false);

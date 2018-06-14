@@ -19,6 +19,10 @@ public class ChooseSkill {
 			new ImageIcon(MainWindow.class.getResource("/Image/Skill_SumonSword.png"))
 	};
 	
+	//get the image of the skill
+	public static ImageIcon getSkillImage(int i) {
+		return skillImage[i];
+	}
 	
 	//get the skillID of three skill you choice
 	public static int[] getChooseID() {
@@ -64,7 +68,7 @@ public class ChooseSkill {
 		skillPower[ID-1] = power;
 	}
 	/**
-	 * for press the levelup button to upgrade the skil
+	 * for press the levelup button to upgrade the skill
 	 */
 	public static int levelUp(Icon img, int gold) {
 		if(img.equals(skillImage[0]) && skillLevel[0] < 5) {
