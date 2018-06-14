@@ -332,7 +332,8 @@ public class MainWindow extends JFrame{
 		
 		//Initial character or skill upgrade text
 		upgradeText.setHorizontalAlignment(SwingConstants.CENTER);
-		upgradeText.setBounds(90, 510, 300, 50);
+		upgradeText.setBounds(85, 484, 327, 50);
+		upgradeText.setFont(new Font("MV Boli", Font.PLAIN, 20));
 		contentPane.add(upgradeText);
 		
 		//Initial menu title label
@@ -342,6 +343,7 @@ public class MainWindow extends JFrame{
 		nothingIsHere.setIcon(new ImageIcon(MainWindow.class.getResource("/image/SorryForNothing.png")));
 		nothingIsHere.setBounds(115, 320, 250, 400);
 		contentPane.add(nothingIsHere);
+		showCharacter.setIcon(new ImageIcon(MainWindow.class.getResource("/image/Assassin_Choice.png")));
 		
 		//Initial character preview picture in character page
 		showCharacter.setBounds(0, 0, 480, 720);
