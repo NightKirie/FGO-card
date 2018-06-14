@@ -109,10 +109,12 @@ public class MainWindow extends JFrame{
 		//Load previous data
 		LoadData();
 		
+		//Set Button FX volume
+		Button.setVolume(fxVolume);	
+		
 		//Initial skillButton in Menu
 		skillButton.setIcon(new ImageIcon(MainWindow.class.getResource("/image/Skill_Btn.png")));
 		skillButton.setBounds(250, 255, 115, 155);
-		skillButton.setVolume(fxVolume);
 		skillButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {	
@@ -124,7 +126,6 @@ public class MainWindow extends JFrame{
 		//Initial start Button in Menu
 		startButton.setIcon(new ImageIcon(MainWindow.class.getResource("/image/Start_Btn.png")));
 		startButton.setBounds(250, 410, 115, 130);
-		startButton.setVolume(fxVolume);
 		startButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {		
@@ -141,7 +142,6 @@ public class MainWindow extends JFrame{
 		//Initial characterButton in Menu
 		chararcterButton.setIcon(new ImageIcon(MainWindow.class.getResource("/image/Character_Btn.png")));
 		chararcterButton.setBounds(115, 255, 115, 155);
-		chararcterButton.setVolume(fxVolume);
 		chararcterButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {	
@@ -153,7 +153,6 @@ public class MainWindow extends JFrame{
 		//Initial achievementButton in Menu
 		achievementButton.setIcon(new ImageIcon(MainWindow.class.getResource("/image/Reward_Btn.png")));
 		achievementButton.setBounds(115, 410, 115, 130);
-		achievementButton.setVolume(fxVolume);
 		achievementButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {	
@@ -166,7 +165,6 @@ public class MainWindow extends JFrame{
 		//Initial backButton in Menu
 		backButton.setIcon(new ImageIcon(MainWindow.class.getResource("/image/Back_Btn.png")));
 		backButton.setBounds(0, 621, 97, 99);
-		backButton.setVolume(fxVolume);
 		backButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {	
@@ -178,7 +176,6 @@ public class MainWindow extends JFrame{
 		//Initial settingButton in Menu
 		settingButton.setIcon(new ImageIcon(MainWindow.class.getResource("/image/Setting_Btn.png")));
 		settingButton.setBounds(0, 0, 50, 50);
-		settingButton.setVolume(fxVolume);
 		settingButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent arg0) {	
@@ -190,7 +187,6 @@ public class MainWindow extends JFrame{
 		//Initial leftButton in character page
 		leftButton.setIcon(new ImageIcon(MainWindow.class.getResource("/image/Left_Btn.png")));
 		leftButton.setBounds(0, 150, 98, 95);
-		leftButton.setVolume(fxVolume);
 		leftButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {	
@@ -212,7 +208,6 @@ public class MainWindow extends JFrame{
 		//Initial rightButton in character page
 		rightButton.setIcon(new ImageIcon(MainWindow.class.getResource("/image/Right_Btn.png")));
 		rightButton.setBounds(382, 150, 98, 95);
-		rightButton.setVolume(fxVolume);
 		rightButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {	
@@ -234,7 +229,6 @@ public class MainWindow extends JFrame{
 		//Initial confirmButton in character page & skill page 
 		confirmButton.setIcon(new ImageIcon(MainWindow.class.getResource("/image/Confirm_Btn.png")));
 		confirmButton.setBounds(383, 621, 97, 99);
-		confirmButton.setVolume(fxVolume);
 		confirmButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent arg0) {	
@@ -255,7 +249,6 @@ public class MainWindow extends JFrame{
 		//Initial upgradeButton in character page & skill page
 		upgradeButton.setIcon(new ImageIcon(MainWindow.class.getResource("/image/Upgrade_Btn.png")));
 		upgradeButton.setBounds(193, 621, 97, 99);
-		upgradeButton.setVolume(fxVolume);
 		upgradeButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent arg0) {	
@@ -316,16 +309,7 @@ public class MainWindow extends JFrame{
 		fxSlider.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent arg0) {
 				fxVolume = (double)fxSlider.getValue()/100.0;
-				skillButton.setVolume(fxVolume);
-				startButton.setVolume(fxVolume);
-				chararcterButton.setVolume(fxVolume);
-				achievementButton.setVolume(fxVolume);
-				backButton.setVolume(fxVolume);
-				leftButton.setVolume(fxVolume);
-				rightButton.setVolume(fxVolume);
-				settingButton.setVolume(fxVolume);
-				confirmButton.setVolume(fxVolume);
-				upgradeButton.setVolume(fxVolume);
+				Button.setVolume(fxVolume);
 				SaveData();
 			}
 		});

@@ -11,7 +11,7 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 
 public class Button extends JButton{
-	private double volume = 1.0;
+	private static double volume = 1.0;
 	
 	public Button(){
 		addMouseListener(new MouseAdapter() {
@@ -45,8 +45,8 @@ public class Button extends JButton{
 		g.fillRect(0, 0, getWidth(), getHeight());
 		super.paintComponent(g);
 	}
-	public void setVolume(double volume) {
-		this.volume = volume;
+	public static void setVolume(double volume) {
+		Button.volume = volume;
 	}
 
 	

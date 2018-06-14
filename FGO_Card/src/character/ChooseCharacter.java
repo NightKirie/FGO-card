@@ -18,7 +18,6 @@ public class ChooseCharacter {
 	private static final int levelUpGold[] = {100, 200, 500, 1000};
 
 
-	
 	/** 
 	 * set the chosen character's ID, for pressing confirm button
 	 */
