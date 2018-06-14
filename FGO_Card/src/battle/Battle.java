@@ -15,7 +15,7 @@ public class Battle extends JPanel{
 	int difficulty;
 	randomCard generater;
 
-	public static Cardi[][] map;
+	public static Card[][] map;
 	public static Card player;
 	static image
 
