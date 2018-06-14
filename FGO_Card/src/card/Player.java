@@ -22,11 +22,11 @@ public class Player extends Creature{
 				{
 					opponent.getSwordDamage(opponent.hp);
 				}
-				if(weapon.weapontype.equals("ward"))//fire ward attack
+				if(weapon.weapontype.equals("wand"))//fire wand attack
 				{
 					opponent.getFireDamage(opponent.hp);
 				}
-				if(weapon.weapontype.equals("ice ward"))//ice ward attack
+				if(weapon.weapontype.equals("ice wand"))//ice wand attack
 				{
 					opponent.getIceDamage(opponent.hp);
 				}
@@ -37,11 +37,11 @@ public class Player extends Creature{
 				{
 					opponent.getSwordDamage(weapon.hp);
 				}
-				if(weapon.weapontype.equals("ward"))//ward attack
+				if(weapon.weapontype.equals("wand"))//wand attack
 				{
 					opponent.getFireDamage(weapon.hp);
 				}
-				if(weapon.weapontype.equals("ice ward"))//ice ward attack
+				if(weapon.weapontype.equals("ice wand"))//ice wand attack
 				{
 					opponent.getIceDamage(weapon.hp);
 				}
@@ -60,6 +60,9 @@ public class Player extends Creature{
 				//game over!!
 			}
 		}
+	}
+	public void pickUpWeapon(Weapon newWeapon){
+		if(weapon.hp<newWeapon.hp) weapon=newWeapon;
 	}
 	
 	public void ability() {
