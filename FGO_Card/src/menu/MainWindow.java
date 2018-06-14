@@ -69,9 +69,9 @@ public class MainWindow extends JFrame{
 	private final JLabel goldAmountIcon = new JLabel("");	//for show the gold amount icon
 	private final JLabel chosenCharacterMenu = new JLabel("");	//for show the chosen character's image in menu
 	
-	private final JTextField goldAmountNumber = new JTextField("");	//for show the gold	amount player has
-	private final JTextField levelText = new JTextField("");		//for show the level of character or skill 
-	private final JTextField upgradeText = new JTextField("");		//for show the upgrade needed of character or skill
+	private final JTextField goldAmountNumber = new RoundedTextField(15);	//for show the gold	amount player has
+	private final JTextField levelText = new RoundedTextField(15);		//for show the level of character or skill 
+	private final RoundedTextField upgradeText = new RoundedTextField(15);		//for show the upgrade needed of character or skill
 
 	private final JSlider musicSlider = new JSlider();
 	private final JSlider fxSlider = new JSlider();
@@ -84,7 +84,7 @@ public class MainWindow extends JFrame{
 	private static double musicVolume;
 	private static double fxVolume;
 	private static String levelString[] = {"LV.1", "LV.2", "LV.3", "LV.4", "LV.MAX"};
-	private static String upgradeString[] = {"100Gold¡÷LV.2", "200Gold¡÷LV.3", "500Gold¡÷LV.4", "1000Gold¡÷LV.MAX", "No Upgrade"};
+	private static String upgradeString[] = {"100Gold->LV.2", "200Gold->LV.3", "500Gold->LV.4", "1000Gold->LV.MAX", "No Upgrade"};
 	
 
 
@@ -335,36 +335,21 @@ public class MainWindow extends JFrame{
 		goldAmountIcon.setIcon(new ImageIcon(MainWindow.class.getResource("/image/Gold_Amount.png")));
 		goldAmountIcon.setBounds(297, 0, 50, 50);		
 		contentPane.add(goldAmountIcon);
+		goldAmountNumber.setFont(new Font("Comic Sans MS", Font.PLAIN, 36));
 
 		
 		//Initial gold amount number
-		goldAmountNumber.setEditable(false);
-		goldAmountNumber.setBackground(Color.DARK_GRAY);
-		goldAmountNumber.setBorder(null);
-		goldAmountNumber.setFont(new Font("Arial", Font.PLAIN, 36));
-		goldAmountNumber.setForeground(Color.WHITE);
 		goldAmountNumber.setBounds(357, 0, 123, 50);
-		goldAmountNumber.setText(Integer.toString(goldAmount));
 		contentPane.add(goldAmountNumber);
 
 		
 		//Initial character or skill level text
-		levelText.setBorder(null);
-		levelText.setEditable(false);
-		levelText.setBackground(Color.DARK_GRAY);
-		levelText.setForeground(Color.WHITE);
-		levelText.setFont(new Font("Arial", Font.BOLD, 36));
 		levelText.setBounds(0, 0, 143, 50);
 		contentPane.add(levelText);
 
 		
 		//Initial character or skill upgrade text
-		upgradeText.setEditable(false);
 		upgradeText.setHorizontalAlignment(SwingConstants.CENTER);
-		upgradeText.setBorder(null);
-		upgradeText.setBackground(Color.DARK_GRAY);
-		upgradeText.setFont(new Font("Arial", Font.BOLD, 36));
-		upgradeText.setForeground(Color.WHITE);
 		upgradeText.setBounds(90, 510, 300, 50);
 		contentPane.add(upgradeText);
 		
