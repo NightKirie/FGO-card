@@ -18,32 +18,24 @@ public class Player extends Creature{
 			if(weapon.hp>=opponent.hp)
 			{
 				weapon.hp-=opponent.hp;
-				if(weapon.weapontype.equals("sword"))//sword attack
+				if(weapon instanceof Sword)//sword attack
 				{
 					opponent.getSwordDamage(opponent.hp);
 				}
-				if(weapon.weapontype.equals("wand"))//fire wand attack
+				if(weapon instanceof Wand)//fire wand attack
 				{
 					opponent.getFireDamage(opponent.hp);
-				}
-				if(weapon.weapontype.equals("ice wand"))//ice wand attack
-				{
-					opponent.getIceDamage(opponent.hp);
 				}
 			}
 			else
 			{
-				if(weapon.weapontype.equals("sword"))//sword attack
+				if(weapon instanceof Sword)//sword attack
 				{
 					opponent.getSwordDamage(weapon.hp);
 				}
-				if(weapon.weapontype.equals("wand"))//wand attack
+				if(weapon instanceof Wand)//wand attack
 				{
 					opponent.getFireDamage(weapon.hp);
-				}
-				if(weapon.weapontype.equals("ice wand"))//ice wand attack
-				{
-					opponent.getIceDamage(weapon.hp);
 				}
 				weapon.hp=0;
 			}
