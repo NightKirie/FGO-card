@@ -328,6 +328,7 @@ public class MainWindow extends JFrame{
 		//Initial character or skill level text
 		levelText.setBounds(0, 0, 143, 50);
 		contentPane.add(levelText);
+		upgradeText.setForeground(Color.LIGHT_GRAY);
 
 		
 		//Initial character or skill upgrade text

@@ -18,7 +18,7 @@ public class RoundedTextField extends JTextField{
         setBackground(new Color(31, 34, 38));
         setBorder(null);
         setFont(new Font("MV Boli", Font.PLAIN, 28));
-        setForeground(Color.WHITE);
+        setForeground(Color.LIGHT_GRAY);
 	}
 	protected void paintComponent(Graphics g) {
         g.setColor(getBackground());
