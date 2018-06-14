@@ -319,8 +319,6 @@ public class MainWindow extends JFrame{
 		goldAmountIcon.setIcon(new ImageIcon(MainWindow.class.getResource("/image/Gold_Amount.png")));
 		goldAmountIcon.setBounds(297, 0, 50, 50);		
 		contentPane.add(goldAmountIcon);
-		goldAmountNumber.setFont(new Font("Comic Sans MS", Font.PLAIN, 36));
-
 		
 		//Initial gold amount number
 		goldAmountNumber.setBounds(357, 0, 123, 50);
