@@ -1,4 +1,7 @@
 package card;
+
+import battle.Battle;
+import java.awt.Point;
 public class Object extends Card {
 	public Object(String scientificName){
 		super("Object."+scientificName);
@@ -11,6 +14,14 @@ public class Object extends Card {
 	 	hp-=damage;
 	 }
 	 */
+	public void deadAction(){
+		Point p=Battle.getLocation(this);
+		if(this instanceof Creature){
+			 Battle.map[p.x][p.y]=new Coin(((Creature)this).maxHP);
+		}
+			 Battle.map[p.x][p.y]=new Coin(10);
+		
+	}
 	public void getSwordDamage(int damage)//sword damage
 	{
 		hp-=damage;

@@ -8,6 +8,7 @@ import card.*;
 import java.awt.*;
 import javax.swing.*;
 import javax.swing.JFrame;
+import javax.swing.border.EmptyBorder;
 import java.awt.geom.Point2D;
 
 public class Battle extends JPanel{
@@ -52,5 +53,10 @@ public class Battle extends JPanel{
 			for(int j=0;j<size;++j) if(target==map[i][j]) return new Point(i,j);
 		}
 		return null;
+	}
+	public static void swapCard(Point a,Point b){
+		Card tmp=map[a.x][a.y];
+		map[a.x][a.y]=map[b.x][b.y];
+		map[b.x][b.y]=tmp;
 	}
 }

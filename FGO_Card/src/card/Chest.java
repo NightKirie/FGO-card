@@ -1,10 +1,11 @@
 package card;
-
+import javax.swing.ImageIcon;
 public class Chest extends Item {
-	public Chest(String scientificName)
+	public Chest(int size)
 	{
-		super("Chest."+scientificName);
-		
+		super("Chest");
+		hp=size;
+		setIcon(new ImageIcon(this.getClass().getResource("/Images/Chest.jpg")));
 	}
 	@Override
 	public void effect(Player input) {
