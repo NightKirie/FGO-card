@@ -4,16 +4,18 @@ import card.*;
 import java.util.Random;
 public class randomCard extends Random{
 	public static int difficulty=0;
-	static int typeSize=8;
+	static int probabilityType=1,typeSize=8;
 	int[] probability,rate;
-	public randomCard(int gameDifficulty){
+	public randomCard(int gameDifficulty,int gameProbability){
 		difficulty=gameDifficulty;
 		probability=new int[typeSize];
-		setDifficulty(difficulty);
+		probabilityType=gameProbability;
+		setProbability(gameProbability);
 		rate=new int[typeSize];
 	}
-	public void setDifficulty(int d){
-		switch(d){
+	public int getProbability(){return probabilityType;}
+	public void setProbability(int p){
+		switch(p){
 			case 1:rate[0]=30;rate[1]=1;rate[2]=15;rate[3]=15;rate[4]=15;rate[5]=7;rate[6]=10;rate[7]=10;break;
 			case 2:rate[0]=30;rate[1]=1;rate[2]=15;rate[3]=15;rate[4]=15;rate[5]=7;rate[6]=10;rate[7]=10;break;
 			case 3:rate[0]=30;rate[1]=1;rate[2]=15;rate[3]=15;rate[4]=15;rate[5]=7;rate[6]=10;rate[7]=10;break;
