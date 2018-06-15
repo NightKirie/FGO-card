@@ -17,14 +17,6 @@ public class Bomb extends Item {
 	public void updateStatus()
 	{
 		--countdown;
-	}
-	public void updateUI(){
-		hpShow.setText(Integer.toString(hp));
-		bombcount.setText("count"+Integer.toString(this.hp));
-	}
-	//I'm not sure this can work or not
-	public void explosion(Object input)
-	{
 		if(countdown==0)
 		{
 			Point location=battle.Battle.getLocation(this);
@@ -40,6 +32,16 @@ public class Bomb extends Item {
 			}
 		}
 	}
+	public void updateUI(){
+		hpShow.setText(Integer.toString(hp));
+		bombcount.setText("count"+Integer.toString(this.hp));
+	}
+	//I'm not sure this can work or not
+	//You can put it in updateStatus XD
+	/*public void explosion(Object input)
+	{
+	}
+	*/
 	@Override
 	public void effect(Player input) {
 		// TODO Auto-generated method stub
