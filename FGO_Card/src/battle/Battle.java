@@ -18,10 +18,8 @@ public class Battle extends JPanel{
 
 	public static Card[][] map;
 	public static Card player;
-	static image
 
-	public Battle(){this(1);}
-	public Battle(int difficulty){
+	public Battle(int difficulty=1){
 		setSize(485,748);
 		setBorder(new EmptyBorder(5, 5, 5, 5));
 		setBackground(Color.BLACK);
