@@ -26,13 +26,13 @@ public class Card extends JButton{
 			String[] scientificName=getUIClassID().split(".");
 			if(scientificName[0].equals("Object")){
 				if(scientificName[1].equals("Creature")&&scientificName[2].equals("Monster")){
-					Battle.player.attack((Creature)Card.this);
+					((Creature)Battle.player).attack((Creature)Card.this);
 				}
 			}
 			else{
 				switch(scientificName[2]){
 					case "Weapon":
-						player.pickUpWeapon((Weapon)Card.this);
+						((Player)Battle.player).pickUpWeapon((Weapon)Card.this);
 
 						break;
 					case "Potion":

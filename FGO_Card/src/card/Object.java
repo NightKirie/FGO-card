@@ -11,6 +11,9 @@ public class Object extends Card {
 	 	hp-=damage;
 	 }
 	 */
+	public void deadAction(){
+		
+	}
 	public void getSwordDamage(int damage)//sword damage
 	{
 		hp-=damage;

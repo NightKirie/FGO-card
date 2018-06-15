@@ -1,9 +1,9 @@
 package card;
 
 public class Chest extends Item {
-	public Chest(String scientificName)
+	public Chest()
 	{
-		super("Chest."+scientificName);
+		super("Chest");
 		
 	}
 	@Override
