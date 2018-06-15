@@ -1,12 +1,15 @@
 package card;
-
 import battle.Battle;
 import java.awt.Point;
+import javax.swing.JLabel;
 public class Object extends Card {
 	public Object(String scientificName){
 		super("Object."+scientificName);
+		hpshow.setBounds(0,0,50,50);
+		add(hpshow);
 	}
-	public int hp;	
+	public int hp=0;	
+	public JLabel hpshow=new JLabel(Integer.toString(hp));
 	/*
 	 * object have hp,so every damage will in there first
 	 * ex code:
@@ -14,6 +17,10 @@ public class Object extends Card {
 	 	hp-=damage;
 	 }
 	 */
+	public void updateNowHp()
+	{
+		hpshow.setText(Integer.toString(hp));
+	}
 	public void deadAction(){
 		Point p=Battle.getLocation(this);
 		if(this instanceof Creature){

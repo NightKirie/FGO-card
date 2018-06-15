@@ -2,6 +2,7 @@ package card;
 import javax.swing.JButton;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.Insets;
 import java.awt.Point;
 import battle.Battle;
 
@@ -9,6 +10,8 @@ public class Card extends JButton{
 	public Card(String scientificName){
 		super(scientificName);
 		setSize(150,200);
+		setLayout(null);
+		setMargin(new Insets(0, 0, 0, 0));
 	}
 	String name=null;
 	//public String scientificName=null;
