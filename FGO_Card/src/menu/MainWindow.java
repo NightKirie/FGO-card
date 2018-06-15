@@ -229,6 +229,7 @@ public class MainWindow extends JFrame{
 			}
 		});
 		contentPane.add(rightButton);
+		confirmButton.setFocusable(false);
 		
 		//Initial confirmButton in character page & skill page 
 		confirmButton.setIcon(new ImageIcon(MainWindow.class.getResource("/image/Confirm_Btn.png")));
@@ -249,6 +250,7 @@ public class MainWindow extends JFrame{
 			}
 		});
 		contentPane.add(confirmButton);
+		upgradeButton.setFocusable(false);
 		
 		//Initial upgradeButton in character page & skill page
 		upgradeButton.setIcon(new ImageIcon(MainWindow.class.getResource("/image/Upgrade_Btn.png")));
@@ -545,6 +547,7 @@ public class MainWindow extends JFrame{
 		showCharacter.setVisible(false);
 		settingText.setVisible(false);
 		backGround.setVisible(false);	
+		
 	}
 	
 	/**
