@@ -15,9 +15,13 @@ public class Bomb extends Item {
 	
 	public void updateStatus()
 	{
-		hpshow.setText(Integer.toString(hp));
+		--countdown;
+	}
+	public void updateUI(){
+		hpShow.setText(Integer.toString(hp));
 		bombcount.setText("count"+Integer.toString(this.hp));
 	}
+
 	@Override
 	public void effect(Player input) {
 		// TODO Auto-generated method stub

@@ -12,20 +12,19 @@ import javax.swing.border.EmptyBorder;
 import java.awt.geom.Point2D;
 
 public class Battle extends JPanel{
-	static int size;
+	static int size=3;
 	int difficulty;
 	static randomCard generater;
 
 	public static Card[][] map;
 	public static Card player;
 
-	public Battle(int difficulty=1){
+	public Battle(int difficulty){
 		setSize(485,748);
 		setBorder(new EmptyBorder(5, 5, 5, 5));
 		setBackground(Color.BLACK);
 		setLayout(null);
 
-		size=3;
 		map=new Card[size][];
 		generater=new randomCard(difficulty);
 		for(int i=0;i<size;++i){
@@ -41,10 +40,18 @@ public class Battle extends JPanel{
 				}
 				else{
 					map[i][j]=generater.nextCard();
-					map[i][j].setLocation(5+i*160,120+j*200);
 				}
 			}
 		}
+	}
+	public void updateUI(){
+		for(int i=0;i<size;++i){
+			for(int j=0;j<size;++j){
+				map[i][j].updateStatus();
+				map[i][j].updateUI();
+			}
+		}
+		
 	}
 	public static Point getLocation(Card target){
 		for(int i=0;i<size;++i){

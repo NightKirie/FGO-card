@@ -14,6 +14,8 @@ public class Card extends JButton{
 		setMargin(new Insets(0, 0, 0, 0));
 	}
 	String name=null;
+	public void updateStatus(){}
+	public void updateUI(){}
 	//public String scientificName=null;
 	//use getUIClassID() to get scientificName;(method in JButton)
 	//the scientificName should be in type:"class.class.name"
