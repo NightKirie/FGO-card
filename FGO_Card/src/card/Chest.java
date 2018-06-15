@@ -1,9 +1,10 @@
 package card;
 import javax.swing.ImageIcon;
 public class Chest extends Item {
-	public Chest()
+	public Chest(int size)
 	{
 		super("Chest");
+		hp=size;
 		setIcon(new ImageIcon(this.getClass().getResource("/Images/Chest.jpg")));
 	}
 	@Override
