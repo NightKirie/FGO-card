@@ -29,17 +29,19 @@ public class Card extends JButton{
 					((Creature)Battle.player).attack((Creature)Card.this);
 				}
 			}
-			else{
+			else{//Item
 				switch(scientificName[2]){
 					case "Weapon":
 						((Player)Battle.player).pickUpWeapon((Weapon)Card.this);
-
 						break;
 					case "Potion":
 						break;
 					case "Trap":
 						break;
 					case "Bomb":
+						Battle.swapCard(Location,playerLocation);
+						break;
+					case "Coin":
 						break;
 				}
 			}
