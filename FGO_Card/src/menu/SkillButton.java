@@ -8,17 +8,13 @@ import java.awt.event.FocusEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JButton;
-
-import com.sun.org.apache.xml.internal.resolver.helpers.PublicId;
-
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 
 public class SkillButton extends JButton{
 	private static double volume = 1.0;
 	private static int chosenSkillNumber = 0;
-	private boolean onChosen;	//for double click choose the skill
-	//private boolean onSelected;	//for single click see the detail or upgrade the skill
+	private boolean onChosen = false;	//for double click choose the skill
 	
 	public SkillButton(){
 		addMouseListener(new MouseAdapter() {
@@ -88,6 +84,17 @@ public class SkillButton extends JButton{
 	public static void setVolume(double volume) {
 		SkillButton.volume = volume;
 	}
+	
+	public void setChosen() {
+		onChosen = true;
+		setBackground(new Color(255, 0, 0, 255));
+		++chosenSkillNumber;
+	}
+	
+	public boolean getChosen() {
+		return onChosen;
+	}
+	
 
 	
 }

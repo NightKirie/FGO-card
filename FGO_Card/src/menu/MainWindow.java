@@ -65,6 +65,7 @@ public class MainWindow extends JFrame{
 	private final JLabel goldAmountIcon = new JLabel("");	//for show the gold amount icon
 	private final JLabel chosenCharacterMenu = new JLabel("");	//for show the chosen character's image in menu
 	private final JLabel showSkillDetail = new JLabel("");	//for show the hover on skill's detail
+	private final JLabel[] chosenSkillMenu = {new JLabel(""), new JLabel(""), new JLabel("")};
 	
 	private final JTextField goldAmountNumber = new RoundedTextField(15);	//for show the gold	amount player has
 	private final JTextField levelText = new RoundedTextField(15);		//for show the level of character or skill 
@@ -73,10 +74,6 @@ public class MainWindow extends JFrame{
 	private final JSlider musicSlider = new JSlider();
 	private final JSlider fxSlider = new JSlider();
 	
-	//private static int charaterLV[] = new int[3];
-	private static int skillLV[] = new int[5];
-	//private static int characterChoice;
-	private static int skillChoice[] = new int[3];
 	private static int goldAmount;
 	private static double musicVolume;
 	private static double fxVolume;
@@ -110,6 +107,15 @@ public class MainWindow extends JFrame{
 		//Set Button FX volume
 		Button.setVolume(fxVolume);
 		SkillButton.setVolume(fxVolume);
+		
+		//Initial chosen skill show in Menu, MUST ABOVE THE SKILL BUTTON!!!
+		chosenSkillMenu[0].setBounds(250, 255, 55, 55);
+		chosenSkillMenu[1].setBounds(310, 255, 55, 55);
+		chosenSkillMenu[2].setBounds(250, 315, 55, 55);
+		for(int i = 0; i < chosenSkillMenu.length; ++i) {
+			chosenSkillMenu[i].setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+			contentPane.add(chosenSkillMenu[i]);
+		}
 		
 		//Initial skillButton in Menu
 		skillButton.setIcon(new ImageIcon(MainWindow.class.getResource("/image/Skill_Btn.png")));
@@ -240,7 +246,20 @@ public class MainWindow extends JFrame{
 				}
 				//when in the skill page
 				else {
-
+					//store the chosen skills' id
+					int chosenOrder = 0;
+					//loop through five skill see if chosen
+					for(int i = 0; i < showSkill.length; ++i) {
+						if(showSkill[i].getChosen()) {
+							ChooseSkill.setChooseSkill(i+1, chosenOrder);
+							++chosenOrder;
+						}
+						System.out.println(showSkill[i].getChosen());
+					}
+					//if not chosen set to 0
+					for(int i = 2; i >= chosenOrder; --i)
+						ChooseSkill.setChooseSkill(0, chosenOrder);
+					SaveData();
 				}
 			}
 		});
@@ -295,15 +314,19 @@ public class MainWindow extends JFrame{
 		for(int i = 0; i < showSkill.length; ++i) {
 			final int ID = i+1;		//for inner class can eat local variable
 			showSkill[i].setBounds(40+i*80, 100, 80, 80);
-			showSkill[i].setIcon(ChooseSkill.getSkillImage(ID));
+			showSkill[i].setIcon(ChooseSkill.getSkillImage(ID));				
 			showSkill[i].addFocusListener(new FocusAdapter() {
 				//if the skill isn't be chosen, single click to show detail
 				public void focusGained(FocusEvent e) {
 					showSkillDetail.setIcon(ChooseSkill.getSkillDetail(ID));
 					levelText.setText(levelString[ChooseSkill.getSkillLevel(ID)-1]);
+					levelText.setVisible(true);
 					upgradeText.setText(upgradeString[ChooseSkill.getSkillLevel(ID)-1]);
+					upgradeText.setVisible(true);			
 					showSkillDetail.setVisible(true);
+					//get the skill that is focus
 					focusOnSkill = showSkill[ID-1].getIcon();
+					//if the selected skill's level is max, disable the upgrade button
 					if(ChooseSkill.getSkillLevel(focusOnSkill) == 5) 
 						upgradeButton.setEnabled(false);
 					else
@@ -311,10 +334,19 @@ public class MainWindow extends JFrame{
 				}
 				//if the skill is be chosen, single click other skill, reset this skill 
 				public void focusLost(FocusEvent e) {
+					levelText.setVisible(false);
+					upgradeText.setVisible(false);
 					showSkillDetail.setVisible(false);
 				}
 			});
 			contentPane.add(showSkill[i]);
+		}
+		
+		//Initial the chosen skill be highlighted
+		for(int i = 0; i < 3; ++i) {
+			if(ChooseSkill.getChooseID(i) != 0) {
+				showSkill[ChooseSkill.getChooseID(i)-1].setChosen();
+			}
 		}
 		
 		//Initial menuTitle label in Menu	
@@ -406,6 +438,8 @@ public class MainWindow extends JFrame{
 		menuBGM.setVolume(musicVolume);
 		gameBGM.setVolume(musicVolume);
 	
+		for(int i = 0; i < chosenSkillMenu.length; ++i)
+			chosenSkillMenu[i].setVisible(false);
 		skillButton.setVisible(false);
 		startButton.setVisible(false);
 		chosenCharacterMenu.setVisible(false);
@@ -445,8 +479,16 @@ public class MainWindow extends JFrame{
 		goldAmountNumber.setText(Integer.toString(goldAmount));
 		//set the chosen character's image
 		chosenCharacterMenu.setIcon(ChooseCharacter.getMenuChosenCharacter());
+		//set the chosen skills' image
+		for(int i = 0; i < chosenSkillMenu.length; ++i) {
+			if(ChooseSkill.getChooseID(i) != 0)
+				chosenSkillMenu[i].setIcon(ChooseSkill.getSkillMenu(ChooseSkill.getChooseID(i)));
+			else
+				chosenSkillMenu[i].setIcon(null);
+		}
 
-		
+		for(int i = 0; i < chosenSkillMenu.length; ++i)
+			chosenSkillMenu[i].setVisible(true);
 		skillButton.setVisible(true);
 		startButton.setVisible(true);
 		chosenCharacterMenu.setVisible(true);
@@ -479,6 +521,9 @@ public class MainWindow extends JFrame{
 	 * call to go to character page
 	 */
 	public void CharacterPage() {
+		
+		for(int i = 0; i < chosenSkillMenu.length; ++i)
+			chosenSkillMenu[i].setVisible(false);
 		skillButton.setVisible(false);
 		startButton.setVisible(false);
 		chosenCharacterMenu.setVisible(false);
@@ -522,6 +567,8 @@ public class MainWindow extends JFrame{
 	
 	//call to go to skill page
 	public void SkillPage() {
+		for(int i = 0; i < chosenSkillMenu.length; ++i)
+			chosenSkillMenu[i].setVisible(false);
 		skillButton.setVisible(false);
 		startButton.setVisible(false);
 		chosenCharacterMenu.setVisible(false);
@@ -540,20 +587,20 @@ public class MainWindow extends JFrame{
 		menuTitle.setVisible(false);
 		goldAmountIcon.setVisible(true);
 		goldAmountNumber.setVisible(true);
-		levelText.setVisible(true);
-		upgradeText.setVisible(true);
+		levelText.setVisible(false);
+		upgradeText.setVisible(false);
 		nothingIsHere.setVisible(false);
 		showCharacter.setVisible(false);
 		settingText.setVisible(false);
-		backGround.setVisible(true);
-		
-
+		backGround.setVisible(true);	
 	}
 	
 	/**
 	 * call to go to achievement page
 	 */
 	public void AchievementPage() {
+		for(int i = 0; i < chosenSkillMenu.length; ++i)
+			chosenSkillMenu[i].setVisible(false);
 		skillButton.setVisible(false);
 		startButton.setVisible(false);
 		chosenCharacterMenu.setVisible(false);
@@ -585,6 +632,8 @@ public class MainWindow extends JFrame{
 	 * call to go to setting page 
 	 */
 	public void Setting() {
+		for(int i = 0; i < chosenSkillMenu.length; ++i)
+			chosenSkillMenu[i].setVisible(false);
 		skillButton.setVisible(false);
 		startButton.setVisible(false);
 		chosenCharacterMenu.setVisible(false);
@@ -711,7 +760,7 @@ public class MainWindow extends JFrame{
 			pw.println("character:1/" + ChooseCharacter.getLevel(1) + " 2/" + ChooseCharacter.getLevel(2) + " 3/" + ChooseCharacter.getLevel(3));
 			pw.println("skill:1/" + ChooseSkill.getSkillLevel(1) + " 2/" + ChooseSkill.getSkillLevel(2) + " 3/" + ChooseSkill.getSkillLevel(3) + " 4/" + ChooseSkill.getSkillLevel(4) + " 5/" + ChooseSkill.getSkillLevel(5));
 			pw.println("character_chosen:" + ChooseCharacter.getChosenID());
-			pw.println("skill_chosen:" + ChooseSkill.getChooseID(1) + " " +  ChooseSkill.getChooseID(2) + " " +  ChooseSkill.getChooseID(3));
+			pw.println("skill_chosen:" + ChooseSkill.getChooseID(0) + " " +  ChooseSkill.getChooseID(1) + " " +  ChooseSkill.getChooseID(2));
 			pw.println("gold:" + goldAmount);
 			pw.println("music:" + musicVolume);
 			pw.println("fx:" + fxVolume);
