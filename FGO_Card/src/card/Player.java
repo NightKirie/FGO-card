@@ -14,7 +14,7 @@ public class Player extends Creature{
 	}
 	public void updateStatus()
 	{
-		hpshow.setText("Hp:"+Integer.toString(hp));
+		hpShow.setText("Hp:"+Integer.toString(hp));
 		weaponshow.setText("w:"+Integer.toString(weapon.hp));
 	}
 	public void attack(Creature opponent) {
