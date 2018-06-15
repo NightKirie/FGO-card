@@ -3,7 +3,7 @@ package battle;
 import card.*;
 import java.util.Random;
 public class randomCard extends Random{
-	static int difficulty=0,typeSize=7;
+	static int difficulty=0,typeSize=8;
 	int[] probability;
 	public randomCard(int gameDifficulty){
 		difficulty=gameDifficulty;
@@ -15,7 +15,7 @@ public class randomCard extends Random{
 		int[] rate=new int[typeSize];
 		//0:minion,1:boss,2:sword,3:wond,4:red_potion,5:green_potion,6:bomb,7:treasure
 		switch(d){
-			case 1:rate[0]=30;rate[1]=1;rate[2]=15;rate[3]=15;rate[4]=15;rate[5]=7;rate[6]=10;break;
+			case 1:rate[0]=30;rate[1]=1;rate[2]=15;rate[3]=15;rate[4]=15;rate[5]=7;rate[6]=10;rate[7]=10;break;
 		}
 		probability[0]=rate[0];
 		for(int i=1;i<typeSize;++i){
@@ -32,6 +32,7 @@ public class randomCard extends Random{
 		else if(r<probability[4]) newCard=new RedPotion(3+nextInt(5));
 		else if(r<probability[5]) newCard=new GreenPotion(1);
 		else if(r<probability[6]) newCard=new Bomb(difficulty*5+nextInt(3));
+		else if(r<probability[7]) newCard=new Chest(nextInt(5)+5);
 		return newCard;
 	}
 }
