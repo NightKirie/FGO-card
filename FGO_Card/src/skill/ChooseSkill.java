@@ -8,10 +8,10 @@ import com.sun.org.apache.bcel.internal.generic.RETURN;
 import menu.MainWindow;
 
 public class ChooseSkill {
-	public static int[] chooseSkillID = new int[3];
-	public static int[] skillLevel = new int[5];
-	public static int[] skillPower = new int[5];
-	public static int[] skillCD = new int[] {10, 8, 12, 10, 15};
+	private static int[] chooseSkillID = {0, 0, 0};
+	private static int[] skillLevel = new int[5];
+	private static int[] skillPower = new int[5];
+	private static int[] skillCD = new int[] {10, 8, 12, 10, 15};
 	private static final int levelUpGold[] = {100, 200, 500, 1000};
 	private static final ImageIcon[] skillImage = {
 			new ImageIcon(MainWindow.class.getResource("/Image/Skill_AllDamage.png")),
@@ -26,6 +26,13 @@ public class ChooseSkill {
 			new ImageIcon(MainWindow.class.getResource("/Image/Skill_ReduceCharge_Detail.png")),
 			new ImageIcon(MainWindow.class.getResource("/Image/Skill_HealthUp_Detail.png")),
 			new ImageIcon(MainWindow.class.getResource("/Image/Skill_SumonSword_Detail.png"))
+	};
+	private static final ImageIcon[] skillMenu = {
+			new ImageIcon(MainWindow.class.getResource("/Image/Menu_AllDamage.png")),
+			new ImageIcon(MainWindow.class.getResource("/Image/Menu_WeaponUp.png")),
+			new ImageIcon(MainWindow.class.getResource("/Image/Menu_ReduceCharge.png")),
+			new ImageIcon(MainWindow.class.getResource("/Image/Menu_HealthUp.png")),
+			new ImageIcon(MainWindow.class.getResource("/Image/Menu_SumonSword.png"))
 	};
 	
 	/**
@@ -43,10 +50,17 @@ public class ChooseSkill {
 	}
 	
 	/**
+	 * get the skill menu image
+	 */
+	public static ImageIcon getSkillMenu(int ID) {
+		return skillMenu[ID-1];
+	}
+	
+	/**
 	 * get the skillID of three skill you choice
 	 */
-	public static int getChooseID(int ID) {
-		return chooseSkillID[ID-1];
+	public static int getChooseID(int i) {
+		return chooseSkillID[i];
 	}
 	
 	/**
