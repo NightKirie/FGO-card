@@ -3,6 +3,8 @@ package skill;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 
+import com.sun.org.apache.bcel.internal.generic.RETURN;
+
 import menu.MainWindow;
 
 public class ChooseSkill {
@@ -18,52 +20,110 @@ public class ChooseSkill {
 			new ImageIcon(MainWindow.class.getResource("/Image/Skill_HealthUp.png")),
 			new ImageIcon(MainWindow.class.getResource("/Image/Skill_SumonSword.png"))
 	};
+	private static final ImageIcon[] skillDetail = {
+			new ImageIcon(MainWindow.class.getResource("/Image/Skill_AllDamage_Detail.png")),
+			new ImageIcon(MainWindow.class.getResource("/Image/Skill_WeaponUp_Detail.png")),
+			new ImageIcon(MainWindow.class.getResource("/Image/Skill_ReduceCharge_Detail.png")),
+			new ImageIcon(MainWindow.class.getResource("/Image/Skill_HealthUp_Detail.png")),
+			new ImageIcon(MainWindow.class.getResource("/Image/Skill_SumonSword_Detail.png"))
+	};
 	
-	//get the image of the skill
-	public static ImageIcon getSkillImage(int i) {
-		return skillImage[i];
+	/**
+	 * get the image of the skill
+	 */
+	public static ImageIcon getSkillImage(int ID) {
+		return skillImage[ID-1];
 	}
 	
-	//get the skillID of three skill you choice
-	public static int[] getChooseID() {
-		return chooseSkillID;
+	/**
+	 * get the skill detail
+	 */	
+	public static ImageIcon getSkillDetail(int ID) {
+		return skillDetail[ID-1];
 	}
-	//get the skill MaxCD of three skill you choice
+	
+	/**
+	 * get the skillID of three skill you choice
+	 */
+	public static int getChooseID(int ID) {
+		return chooseSkillID[ID-1];
+	}
+	
+	/**
+	 * get the skill MaxCD of three skill you choice
+	 */
 	public static int[] getChooseSkillMaxCD() {
 		return new int[] {skillLevel[chooseSkillID[0]], skillLevel[chooseSkillID[1]], skillLevel[chooseSkillID[2]]};
 	}
-	//get the skill level of three skill you choice
+	
+	/**
+	 * get the skill level of three skill you choice
+	 */
 	public static int[] getChooseLevel() {
 		return new int[] {skillLevel[chooseSkillID[0]], skillLevel[chooseSkillID[1]], skillLevel[chooseSkillID[2]]};
 	}
-	//get the skill power of three skill you choice
+	
+	/**
+	 * get the skill power of three skill you choice
+	 */
 	public static int[] getChoosePower() {
 		return new int[] {skillPower[chooseSkillID[0]], skillPower[chooseSkillID[1]], skillPower[chooseSkillID[2]]};
 	}
 	
-	//return the maxCD of skill
+	/**
+	 * return the maxCD of skill
+	 */
 	public static int getSkillMaxCD(int ID){
 		return skillCD[ID-1];
 	}
-	//return the power of skill
+	
+	/**
+	 * return the power of skill
+	 */
 	public static int getSkillPower(int ID){
 		return skillPower[ID-1];
 	}
-	//return the level of skill
-	public static int getSkilllevel(int ID){
+	
+	/**
+	 * return the level of skill, for initial
+	 */
+	public static int getSkillLevel(int ID){
 		return skillLevel[ID-1];
 	}
 	
-	//the partition is for user choose skill 1,2,3
+	/**
+	 * return the level of skill after upgrade
+	 */
+	public static int getSkillLevel(Icon img) {
+		if(img.equals(skillImage[0]))
+			return skillLevel[0];
+		else if(img.equals(skillImage[1]))
+			return skillLevel[1];
+		else if(img.equals(skillImage[2]))
+			return skillLevel[2];
+		else if(img.equals(skillImage[3]))
+			return skillLevel[3];
+		else
+			return skillLevel[4];
+	}
+	
+	/**
+	 * the partition is for user choose skill 1,2,3
+	 */
 	public static void setChooseSkill(int ID, int i) {
 		chooseSkillID[i] = ID;
 	}
 	
-	//to set the skill level
+	/**
+	 * to set the skill level
+	 */
 	public static void setLevel(int ID, int level) {
 		skillLevel[ID-1] = level;
 	}
-	//to set the skill power
+	
+	/**
+	 * to set the skill power
+	 */
 	public static void setPower(int ID, int power) {
 		skillPower[ID-1] = power;
 	}

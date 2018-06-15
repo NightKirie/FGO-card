@@ -8,9 +8,12 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import java.awt.Toolkit;
 import javax.swing.JLabel;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.BufferedReader;
@@ -20,23 +23,14 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.function.Predicate;
-
 import javafx.embed.swing.JFXPanel;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javax.swing.JSlider;
 import javax.swing.event.ChangeListener;
-
-import com.sun.glass.ui.Window.Level;
-
 import javax.swing.event.ChangeEvent;
-import javax.swing.JButton;
-import javax.swing.JTextPane;
-import javax.swing.JTextArea;
 import java.awt.Font;
 import javax.swing.JTextField;
-import java.awt.Insets;
 import javax.swing.SwingConstants;
 import java.awt.Cursor;
 
@@ -88,6 +82,7 @@ public class MainWindow extends JFrame{
 	private static double fxVolume;
 	private static String levelString[] = {"LV.1", "LV.2", "LV.3", "LV.4", "LV.MAX"};
 	private static String upgradeString[] = {"100Gold->LV.2", "200Gold->LV.3", "500Gold->LV.4", "1000Gold->LV.MAX", "No Upgrade"};
+	private static Icon focusOnSkill;
 	
 
 
@@ -277,7 +272,20 @@ public class MainWindow extends JFrame{
 				}
 				//when in the skill page
 				else {
-					
+					//reduce the gold amount after upgrade
+					goldAmount = ChooseSkill.levelUp(focusOnSkill, goldAmount);
+					//reset the level of the character after upgrade
+					levelText.setText(levelString[ChooseSkill.getSkillLevel(focusOnSkill)-1]);
+					//reset the upgrade detail of characer after upgrade
+					upgradeText.setText(upgradeString[ChooseSkill.getSkillLevel(focusOnSkill)-1]);
+					//if skill's level is max, disable the upgrade button
+					if(ChooseSkill.getSkillLevel(focusOnSkill) == 5) 
+						upgradeButton.setEnabled(false);
+					else
+						upgradeButton.setEnabled(true);
+					//reset the gold amount
+					goldAmountNumber.setText(Integer.toString(goldAmount));
+					SaveData();
 				}
 			}
 		});
@@ -285,8 +293,27 @@ public class MainWindow extends JFrame{
 		
 		//Initial the skills in skill page
 		for(int i = 0; i < showSkill.length; ++i) {
+			final int ID = i+1;		//for inner class can eat local variable
 			showSkill[i].setBounds(40+i*80, 100, 80, 80);
-			showSkill[i].setIcon(ChooseSkill.getSkillImage(i));
+			showSkill[i].setIcon(ChooseSkill.getSkillImage(ID));
+			showSkill[i].addFocusListener(new FocusAdapter() {
+				//if the skill isn't be chosen, single click to show detail
+				public void focusGained(FocusEvent e) {
+					showSkillDetail.setIcon(ChooseSkill.getSkillDetail(ID));
+					levelText.setText(levelString[ChooseSkill.getSkillLevel(ID)-1]);
+					upgradeText.setText(upgradeString[ChooseSkill.getSkillLevel(ID)-1]);
+					showSkillDetail.setVisible(true);
+					focusOnSkill = showSkill[ID-1].getIcon();
+					if(ChooseSkill.getSkillLevel(focusOnSkill) == 5) 
+						upgradeButton.setEnabled(false);
+					else
+						upgradeButton.setEnabled(true);
+				}
+				//if the skill is be chosen, single click other skill, reset this skill 
+				public void focusLost(FocusEvent e) {
+					showSkillDetail.setVisible(false);
+				}
+			});
 			contentPane.add(showSkill[i]);
 		}
 		
@@ -361,6 +388,10 @@ public class MainWindow extends JFrame{
 		//Initial character preview picture in character page
 		showCharacter.setBounds(0, 0, 480, 720);
 		contentPane.add(showCharacter);
+		
+		//Initial skill's detail in skill page
+		showSkillDetail.setBounds(0, 0, 480, 720);
+		contentPane.add(showSkillDetail);
 		
 		//Initial the settingText in setting page
 		settingText.setIcon(new ImageIcon(MainWindow.class.getResource("/image/Setting_Text.png")));
@@ -678,9 +709,9 @@ public class MainWindow extends JFrame{
 
 			System.out.println("file open ok");
 			pw.println("character:1/" + ChooseCharacter.getLevel(1) + " 2/" + ChooseCharacter.getLevel(2) + " 3/" + ChooseCharacter.getLevel(3));
-			pw.println("skill:1/" + skillLV[0] + " 2/" + skillLV[1] + " 3/" + skillLV[2] + " 4/" + skillLV[3] + " 5/" + skillLV[4]);
+			pw.println("skill:1/" + ChooseSkill.getSkillLevel(1) + " 2/" + ChooseSkill.getSkillLevel(2) + " 3/" + ChooseSkill.getSkillLevel(3) + " 4/" + ChooseSkill.getSkillLevel(4) + " 5/" + ChooseSkill.getSkillLevel(5));
 			pw.println("character_chosen:" + ChooseCharacter.getChosenID());
-			pw.println("skill_chosen:" + skillChoice[0] + " " + skillChoice[1] + " " + skillChoice[2]);
+			pw.println("skill_chosen:" + ChooseSkill.getChooseID(1) + " " +  ChooseSkill.getChooseID(2) + " " +  ChooseSkill.getChooseID(3));
 			pw.println("gold:" + goldAmount);
 			pw.println("music:" + musicVolume);
 			pw.println("fx:" + fxVolume);

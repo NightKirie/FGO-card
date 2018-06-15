@@ -26,10 +26,12 @@ public class SkillButton extends JButton{
 				MediaPlayer mouseEnterFX = new MediaPlayer(new Media(getClass().getResource("/audio/Btn_hoveron.mp3").toString()));
 				mouseEnterFX.setVolume(volume);
 				mouseEnterFX.play();
+				//show the hover effect if this skill isn't be chosen and selected
 				if(!onChosen && !isFocusOwner())
 					setBackground(new Color(255, 255, 255, 100));
 			}
 			public void mouseExited(MouseEvent e) {				
+				//reset the hover effect if this skill isn't be chosen and selected
 				if(!onChosen && !isFocusOwner())
 					setBackground(new Color(255, 255, 255, 0));
 			}
