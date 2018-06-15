@@ -674,6 +674,8 @@ public class MainWindow extends JFrame{
 		
 		backGround.setIcon(new ImageIcon(MainWindow.class.getResource("/image/InGameBackground.jpg")));
 		
+		for(int i = 0; i < chosenSkillMenu.length; ++i)
+			chosenSkillMenu[i].setVisible(false);
 		skillButton.setVisible(false);
 		startButton.setVisible(false);
 		chosenCharacterMenu.setVisible(false);
