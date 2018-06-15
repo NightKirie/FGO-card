@@ -1,14 +1,21 @@
 package card;
 import character.Character;
 import javax.swing.ImageIcon;
-
+import javax.swing.JLabel;
 public class Player extends Creature{
-	public Weapon weapon=null;
+	public Weapon weapon=new Sword(0);
+	public JLabel weaponshow=new JLabel("0");
 	public Player(String scientifficName,int hp)
 	{
 		super("Player."+scientifficName);
 		//ImageIcon cardPicture=null;
-		
+		weaponshow.setBounds(0,70,50, 50);
+		add(weaponshow);
+	}
+	public void updateStatus()
+	{
+		hpshow.setText("Hp:"+Integer.toString(hp));
+		weaponshow.setText("w:"+Integer.toString(weapon.hp));
 	}
 	public void attack(Creature opponent) {
 		// TODO Auto-generated method stub
