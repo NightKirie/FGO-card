@@ -38,6 +38,7 @@ public class Bomb extends Item {
 					}
 				}
 			}
+			this.hp=0;
 		}
 	}
 	@Override
