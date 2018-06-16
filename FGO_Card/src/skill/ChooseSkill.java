@@ -59,6 +59,9 @@ public class ChooseSkill {
 	/**
 	 * get the skillID of three skill you choice
 	 */
+	public static int[] getChooseID() {
+		return new int[] {chooseSkillID[0], chooseSkillID[1], chooseSkillID[2]};
+	} 
 	public static int getChooseID(int i) {
 		return chooseSkillID[i];
 	}
