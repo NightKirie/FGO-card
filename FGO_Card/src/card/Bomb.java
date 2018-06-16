@@ -30,6 +30,7 @@ public class Bomb extends Item {
 					}
 				}
 			}
+			this.hp=0;
 		}
 	}
 	public void updateUI(){

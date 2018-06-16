@@ -6,6 +6,6 @@ public class Caster extends Player{
 		name="caster";
 		this.hp=hp;
 		this.maxHP=hp;
-		setIcon(new ImageIcon(this.getClass().getResource("/Images/Caster.png")));
+		setIcon(new ImageIcon(this.getClass().getResource("/Images/Caster_Menu.png")));
 	}
 }
