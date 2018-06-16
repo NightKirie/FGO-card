@@ -22,11 +22,11 @@ public class Object extends Card {
 		hpShow.setText(Integer.toString(hp));
 	}
 	public void deadAction(){
-		Point p=Battle.getLocation(this);
+		Point p=field.getLocation(this);
 		if(this instanceof Creature){
-			 Battle.map[p.x][p.y]=new Coin(((Creature)this).maxHP);
+			 field.map[p.x][p.y]=new Coin(((Creature)this).maxHP);
 		}
-		else Battle.map[p.x][p.y]=new Coin(10);
+		else field.map[p.x][p.y]=new Coin(10);
 		
 	}
 	public void getSwordDamage(int damage)//sword damage

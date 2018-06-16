@@ -19,7 +19,13 @@ public class Bomb extends Item {
 		--countdown;
 		if(countdown==0)
 		{
-			Point location=battle.Battle.getLocation(this);
+			Point location=field.getLocation(this);
+			for(int i=0;i<Battle.relation.length;++i){
+				Point p=Battle.addPoint(location,Battle.relation[i]);
+				if(field.inField(p)) ((Object)field.map[p.x][p.y]).getBombDamage(this.hp);
+			}
+			field.map[location.x][location.y]=new Coin(hp);
+			/*
 			for(int x=-1;x<=1;x+=2)
 			{
 				for(int y=-1;y<=1;y+=2)
@@ -31,6 +37,7 @@ public class Bomb extends Item {
 				}
 			}
 			this.hp=0;
+			*/
 		}
 	}
 	public void updateUI(){

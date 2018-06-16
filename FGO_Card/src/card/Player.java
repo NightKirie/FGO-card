@@ -18,6 +18,9 @@ public class Player extends Creature{
 		add(weaponpic);
 	}
 	JLabel weaponpic=null;//weapon small picture to know what kind of weapon
+	public void updateStatus(){
+		if(hp<=0) field.gameOver();
+	}
 	public void updateUI()
 	{
 		hpShow.setText("Hp:"+Integer.toString(hp));
