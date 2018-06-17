@@ -5,7 +5,7 @@ import menu.Button;
 import menu.MainWindow;
 import menu.RoundedTextField;
 import card.*;
-
+import java.util.Random;
 //import character.Caster;
 
 import java.awt.*;
@@ -27,7 +27,7 @@ public class Battle extends JPanel{
 	//frank870622 add///////////////////////////////////////////////
 	private final JLabel[] chosenSkillBattle = {new JLabel(""), new JLabel(""), new JLabel("")};
 	private final JLabel goldAmountIcon = new JLabel("");	//for show the gold amount icon
-	//private final JLabel backGround = new JLabel("");		//for menu background picture
+	private final JLabel backGround = new JLabel("");		//for menu background picture
 	private final JTextField goldBattleNumber = new RoundedTextField(15);	//for show the gold player get in battle
 	//////////////////////////////////////////
 	
@@ -50,9 +50,9 @@ public class Battle extends JPanel{
 	    this.add(goldBattleNumber);
 
 	    //Initial back ground image
-	    /*backGround.setBounds(0, 0, 480, 720);
+	    backGround.setBounds(0, 0, 480, 720);
 	    backGround.setIcon(new ImageIcon(MainWindow.class.getResource("/image/InGameBackground.jpg")));
-	    this.add(backGround);*/
+	    this.add(backGround);
 	    JButton t=new textb();
 	    //t.setIcon(new ImageIcon(MainWindow.class.getResource("/image/Gold_Amount.png")));
 	    //t.setSize(50, 50);
@@ -60,20 +60,32 @@ public class Battle extends JPanel{
 	    this.add(t,1);
 	    
 	    
+	    
+	    
+	    ///////////////////////////////////////////////////////////////
+	    
+	    Random ran = new Random();
+	    
 	    for(int i=0;i<size;i++)
 	    {
 		    for(int j=0;j<size;j++)
 		    {
-		    	map2[i][j]=new Card2(" "+i+j);
+		    	switch(ran.nextInt(3))
+		    	{
+		    	case 0:map2[i][j]=new Card2(" "+i+j);break;
+		    	case 1:map2[i][j]=new Assassin2(10);break;
+		    	case 2:map2[i][j]=new Caster2(10);break;
+		    	case 3:map2[i][j]=new Card2(" "+i+j);break;
+		    	case 4:map2[i][j]=new Card2(" "+i+j);break;
+		    	}
 		    	map2[i][j].setLocation(5+150*i,120+200*j);
 				map2[i][j].setText(map2[i][j].getText());
 				this.add(map2[i][j],1);map2[i][j].setVisible(true);
-				
 		    }
 	    }
 	    
 	    
-	    
+	    ////////////////////////////////////////////////////////////////////////////
 	    
 	    
 	    
