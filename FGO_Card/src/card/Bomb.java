@@ -7,7 +7,7 @@ public class Bomb extends Item {
 	public Bomb(int size){
 		super("Bomb");
 		hp=size;
-		setIcon(new ImageIcon(getClass().getResource("/Images/Bomb_Game.png")));
+		setIcon(new ImageIcon(getClass().getResource("/image/Icon.png")));
 		bombcount.setBounds(0, 70,50,50);
 		add(bombcount);
 	}

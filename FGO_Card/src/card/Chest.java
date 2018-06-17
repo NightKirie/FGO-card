@@ -5,7 +5,7 @@ public class Chest extends Item {
 	{
 		super("Chest");
 		hp=size;
-		setIcon(new ImageIcon(this.getClass().getResource("/Images/Chest.jpg")));
+		setIcon(new ImageIcon(this.getClass().getResource("/image/Icon.png")));
 	}
 	@Override
 	public void effect(Player input) {

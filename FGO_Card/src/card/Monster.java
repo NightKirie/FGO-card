@@ -9,12 +9,12 @@ public class Monster extends Creature {
 		if(scientificName.equals("Boss"))
 		{
 			hp=100;
-			cardPicture=new ImageIcon(this.getClass().getResource("/Images/Boss.jpg"));
+			cardPicture=new ImageIcon(this.getClass().getResource("/image/Icon.png"));
 		}
 		if(scientificName.equals("midboss"))
 		{
 			hp=50;
-			cardPicture=new ImageIcon(this.getClass().getResource("/Images/Midboss.jpg"));
+			cardPicture=new ImageIcon(this.getClass().getResource("/image/Icon.png"));
 		}
 		setIcon(cardPicture);*/
 	}

@@ -15,11 +15,11 @@ public class Weapon extends Item {
 		ImageIcon cardPicture=null;
 		if(type.equals("sword"))
 		{
-			cardPicture=new ImageIcon(this.getClass().getResource("/Images/sword.jpg"));
+			cardPicture=new ImageIcon(this.getClass().getResource("/image/Icon.png"));
 		}
 		else if(type.equals("wand"))
 		{
-			cardPicture=new ImageIcon(this.getClass().getResource("/Images/wand.jpg"));
+			cardPicture=new ImageIcon(this.getClass().getResource("/image/Icon.png"));
 		}
 		setIcon(cardPicture);
 		*/

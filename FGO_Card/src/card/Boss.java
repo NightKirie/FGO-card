@@ -8,7 +8,7 @@ public class Boss extends Monster {
 		super("Boss");
 		name="boss";
 		ImageIcon cardPicture=null;
-		cardPicture=new ImageIcon(this.getClass().getResource("/Images/Boss.jpg"));
+		cardPicture=new ImageIcon(this.getClass().getResource("/image/Icon.png"));
 		setIcon(cardPicture);
 		hp=size;
 	}

@@ -7,7 +7,7 @@ public class RedPotion extends Potion{
 		super("RedPotion");
 		ImageIcon cardPicture=null;
 		hp=size;
-		cardPicture=new ImageIcon(this.getClass().getResource("/Images/redpotion.jpg"));
+		cardPicture=new ImageIcon(this.getClass().getResource("/image/Icon.png"));
 		setIcon(cardPicture);
 	}
 	

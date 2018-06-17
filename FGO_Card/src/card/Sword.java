@@ -5,6 +5,6 @@ public class Sword extends Weapon{
 	public Sword(int size){
 		super("Sword");
 		hp=size;
-		setIcon(new ImageIcon(getClass().getResource("/Images/sword.jpg")));
+		setIcon(new ImageIcon(getClass().getResource("/image/Icon.png")));
 	}
 }

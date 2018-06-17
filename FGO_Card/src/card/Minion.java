@@ -9,7 +9,7 @@ public class Minion extends Monster {
 		name="minion";
 		ImageIcon cardPicture=null;
 		hp=size;
-		cardPicture=new ImageIcon(this.getClass().getResource("/Images/Midboss.jpg"));
+		cardPicture=new ImageIcon(this.getClass().getResource("/image/Icon.png"));
 		setIcon(cardPicture);
 	}
 

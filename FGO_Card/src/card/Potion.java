@@ -23,7 +23,7 @@ public class Potion extends Item {
 		potiontype=scientificName;
 		if(potiontype.equals("heal"))
 		{
-			cardPicture=new ImageIcon(this.getClass().getResource("/Images/heal.jpg"));
+			cardPicture=new ImageIcon(this.getClass().getResource("/image/Icon.png"));
 		}
 		setIcon(cardPicture);
 		

@@ -18,12 +18,12 @@ public class Trap extends Item {
 		if(hurttag)
 		{
 			hurttag=false;
-			this.setIcon(new ImageIcon(this.getClass().getResource("/Images/Trap_Close.png")));
+			this.setIcon(new ImageIcon(this.getClass().getResource("/image/Icon.png")));
 		}
 		if(!hurttag)
 		{
 			hurttag=true;
-			this.setIcon(new ImageIcon(this.getClass().getResource("/Images/Trap_Open.png")));
+			this.setIcon(new ImageIcon(this.getClass().getResource("/image/Icon.png")));
 		}
 	}
 	public void updateUI()
