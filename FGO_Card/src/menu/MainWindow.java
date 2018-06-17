@@ -18,10 +18,13 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import javafx.embed.swing.JFXPanel;
 import javafx.scene.media.Media;
@@ -708,7 +711,7 @@ public class MainWindow extends JFrame{
 	 */
 	private void LoadData() {
 		try {
-			BufferedReader br = new BufferedReader(new FileReader("./SaveData/savedata.data"));
+			BufferedReader br = new BufferedReader(new InputStreamReader(MainWindow.class.getResourceAsStream("/SaveData/savedata.data")));
 			System.out.println("file open ok");
 			
 			String characterData = br.readLine().split("character:")[1];
@@ -756,7 +759,7 @@ public class MainWindow extends JFrame{
 	 */
 	private void SaveData() {
 		try {
-			PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter("./SaveData/savedata.data")));
+			PrintWriter pw = new PrintWriter(new File(MainWindow.class.getResource("/SaveData/savedata.data").getPath()));
 
 			System.out.println("file open ok");
 			pw.println("character:1/" + ChooseCharacter.getLevel(1) + " 2/" + ChooseCharacter.getLevel(2) + " 3/" + ChooseCharacter.getLevel(3));
