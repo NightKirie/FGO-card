@@ -10,8 +10,8 @@ public class randomCard extends Random{
 		difficulty=gameDifficulty;
 		probability=new int[typeSize];
 		probabilityType=gameProbability;
-		setProbability(gameProbability);
 		rate=new int[typeSize];
+		setProbability(gameProbability);
 	}
 	public int getProbability(){return probabilityType;}
 	public void setProbability(int p){
