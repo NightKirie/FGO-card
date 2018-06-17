@@ -5,11 +5,11 @@ import javax.swing.JLabel;
 public class Object extends Card {
 	public Object(String scientificName){
 		super("Object."+scientificName);
-		hpshow.setBounds(0,0,50,50);
-		add(hpshow);
+		hpShow.setBounds(0,0,50,50);
+		add(hpShow);
 	}
 	public int hp=0;	
-	public JLabel hpshow=new JLabel(Integer.toString(hp));
+	public JLabel hpShow=new JLabel(Integer.toString(hp));
 	/*
 	 * object have hp,so every damage will in there first
 	 * ex code:
@@ -17,16 +17,16 @@ public class Object extends Card {
 	 	hp-=damage;
 	 }
 	 */
-	public void updateNowHp()
+	public void updateUI()
 	{
-		hpshow.setText(Integer.toString(hp));
+		hpShow.setText(Integer.toString(hp));
 	}
 	public void deadAction(){
-		Point p=Battle.getLocation(this);
+		Point p=field.getLocation(this);
 		if(this instanceof Creature){
-			 Battle.map[p.x][p.y]=new Coin(((Creature)this).maxHP);
+			 field.map[p.x][p.y]=new Coin(((Creature)this).maxHP);
 		}
-			 Battle.map[p.x][p.y]=new Coin(10);
+		else field.map[p.x][p.y]=new Coin(10);
 		
 	}
 	public void getSwordDamage(int damage)//sword damage

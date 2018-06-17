@@ -31,15 +31,23 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javax.swing.JSlider;
 import javax.swing.event.ChangeListener;
+
+import org.omg.CORBA.PRIVATE_MEMBER;
+
+import battle.Battle;
+
 import javax.swing.event.ChangeEvent;
 import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import java.awt.Cursor;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class MainWindow extends JFrame{
 
 	private final JPanel contentPane;
+	//private final Battle battlePand;
 	
 	private final JFXPanel fxPanel = new JFXPanel();		//for FX to play, not sure why
 	
@@ -51,7 +59,7 @@ public class MainWindow extends JFrame{
 	private final Button startButton = new Button();		//for start the game
 	private final Button chararcterButton = new Button();	//for go to character page
 	private final Button achievementButton = new Button();	//for go to achievement page
-	private final Button backButton = new Button();			//for any page to go back to the menu
+	private final Button backButton = 	new Button();			//for any page to go back to the menu
 	private final Button leftButton = new Button();			//for character page to preview next character
 	private final Button rightButton = new Button();		//for character page to preview previous character
 	private final Button settingButton = new Button();		//for go to setting
@@ -69,8 +77,11 @@ public class MainWindow extends JFrame{
 	private final JLabel chosenCharacterMenu = new JLabel("");	//for show the chosen character's image in menu
 	private final JLabel showSkillDetail = new JLabel("");	//for show the hover on skill's detail
 	private final JLabel[] chosenSkillMenu = {new JLabel(""), new JLabel(""), new JLabel("")};
+	private final JLabel[] chosenSkillBattle = {new JLabel(""), new JLabel(""), new JLabel("")};
 	
 	private final JTextField goldAmountNumber = new RoundedTextField(15);	//for show the gold	amount player has
+	private final JTextField goldBattleNumber = new RoundedTextField(15);	//for show the gold player get in battle
+	
 	private final JTextField levelText = new RoundedTextField(15);		//for show the level of character or skill 
 	private final RoundedTextField upgradeText = new RoundedTextField(15);		//for show the upgrade needed of character or skill
 
@@ -111,6 +122,14 @@ public class MainWindow extends JFrame{
 		Button.setVolume(fxVolume);
 		SkillButton.setVolume(fxVolume);
 		
+		//Initial chosen skill show in Battle
+		chosenSkillBattle[0].setBounds(10, 10, 55, 55);
+		chosenSkillBattle[1].setBounds(80, 10, 55, 55);
+		chosenSkillBattle[2].setBounds(150, 10, 55, 55);
+		for(int i = 0; i < chosenSkillBattle.length; ++i) {
+			contentPane.add(chosenSkillBattle[i]);
+		}
+		
 		//Initial chosen skill show in Menu, MUST ABOVE THE SKILL BUTTON!!!
 		chosenSkillMenu[0].setBounds(250, 255, 55, 55);
 		chosenSkillMenu[1].setBounds(310, 255, 55, 55);
@@ -119,6 +138,10 @@ public class MainWindow extends JFrame{
 			chosenSkillMenu[i].setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			contentPane.add(chosenSkillMenu[i]);
 		}
+		skillButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
 		
 		//Initial skillButton in Menu
 		skillButton.setIcon(new ImageIcon(MainWindow.class.getResource("/image/Skill_Btn.png")));
@@ -398,7 +421,10 @@ public class MainWindow extends JFrame{
 		//Initial gold amount number
 		goldAmountNumber.setBounds(357, 0, 123, 50);
 		contentPane.add(goldAmountNumber);
-
+		
+		//Initial gold battle number
+		goldBattleNumber.setBounds(357, 0, 123, 50);
+		contentPane.add(goldBattleNumber);
 		
 		//Initial character or skill level text
 		levelText.setBounds(0, 0, 143, 50);
@@ -492,6 +518,8 @@ public class MainWindow extends JFrame{
 
 		for(int i = 0; i < chosenSkillMenu.length; ++i)
 			chosenSkillMenu[i].setVisible(true);
+		for(int i = 0; i < chosenSkillBattle.length; ++i)
+			chosenSkillBattle[i].setVisible(false);
 		skillButton.setVisible(true);
 		startButton.setVisible(true);
 		chosenCharacterMenu.setVisible(true);
@@ -509,6 +537,7 @@ public class MainWindow extends JFrame{
 		fxSlider.setVisible(false);
 		goldAmountIcon.setVisible(true);
 		goldAmountNumber.setVisible(true);
+		goldBattleNumber.setVisible(false);
 		levelText.setVisible(false);
 		upgradeText.setVisible(false);
 		menuTitle.setVisible(true);
@@ -527,6 +556,8 @@ public class MainWindow extends JFrame{
 		
 		for(int i = 0; i < chosenSkillMenu.length; ++i)
 			chosenSkillMenu[i].setVisible(false);
+		for(int i = 0; i < chosenSkillBattle.length; ++i)
+			chosenSkillBattle[i].setVisible(false);
 		skillButton.setVisible(false);
 		startButton.setVisible(false);
 		chosenCharacterMenu.setVisible(false);
@@ -544,6 +575,7 @@ public class MainWindow extends JFrame{
 		fxSlider.setVisible(false);
 		goldAmountIcon.setVisible(true);
 		goldAmountNumber.setVisible(true);
+		goldBattleNumber.setVisible(false);
 		levelText.setVisible(true);
 		upgradeText.setVisible(true);
 		menuTitle.setVisible(false);
@@ -572,6 +604,8 @@ public class MainWindow extends JFrame{
 	public void SkillPage() {
 		for(int i = 0; i < chosenSkillMenu.length; ++i)
 			chosenSkillMenu[i].setVisible(false);
+		for(int i = 0; i < chosenSkillBattle.length; ++i)
+			chosenSkillBattle[i].setVisible(false);
 		skillButton.setVisible(false);
 		startButton.setVisible(false);
 		chosenCharacterMenu.setVisible(false);
@@ -590,6 +624,7 @@ public class MainWindow extends JFrame{
 		menuTitle.setVisible(false);
 		goldAmountIcon.setVisible(true);
 		goldAmountNumber.setVisible(true);
+		goldBattleNumber.setVisible(false);
 		levelText.setVisible(false);
 		upgradeText.setVisible(false);
 		nothingIsHere.setVisible(false);
@@ -604,6 +639,8 @@ public class MainWindow extends JFrame{
 	public void AchievementPage() {
 		for(int i = 0; i < chosenSkillMenu.length; ++i)
 			chosenSkillMenu[i].setVisible(false);
+		for(int i = 0; i < chosenSkillBattle.length; ++i)
+			chosenSkillBattle[i].setVisible(false);
 		skillButton.setVisible(false);
 		startButton.setVisible(false);
 		chosenCharacterMenu.setVisible(false);
@@ -621,6 +658,7 @@ public class MainWindow extends JFrame{
 		fxSlider.setVisible(false);
 		goldAmountIcon.setVisible(true);
 		goldAmountNumber.setVisible(true);
+		goldBattleNumber.setVisible(false);
 		levelText.setVisible(false);
 		upgradeText.setVisible(false);
 		menuTitle.setVisible(false);
@@ -637,6 +675,8 @@ public class MainWindow extends JFrame{
 	public void Setting() {
 		for(int i = 0; i < chosenSkillMenu.length; ++i)
 			chosenSkillMenu[i].setVisible(false);
+		for(int i = 0; i < chosenSkillBattle.length; ++i)
+			chosenSkillBattle[i].setVisible(false);
 		skillButton.setVisible(false);
 		startButton.setVisible(false);
 		chosenCharacterMenu.setVisible(false);
@@ -654,6 +694,7 @@ public class MainWindow extends JFrame{
 		fxSlider.setVisible(true);
 		goldAmountIcon.setVisible(false);
 		goldAmountNumber.setVisible(false);
+		goldBattleNumber.setVisible(false);
 		levelText.setVisible(false);
 		upgradeText.setVisible(false);
 		menuTitle.setVisible(false);
@@ -675,10 +716,22 @@ public class MainWindow extends JFrame{
 		gameBGM.setCycleCount(MediaPlayer.INDEFINITE);
 		gameBGM.play();
 		
+		/*
+		setContentPane(battlePand);
+		battlePand.setLayout(null);
+		*/
 		backGround.setIcon(new ImageIcon(MainWindow.class.getResource("/image/InGameBackground.jpg")));
 		
 		for(int i = 0; i < chosenSkillMenu.length; ++i)
 			chosenSkillMenu[i].setVisible(false);
+		for(int i = 0; i < chosenSkillBattle.length; ++i) {
+			if(ChooseSkill.getChooseID(i) != 0)
+				chosenSkillBattle[i].setIcon(ChooseSkill.getSkillMenu(ChooseSkill.getChooseID(i)));
+			else
+				chosenSkillBattle[i].setIcon(null);
+		}
+		for(int i = 0; i < chosenSkillBattle.length; ++i)
+			chosenSkillBattle[i].setVisible(true);
 		skillButton.setVisible(false);
 		startButton.setVisible(false);
 		chosenCharacterMenu.setVisible(false);
@@ -694,8 +747,9 @@ public class MainWindow extends JFrame{
 			showSkill[i].setVisible(false);
 		musicSlider.setVisible(false);
 		fxSlider.setVisible(false);
-		goldAmountIcon.setVisible(false);
+		goldAmountIcon.setVisible(true);
 		goldAmountNumber.setVisible(false);
+		goldBattleNumber.setVisible(true);
 		levelText.setVisible(false);
 		upgradeText.setVisible(false);
 		menuTitle.setVisible(false);
@@ -703,6 +757,8 @@ public class MainWindow extends JFrame{
 		showCharacter.setVisible(false);
 		settingText.setVisible(false);
 		backGround.setVisible(true);
+		
+		goldBattleNumber.setText("0");
 	}
 
 	/**
@@ -792,6 +848,12 @@ public class MainWindow extends JFrame{
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setBackground(Color.BLACK);
+		
+		/*
+		battlePand = new Battle(1);
+		battlePand.setBorder(new EmptyBorder(5, 5, 5, 5));
+		battlePand.setBackground(Color.BLACK);
+		*/
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 

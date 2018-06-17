@@ -1,7 +1,10 @@
+/audio/
 /image/
 /battle/
 /card/
+/character/
 /menu/
+/money/
 /skill/
 /SaveData/
 /savedata.data
