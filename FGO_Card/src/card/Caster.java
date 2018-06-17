@@ -4,7 +4,7 @@ import java.awt.Point;
 import javax.swing.ImageIcon;
 public class Caster extends Player{
 	public Caster(int hp){
-		super("Caster",hp);
+		super("Caster");
 		name="caster";
 		this.hp=hp;
 		this.maxHP=hp;

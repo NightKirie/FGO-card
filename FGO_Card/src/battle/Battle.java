@@ -91,8 +91,8 @@ public class Battle extends JPanel{
 				}
 				else{
 					map[i][j]=generater.nextCard();
-					map[i][j].setField(this);
 				}
+				map[i][j].setField(this);
 			}
 		}
 	}
