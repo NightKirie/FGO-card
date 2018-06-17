@@ -1,4 +1,5 @@
 package card;
+import java.awt.Image;
 import java.awt.Point;
 
 import javax.swing.ImageIcon;
@@ -8,7 +9,11 @@ public class Caster extends Player{
 		name="caster";
 		this.hp=hp;
 		this.maxHP=hp;
-		setIcon(new ImageIcon(this.getClass().getResource("/image/Caster_Menu.png")));
+		ImageIcon icon=new ImageIcon(this.getClass().getResource("/image/Caster_Menu.png"));
+		Image image = icon.getImage();
+	    image = image.getScaledInstance(150,200, Image.SCALE_SMOOTH);
+	    icon.setImage(image);
+		setIcon(icon);
 	}
 	public void attack(Creature opponent) {
 		// TODO Auto-generated method stub

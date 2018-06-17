@@ -13,6 +13,8 @@ public class Card extends JButton{
 		setSize(150,200);
 		setLayout(null);
 		setMargin(new Insets(0, 0, 0, 0));
+		setContentAreaFilled(false);
+		//setBorderPainted(false); 
 	}
 	String name=null;
 	public void setField(Battle f){field=f;}

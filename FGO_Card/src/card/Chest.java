@@ -1,11 +1,17 @@
 package card;
+import java.awt.Image;
+
 import javax.swing.ImageIcon;
 public class Chest extends Item {
 	public Chest(int size)
 	{
 		super("Chest");
 		hp=size;
-		setIcon(new ImageIcon(this.getClass().getResource("/image/Icon.png")));
+		ImageIcon icon=new ImageIcon(this.getClass().getResource("/image/Treasurebox_Game.png"));
+		Image image = icon.getImage();
+	    image = image.getScaledInstance(130,200, Image.SCALE_SMOOTH);
+	    icon.setImage(image);
+		setIcon(icon);
 	}
 	@Override
 	public void effect(Player input) {
