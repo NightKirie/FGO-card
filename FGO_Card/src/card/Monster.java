@@ -23,4 +23,8 @@ public class Monster extends Creature {
 		// TODO Auto-generated method stub
 		
 	}
+	public void getwardDamageOfMage(int damage)//ice ward
+	{
+		hp-=damage;
+	}
 }

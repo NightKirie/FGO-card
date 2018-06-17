@@ -10,7 +10,7 @@ public class Object extends Card {
 		add(hpShow);
 	}
 	public int hp=0;	
-	public JLabel hpShow=null;
+	public JLabel hpShow=new JLabel();
 	/*
 	 * object have hp,so every damage will in there first
 	 * ex code:
@@ -34,13 +34,13 @@ public class Object extends Card {
 	{
 		hp-=damage;
 	}
-	public void getFireDamage(int damage)//fire ward
+	public void getwardDamage(int damage)//fire ward
 	{
 		hp-=damage;
 	}
-	public void getIceDamage(int damage)//ice ward
+	public void getwardDamageOfMage(int damage)//ice ward
 	{
-		hp-=damage;
+		//only monster get hurt
 	}
 	public void getTrapDamage(int damage)//step trap
 	{

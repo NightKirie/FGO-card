@@ -2,6 +2,7 @@ package card;
 import character.Character;
 
 import java.awt.Image;
+import java.awt.Point;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -49,7 +50,19 @@ public class Player extends Creature{
 				}
 				if(weapon instanceof Wand)//fire wand attack
 				{
-					opponent.getFireDamage(opponent.hp);
+					Point enemyLocation=field.getLocation(opponent);
+					Point myLocation=field.getLocation(this);
+					int xdir=enemyLocation.x-myLocation.x;
+					int ydir=enemyLocation.y-myLocation.y;
+					if(xdir!=0&&(myLocation.x+2*xdir)>=0&&(myLocation.x+2*xdir)<=0)
+					{
+						((Object)field.map[myLocation.x+2*xdir][myLocation.y]).getwardDamage(opponent.hp);
+					}
+					else if(ydir!=0&&(myLocation.y+2*ydir)>=0&&(myLocation.y+2*ydir)<=0)
+					{
+						((Object)field.map[myLocation.x][myLocation.y+2*ydir]).getwardDamage(opponent.hp);
+					}
+					opponent.getwardDamage(opponent.hp);
 				}
 			}
 			else
@@ -60,7 +73,19 @@ public class Player extends Creature{
 				}
 				if(weapon instanceof Wand)//wand attack
 				{
-					opponent.getFireDamage(weapon.hp);
+					Point enemyLocation=field.getLocation(opponent);
+					Point myLocation=field.getLocation(this);
+					int xdir=enemyLocation.x-myLocation.x;
+					int ydir=enemyLocation.y-myLocation.y;
+					if(xdir!=0&&(myLocation.x+2*xdir)>=0&&(myLocation.x+2*xdir)<=0)
+					{
+						((Object)field.map[myLocation.x+2*xdir][myLocation.y]).getwardDamage(weapon.hp);
+					}
+					else if(ydir!=0&&(myLocation.y+2*ydir)>=0&&(myLocation.y+2*ydir)<=0)
+					{
+						((Object)field.map[myLocation.x][myLocation.y+2*ydir]).getwardDamage(weapon.hp);
+					}
+					opponent.getwardDamage(weapon.hp);
 				}
 				weapon.hp=0;
 			}
