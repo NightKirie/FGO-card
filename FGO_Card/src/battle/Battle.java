@@ -25,9 +25,9 @@ public class Battle extends JPanel{
 	public Card player;
 
 	//frank870622 add///////////////////////////////////////////////
-	private final Button backButton = 	new Button();			//for any page to go back to the menu	
 	private final JLabel[] chosenSkillBattle = {new JLabel(""), new JLabel(""), new JLabel("")};
 	private final JLabel goldAmountIcon = new JLabel("");	//for show the gold amount icon
+	private final JLabel backGround = new JLabel("");		//for menu background picture
 	private final JTextField goldBattleNumber = new RoundedTextField(15);	//for show the gold player get in battle
 	//////////////////////////////////////////
 	
@@ -35,40 +35,27 @@ public class Battle extends JPanel{
 		
 		//frank870622 add/////////////////////////////////////////////////////
 		for(int i=0;i<3;++i){
-			chosenSkillBattle[i].setBounds(10+70*i,10,55,55);
-			this.add(chosenSkillBattle[i]);
-		}
-		
-		//Initial gold amount icon
-		goldAmountIcon.setIcon(new ImageIcon(MainWindow.class.getResource("/image/Gold_Amount.png")));
-		goldAmountIcon.setBounds(297, 0, 50, 50);		
-		this.add(goldAmountIcon);
-				
-		//Initial gold battle number
-		goldBattleNumber.setBounds(357, 0, 123, 50);
-		this.add(goldBattleNumber);
-		
-		//Initial backButton in Menu
-		backButton.setIcon(new ImageIcon(MainWindow.class.getResource("/image/Back_Btn.png")));
-		backButton.setBounds(0, 621, 97, 99);
-		backButton.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mousePressed(MouseEvent e) {	
-				
-			}
-		});
-		
-		//set the skill icon 
-		for(int i = 0; i < chosenSkillBattle.length; ++i) {
-			if(ChooseSkill.getChooseID(i) != 0)
-				chosenSkillBattle[i].setIcon(ChooseSkill.getSkillMenu(ChooseSkill.getChooseID(i)));
-			else
-				chosenSkillBattle[i].setIcon(null);
-		}
-		for(int i = 0; i < chosenSkillBattle.length; ++i)
-			chosenSkillBattle[i].setVisible(true);
-		goldBattleNumber.setVisible(true);
-		goldAmountIcon.setVisible(true);
+	        chosenSkillBattle[i].setBounds(10+70*i,10,55,55);
+	        this.add(chosenSkillBattle[i]);
+	    }
+
+	    //Initial gold amount icon
+	    goldAmountIcon.setIcon(new ImageIcon(MainWindow.class.getResource("/image/Gold_Amount.png")));
+	    goldAmountIcon.setBounds(297, 0, 50, 50);		
+	    this.add(goldAmountIcon);
+
+	    //Initial gold battle number
+	    goldBattleNumber.setBounds(357, 0, 123, 50);
+	    goldBattleNumber.setText("0");
+	    this.add(goldBattleNumber);
+
+	    //Initial back ground image
+	    backGround.setBounds(0, 0, 480, 720);
+	    backGround.setIcon(new ImageIcon(MainWindow.class.getResource("/image/InGameBackground.jpg")));
+	    this.add(backGround);
+
+	    goldBattleNumber.setVisible(true);
+	    goldAmountIcon.setVisible(true);
 		/////////////////////////////////////////////////////////////////////////////////
 		
 		setSize(485,748);
@@ -149,6 +136,18 @@ public class Battle extends JPanel{
 		map[target.x][target.y]=generater.nextCard();
 		map[target.x][target.y].setField(this);
 		add(map[target.x][target.y]);
+	}
+	public void MenuToBattle() {
+	    //set the skill icon 
+	    for(int i = 0; i < chosenSkillBattle.length; ++i) {
+	        if(ChooseSkill.getChooseID(i) != 0)
+	            chosenSkillBattle[i].setIcon(ChooseSkill.getSkillMenu(ChooseSkill.getChooseID(i)));
+	        else
+	            chosenSkillBattle[i].setIcon(null);
+	    }
+	    for(int i = 0; i < chosenSkillBattle.length; ++i)
+	        chosenSkillBattle[i].setVisible(true);
+	    backGround.setVisible(true);
 	}
 	public void gameOver(){
 		/////////////set Panel back?get gold??
