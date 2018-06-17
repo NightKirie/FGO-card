@@ -4,7 +4,7 @@ import java.awt.Point;
 import javax.swing.ImageIcon;
 public class Lancer extends Player{
 	public Lancer(int hp){
-		super("Lancer",hp);
+		super("Lancer");
 		name="lancer";
 		this.hp=hp;
 		this.maxHP=hp;

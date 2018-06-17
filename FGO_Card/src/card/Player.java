@@ -9,7 +9,7 @@ import javax.swing.JLabel;
 public class Player extends Creature{
 	public Weapon weapon=new Sword(0);
 	public JLabel weaponshow=new JLabel("0");
-	public Player(String scientifficName,int hp)
+	public Player(String scientifficName)
 	{
 		super("Player."+scientifficName);
 		//ImageIcon cardPicture=null;
