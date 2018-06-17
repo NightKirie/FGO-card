@@ -51,6 +51,7 @@ public class randomCard extends Random{
 		else if(r<probability[5]) newCard=new GreenPotion(1);
 		else if(r<probability[6]) newCard=new Bomb(difficulty*5+nextInt(3));
 		else if(r<probability[7]) newCard=new Chest(nextInt(5)+5);
+		newCard.updateUI();
 		return newCard;
 	}
 }
