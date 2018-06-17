@@ -49,7 +49,7 @@ import java.awt.event.ActionEvent;
 public class MainWindow extends JFrame{
 
 	private final JPanel contentPane;
-	//private final Battle battlePand;
+	private final Battle battlePand;
 	
 	private final JFXPanel fxPanel = new JFXPanel();		//for FX to play, not sure why
 	
@@ -62,6 +62,7 @@ public class MainWindow extends JFrame{
 	private final Button chararcterButton = new Button();	//for go to character page
 	private final Button achievementButton = new Button();	//for go to achievement page
 	private final Button backButton = 	new Button();			//for any page to go back to the menu
+	private final Button backButtonBattle = new Button();	
 	private final Button leftButton = new Button();			//for character page to preview next character
 	private final Button rightButton = new Button();		//for character page to preview previous character
 	private final Button settingButton = new Button();		//for go to setting
@@ -205,6 +206,17 @@ public class MainWindow extends JFrame{
 			}
 		});
 		contentPane.add(backButton);
+		
+		//Initial backButton in Menu
+        backButtonBattle.setIcon(new ImageIcon(MainWindow.class.getResource("/image/Back_Btn.png")));
+        backButtonBattle.setBounds(0, 621, 97, 99);
+        backButtonBattle.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {	
+                EndGame();
+            }
+        });
+battlePand.add(backButtonBattle,1);
 		
 		//Initial settingButton in Menu
 		settingButton.setIcon(new ImageIcon(MainWindow.class.getResource("/image/Setting_Btn.png")));
@@ -528,6 +540,7 @@ public class MainWindow extends JFrame{
 		chararcterButton.setVisible(true);
 		achievementButton.setVisible(true);
 		backButton.setVisible(false);
+		backButtonBattle.setVisible(false);
 		leftButton.setVisible(false);
 		rightButton.setVisible(false);
 		settingButton.setVisible(true);
@@ -718,10 +731,11 @@ public class MainWindow extends JFrame{
 		gameBGM.setCycleCount(MediaPlayer.INDEFINITE);
 		gameBGM.play();
 		
+		
+	    battlePand.MenuToBattle();
+	    setContentPane(battlePand);
+	    battlePand.setLayout(null);
 		/*
-		setContentPane(battlePand);
-		battlePand.setLayout(null);
-		*/
 		backGround.setIcon(new ImageIcon(MainWindow.class.getResource("/image/InGameBackground.jpg")));
 		
 		for(int i = 0; i < chosenSkillMenu.length; ++i)
@@ -761,6 +775,14 @@ public class MainWindow extends JFrame{
 		backGround.setVisible(true);
 		
 		goldBattleNumber.setText("0");
+		*/
+		backButtonBattle.setVisible(true);
+	}
+	
+	public void EndGame() {
+	    setContentPane(contentPane);
+	    contentPane.setLayout(null);
+	    MenuPage();
 	}
 
 	/**
@@ -856,11 +878,11 @@ public class MainWindow extends JFrame{
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setBackground(Color.BLACK);
 		
-		/*
+		
 		battlePand = new Battle(1);
 		battlePand.setBorder(new EmptyBorder(5, 5, 5, 5));
 		battlePand.setBackground(Color.BLACK);
-		*/
+		
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
