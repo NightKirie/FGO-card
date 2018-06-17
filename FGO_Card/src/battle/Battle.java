@@ -80,7 +80,16 @@ public class Battle extends JPanel{
 				else{
 					map[i][j]=generater.nextCard();
 				}
+				map[i][j].setLocation(5+150*i,120+200*j);;
 				map[i][j].setField(this);
+				
+				this.add(map[i][j]);map[i][j].setVisible(true);
+				
+			}
+		}
+		for(int i=0;i<size;++i){
+			for(int j=0;j<size;++j){
+				System.out.println(map[i][j].getText()+i+" "+j);
 			}
 		}
 	}
