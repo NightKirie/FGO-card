@@ -18,7 +18,7 @@ public class Object extends Card {
 	 	hp-=damage;
 	 }
 	 */
-	public void updateUI()
+	public void updateCard()
 	{
 		//hpShow.setText(Integer.toString(hp));
 	}

@@ -1,4 +1,5 @@
 package card;
+import java.awt.Image;
 import java.awt.Point;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -7,7 +8,11 @@ public class Bomb extends Item {
 	public Bomb(int size){
 		super("Bomb");
 		hp=size;
-		setIcon(new ImageIcon(getClass().getResource("/image/Icon.png")));
+		ImageIcon icon  = new ImageIcon(this.getClass().getResource("/image/Bomb_Game.png"));
+	    Image image = icon.getImage();
+	    image = image.getScaledInstance(130,200, Image.SCALE_SMOOTH);
+	    icon.setImage(image);
+		setIcon(icon);
 		bombcount.setBounds(0, 70,50,50);
 		add(bombcount);
 	}
@@ -40,7 +45,7 @@ public class Bomb extends Item {
 			*/
 		}
 	}
-	public void updateUI(){
+	public void updateCard(){
 		//hpShow.setText(Integer.toString(hp));
 		//bombcount.setText("count"+Integer.toString(this.hp));
 	}

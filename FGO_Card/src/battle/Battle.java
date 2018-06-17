@@ -36,23 +36,23 @@ public class Battle extends JPanel{
 		//frank870622 add/////////////////////////////////////////////////////
 		for(int i=0;i<3;++i){
 	        chosenSkillBattle[i].setBounds(10+70*i,10,55,55);
-	        this.add(chosenSkillBattle[i]);
+	        this.add(chosenSkillBattle[i],0);
+	        
 	    }
 
 	    //Initial gold amount icon
 	    goldAmountIcon.setIcon(new ImageIcon(MainWindow.class.getResource("/image/Gold_Amount.png")));
 	    goldAmountIcon.setBounds(297, 0, 50, 50);		
-	    this.add(goldAmountIcon);
-
+	    this.add(goldAmountIcon,0);
 	    //Initial gold battle number
 	    goldBattleNumber.setBounds(357, 0, 123, 50);
 	    goldBattleNumber.setText("0");
-	    this.add(goldBattleNumber);
-
+	    this.add(goldBattleNumber,0);
 	    //Initial back ground image
 	    backGround.setBounds(0, 0, 480, 720);
 	    backGround.setIcon(new ImageIcon(MainWindow.class.getResource("/image/InGameBackground.jpg")));
-	    this.add(backGround);
+	    this.add(backGround,5);
+	    
 
 	    goldBattleNumber.setVisible(true);
 	    goldAmountIcon.setVisible(true);
@@ -83,7 +83,7 @@ public class Battle extends JPanel{
 				map[i][j].setLocation(5+150*i,120+200*j);;
 				map[i][j].setField(this);
 				
-				this.add(map[i][j]);map[i][j].setVisible(true);
+				this.add(map[i][j],0);map[i][j].setVisible(true);
 				
 			}
 		}
@@ -93,7 +93,7 @@ public class Battle extends JPanel{
 			}
 		}
 	}
-	public void updateUI(){
+	public void updateCard(){
 		for(int i=0;i<size;++i){
 			for(int j=0;j<size;++j){
 				map[i][j].updateStatus();

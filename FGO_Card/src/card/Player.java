@@ -22,7 +22,7 @@ public class Player extends Creature{
 	public void updateStatus(){
 		if(hp<=0) field.gameOver();
 	}
-	public void updateUI()
+	public void updateCard()
 	{
 		//hpShow.setText("Hp:"+Integer.toString(hp));
 		//weaponshow.setText("w:"+Integer.toString(weapon.hp));

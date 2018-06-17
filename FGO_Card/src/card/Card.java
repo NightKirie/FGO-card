@@ -17,7 +17,7 @@ public class Card extends JButton{
 	String name=null;
 	public void setField(Battle f){field=f;}
 	public void updateStatus(){}
-	public void updateUI(){}
+	public void updateCard(){}
 	//public String scientificName=null;
 	//use getUIClassID() to get scientificName;(method in JButton)
 	//the scientificName should be in type:"class.class.name"
