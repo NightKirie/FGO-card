@@ -15,7 +15,7 @@ import java.awt.event.MouseEvent;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.geom.Point2D;
-
+import cardtest.*;
 public class Battle extends JPanel{
 	int size=3,skillSize=3;
 	int difficulty,gold;
@@ -23,7 +23,7 @@ public class Battle extends JPanel{
 
 	public Card [][] map;
 	public Card player;
-
+	public Card2 [][]map2=new Card2[3][3];
 	//frank870622 add///////////////////////////////////////////////
 	private final JLabel[] chosenSkillBattle = {new JLabel(""), new JLabel(""), new JLabel("")};
 	private final JLabel goldAmountIcon = new JLabel("");	//for show the gold amount icon
@@ -60,6 +60,28 @@ public class Battle extends JPanel{
 	    this.add(t,1);
 	    
 	    
+	    for(int i=0;i<size;i++)
+	    {
+		    for(int j=0;j<size;j++)
+		    {
+		    	map2[i][j]=new Card2(" "+i+j);
+		    	map2[i][j].setLocation(5+150*i,120+200*j);
+				map2[i][j].setText(map2[i][j].getText());
+				this.add(map2[i][j],1);map2[i][j].setVisible(true);
+				
+		    }
+	    }
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
 	    
 	    goldBattleNumber.setVisible(true);
 	    goldAmountIcon.setVisible(true);
@@ -90,7 +112,7 @@ public class Battle extends JPanel{
 				map[i][j].setLocation(5+150*i,120+200*j);;
 				map[i][j].setField(this);
 				map[i][j].setText(map[i][j].getText());
-				this.add(map[i][j],1);map[i][j].setVisible(true);
+				//this.add(map[i][j],1);map[i][j].setVisible(true);
 				
 			}
 		}
