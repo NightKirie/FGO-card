@@ -7,7 +7,7 @@ import menu.MainWindow;
 public class Object2 extends Card2 {
 
 	public Object2(String scientificName) {
-		super(scientificName);
+		super("Object."+scientificName);
 		setIcon(new ImageIcon(MainWindow.class.getResource("/image/Assassin_Menu.png")));
 	}
 	public int hp=0;

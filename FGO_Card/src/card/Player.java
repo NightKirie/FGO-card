@@ -13,9 +13,9 @@ public class Player extends Creature{
 	{
 		super("Player."+scientifficName);
 		//ImageIcon cardPicture=null;
-		//weaponshow.setBounds(0,70,50, 50);
+		weaponshow.setBounds(0,70,50, 50);
 		//weaponpic.setBounds(0, 200, 50, 50);
-		//add(weaponshow);
+		add(weaponshow);
 		//add(weaponpic);
 	}
 	JLabel weaponpic;//weapon small picture to know what kind of weapon

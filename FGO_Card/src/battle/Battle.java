@@ -5,6 +5,8 @@ import menu.Button;
 import menu.MainWindow;
 import menu.RoundedTextField;
 import card.*;
+import card.Assassin;
+
 import java.util.Random;
 //import character.Caster;
 
@@ -53,11 +55,11 @@ public class Battle extends JPanel{
 	    //backGround.setBounds(0, 0, 480, 720);
 	    //backGround.setIcon(new ImageIcon(MainWindow.class.getResource("/image/InGameBackground.jpg")));
 	    //this.add(backGround);
-	    JButton t=new textb();
+	    //JButton t=new textb();
 	    //t.setIcon(new ImageIcon(MainWindow.class.getResource("/image/Gold_Amount.png")));
 	    //t.setSize(50, 50);
 	    //t.setLocation(300, 500);
-	    this.add(t,1);
+	    //this.add(t,1);
 	    
 	    
 	    
@@ -70,14 +72,16 @@ public class Battle extends JPanel{
 	    {
 		    for(int j=0;j<size;j++)
 		    {
-		    	switch(ran.nextInt(6))
+		    	switch(ran.nextInt(8))
 		    	{
 		    	case 0:map2[i][j]=new Card2(" "+i+j);break;
 		    	case 1:map2[i][j]=new Assassin2(10);break;
-		    	case 2:map2[i][j]=new Caster2(10);break;
-		    	case 3:map2[i][j]=new Lancer2(10);break;
-		    	case 4:map2[i][j]=new Boss2(2);break;
-		    	case 5:map2[i][j]=new Minion2(2);break;
+		    	case 2:map2[i][j]=new Wand2(10);break;
+		    	case 3:map2[i][j]=new Sword2(10);break;
+		    	case 4:map2[i][j]=new RedPotion2(2);break;
+		    	case 5:map2[i][j]=new GreenPotion2(2);break;
+		    	case 6:map2[i][j]=new Coin2(2);break;
+		    	case 7:map2[i][j]=new Bomb2(2);break;
 		    	}
 		    	map2[i][j].setLocation(5+150*i,120+200*j);
 				map2[i][j].setText(map2[i][j].getText());

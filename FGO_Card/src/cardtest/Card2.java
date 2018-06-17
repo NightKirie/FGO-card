@@ -18,5 +18,6 @@ public class Card2 extends JButton{
 		super(scientificName);
 		setIcon(new ImageIcon(MainWindow.class.getResource("/image/Gold_Amount.png")));
 		setSize(150,200);
+		//setMargin(new Insets(0, 0, 0, 0));
 	}
 }
