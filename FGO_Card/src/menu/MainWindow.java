@@ -28,6 +28,11 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javax.swing.JSlider;
 import javax.swing.event.ChangeListener;
+
+import org.omg.CORBA.PRIVATE_MEMBER;
+
+import battle.Battle;
+
 import javax.swing.event.ChangeEvent;
 import java.awt.Font;
 import javax.swing.JTextField;
@@ -39,6 +44,7 @@ import java.awt.event.ActionEvent;
 public class MainWindow extends JFrame{
 
 	private final JPanel contentPane;
+	//private final Battle battlePand;
 	
 	private final JFXPanel fxPanel = new JFXPanel();		//for FX to play, not sure why
 	
@@ -707,6 +713,10 @@ public class MainWindow extends JFrame{
 		gameBGM.setCycleCount(MediaPlayer.INDEFINITE);
 		gameBGM.play();
 		
+		/*
+		setContentPane(battlePand);
+		battlePand.setLayout(null);
+		*/
 		backGround.setIcon(new ImageIcon(MainWindow.class.getResource("/image/InGameBackground.jpg")));
 		
 		for(int i = 0; i < chosenSkillMenu.length; ++i)
@@ -835,6 +845,12 @@ public class MainWindow extends JFrame{
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setBackground(Color.BLACK);
+		
+		/*
+		battlePand = new Battle(1);
+		battlePand.setBorder(new EmptyBorder(5, 5, 5, 5));
+		battlePand.setBackground(Color.BLACK);
+		*/
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 

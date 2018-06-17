@@ -1,6 +1,7 @@
 package battle;
 import skill.*;
 import character.*;
+import menu.Button;
 import menu.MainWindow;
 import menu.RoundedTextField;
 import card.*;
@@ -8,6 +9,9 @@ import card.*;
 //import character.Caster;
 
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.geom.Point2D;
@@ -21,6 +25,7 @@ public class Battle extends JPanel{
 	public Card player;
 
 	//frank870622 add///////////////////////////////////////////////
+	private final Button backButton = 	new Button();			//for any page to go back to the menu	
 	private final JLabel[] chosenSkillBattle = {new JLabel(""), new JLabel(""), new JLabel("")};
 	private final JLabel goldAmountIcon = new JLabel("");	//for show the gold amount icon
 	private final JTextField goldBattleNumber = new RoundedTextField(15);	//for show the gold player get in battle
@@ -42,6 +47,16 @@ public class Battle extends JPanel{
 		//Initial gold battle number
 		goldBattleNumber.setBounds(357, 0, 123, 50);
 		this.add(goldBattleNumber);
+		
+		//Initial backButton in Menu
+		backButton.setIcon(new ImageIcon(MainWindow.class.getResource("/image/Back_Btn.png")));
+		backButton.setBounds(0, 621, 97, 99);
+		backButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {	
+				
+			}
+		});
 		
 		//set the skill icon 
 		for(int i = 0; i < chosenSkillBattle.length; ++i) {
