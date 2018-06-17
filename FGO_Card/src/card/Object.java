@@ -20,7 +20,7 @@ public class Object extends Card {
 	 */
 	public void updateUI()
 	{
-		hpShow.setText(Integer.toString(hp));
+		//hpShow.setText(Integer.toString(hp));
 	}
 	public void deadAction(){
 		Point p=field.getLocation(this);

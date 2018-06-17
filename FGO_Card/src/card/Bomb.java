@@ -41,8 +41,8 @@ public class Bomb extends Item {
 		}
 	}
 	public void updateUI(){
-		hpShow.setText(Integer.toString(hp));
-		bombcount.setText("count"+Integer.toString(this.hp));
+		//hpShow.setText(Integer.toString(hp));
+		//bombcount.setText("count"+Integer.toString(this.hp));
 	}
 	//I'm not sure this can work or not
 	//You can put it in updateStatus XD

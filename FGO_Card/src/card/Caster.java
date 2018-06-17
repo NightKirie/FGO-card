@@ -8,7 +8,7 @@ public class Caster extends Player{
 		name="caster";
 		this.hp=hp;
 		this.maxHP=hp;
-		setIcon(new ImageIcon(this.getClass().getResource("/Images/Caster_Menu.png")));
+		setIcon(new ImageIcon(this.getClass().getResource("/image/Caster_Menu.png")));
 	}
 	public void attack(Creature opponent) {
 		// TODO Auto-generated method stub

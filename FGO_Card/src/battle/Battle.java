@@ -73,6 +73,7 @@ public class Battle extends JPanel{
 						case 1:player=new card.Caster(character.ChooseCharacter.getChosenMaxHP());break;
 						case 2:player=new card.Assassin(character.ChooseCharacter.getChosenMaxHP());break;
 						case 3:player=new card.Lancer(character.ChooseCharacter.getChosenMaxHP());break;
+						default:player=new card.Caster(10);break;
 					}
 					map[i][j]=player;
 				}
