@@ -26,6 +26,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
+import java.net.URISyntaxException;
+
 import javafx.embed.swing.JFXPanel;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
@@ -811,11 +813,13 @@ public class MainWindow extends JFrame{
 	
 	/**
 	 * call to save data
+	 * @throws URISyntaxException 
 	 * @throws FileNotFoundException 
 	 */
-	private void SaveData() {
+	private void SaveData() throws URISyntaxException {
 		try {
-			PrintWriter pw = new PrintWriter(new File(MainWindow.class.getResource("/SaveData/savedata.data").getPath()));
+			PrintWriter pw = new PrintWriter(new File(MainWindow.class.getResource("/SaveData/savedata.data").toURI().getPath()));
+			System.out.println(MainWindow.class.getResource("/SaveData/savedata.data").getPath());
 
 			System.out.println("file open ok");
 			pw.println("character:1/" + ChooseCharacter.getLevel(1) + " 2/" + ChooseCharacter.getLevel(2) + " 3/" + ChooseCharacter.getLevel(3));
