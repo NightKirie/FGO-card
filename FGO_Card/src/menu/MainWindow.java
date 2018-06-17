@@ -282,11 +282,11 @@ public class MainWindow extends JFrame{
 							ChooseSkill.setChooseSkill(i+1, chosenOrder);
 							++chosenOrder;
 						}
-						System.out.println(showSkill[i].getChosen());
 					}
+					System.out.println(chosenOrder);
 					//if not chosen set to 0
 					for(int i = 2; i >= chosenOrder; --i)
-						ChooseSkill.setChooseSkill(0, chosenOrder);
+						ChooseSkill.setChooseSkill(0, i);
 					SaveData();
 				}
 			}
@@ -813,24 +813,27 @@ public class MainWindow extends JFrame{
 	
 	/**
 	 * call to save data
-	 * @throws URISyntaxException 
 	 * @throws FileNotFoundException 
 	 */
-	private void SaveData() throws URISyntaxException {
+	private void SaveData() {
 		try {
-			PrintWriter pw = new PrintWriter(new File(MainWindow.class.getResource("/SaveData/savedata.data").toURI().getPath()));
-			System.out.println(MainWindow.class.getResource("/SaveData/savedata.data").getPath());
-
-			System.out.println("file open ok");
-			pw.println("character:1/" + ChooseCharacter.getLevel(1) + " 2/" + ChooseCharacter.getLevel(2) + " 3/" + ChooseCharacter.getLevel(3));
-			pw.println("skill:1/" + ChooseSkill.getSkillLevel(1) + " 2/" + ChooseSkill.getSkillLevel(2) + " 3/" + ChooseSkill.getSkillLevel(3) + " 4/" + ChooseSkill.getSkillLevel(4) + " 5/" + ChooseSkill.getSkillLevel(5));
-			pw.println("character_chosen:" + ChooseCharacter.getChosenID());
-			pw.println("skill_chosen:" + ChooseSkill.getChooseID(0) + " " +  ChooseSkill.getChooseID(1) + " " +  ChooseSkill.getChooseID(2));
-			pw.println("gold:" + goldAmount);
-			pw.println("music:" + musicVolume);
-			pw.println("fx:" + fxVolume);
-			System.out.println("file write ok");
-			pw.close();
+			PrintWriter pw;
+			try {
+				pw = new PrintWriter(new File(MainWindow.class.getResource("/SaveData/savedata.data").toURI().getPath()));
+				System.out.println("file open ok");
+				pw.println("character:1/" + ChooseCharacter.getLevel(1) + " 2/" + ChooseCharacter.getLevel(2) + " 3/" + ChooseCharacter.getLevel(3));
+				pw.println("skill:1/" + ChooseSkill.getSkillLevel(1) + " 2/" + ChooseSkill.getSkillLevel(2) + " 3/" + ChooseSkill.getSkillLevel(3) + " 4/" + ChooseSkill.getSkillLevel(4) + " 5/" + ChooseSkill.getSkillLevel(5));
+				pw.println("character_chosen:" + ChooseCharacter.getChosenID());
+				pw.println("skill_chosen:" + ChooseSkill.getChooseID(0) + " " +  ChooseSkill.getChooseID(1) + " " +  ChooseSkill.getChooseID(2));
+				pw.println("gold:" + goldAmount);
+				pw.println("music:" + musicVolume);
+				pw.println("fx:" + fxVolume);
+				System.out.println("file write ok");
+				pw.close();
+			} catch (URISyntaxException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
