@@ -8,7 +8,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 public class Player extends Creature{
 	public Weapon weapon=new Sword(0);
-	public JLabel weaponshow=new JLabel("0");
+	public JLabel weaponshow=new JLabel("100");
 	public Player(String scientifficName)
 	{
 		super("Player."+scientifficName);
@@ -30,9 +30,9 @@ public class Player extends Creature{
 		if(weapon!=null)
 		{
 			if(weapon.weapontype.equals("sword"))
-				icon  = new ImageIcon(this.getClass().getResource("/Image/sword.png"));
+				icon  = new ImageIcon(this.getClass().getResource("/image/sword.png"));
 			if(weapon.weapontype.equals("wand"))
-				icon  = new ImageIcon(this.getClass().getResource("/Image/wand.png"));
+				icon  = new ImageIcon(this.getClass().getResource("/image/wand.png"));
 			Image image = icon.getImage();
 		    image = image.getScaledInstance(50,50, Image.SCALE_SMOOTH);
 		    icon.setImage(image);

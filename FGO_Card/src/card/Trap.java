@@ -28,7 +28,7 @@ public class Trap extends Item {
 	}
 	public void updateUI()
 	{
-		hpShow.setText(Integer.toString(hp));
+		//hpShow.setText(Integer.toString(hp));
 	}
 	public void StepTrap(Player player)
 	{

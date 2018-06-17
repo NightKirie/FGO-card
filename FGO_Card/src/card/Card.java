@@ -1,10 +1,12 @@
 package card;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.Insets;
 import java.awt.Point;
 import battle.Battle;
+import menu.MainWindow;
 
 public class Card extends JButton{
 	Battle field;
@@ -12,7 +14,8 @@ public class Card extends JButton{
 		super(scientificName);
 		setSize(150,200);
 		setLayout(null);
-		setMargin(new Insets(0, 0, 0, 0));
+		//setMargin(new Insets(0, 0, 0, 0));
+		setIcon(new ImageIcon(MainWindow.class.getResource("/image/Gold_Amount.png")));
 	}
 	String name=null;
 	public void setField(Battle f){field=f;}

@@ -21,13 +21,13 @@ public class Battle extends JPanel{
 	int difficulty,gold;
 	randomCard generater;
 
-	public Card[][] map;
+	public Card [][] map;
 	public Card player;
 
 	//frank870622 add///////////////////////////////////////////////
 	private final JLabel[] chosenSkillBattle = {new JLabel(""), new JLabel(""), new JLabel("")};
 	private final JLabel goldAmountIcon = new JLabel("");	//for show the gold amount icon
-	private final JLabel backGround = new JLabel("");		//for menu background picture
+	//private final JLabel backGround = new JLabel("");		//for menu background picture
 	private final JTextField goldBattleNumber = new RoundedTextField(15);	//for show the gold player get in battle
 	//////////////////////////////////////////
 	
@@ -38,7 +38,7 @@ public class Battle extends JPanel{
 	        chosenSkillBattle[i].setBounds(10+70*i,10,55,55);
 	        this.add(chosenSkillBattle[i]);
 	    }
-
+		
 	    //Initial gold amount icon
 	    goldAmountIcon.setIcon(new ImageIcon(MainWindow.class.getResource("/image/Gold_Amount.png")));
 	    goldAmountIcon.setBounds(297, 0, 50, 50);		
@@ -50,10 +50,17 @@ public class Battle extends JPanel{
 	    this.add(goldBattleNumber);
 
 	    //Initial back ground image
-	    backGround.setBounds(0, 0, 480, 720);
+	    /*backGround.setBounds(0, 0, 480, 720);
 	    backGround.setIcon(new ImageIcon(MainWindow.class.getResource("/image/InGameBackground.jpg")));
-	    this.add(backGround);
-
+	    this.add(backGround);*/
+	    JButton t=new textb();
+	    //t.setIcon(new ImageIcon(MainWindow.class.getResource("/image/Gold_Amount.png")));
+	    //t.setSize(50, 50);
+	    //t.setLocation(300, 500);
+	    this.add(t,1);
+	    
+	    
+	    
 	    goldBattleNumber.setVisible(true);
 	    goldAmountIcon.setVisible(true);
 		/////////////////////////////////////////////////////////////////////////////////
@@ -82,14 +89,15 @@ public class Battle extends JPanel{
 				}
 				map[i][j].setLocation(5+150*i,120+200*j);;
 				map[i][j].setField(this);
-				
-				this.add(map[i][j]);map[i][j].setVisible(true);
+				map[i][j].setText(map[i][j].getText());
+				this.add(map[i][j],1);map[i][j].setVisible(true);
 				
 			}
 		}
 		for(int i=0;i<size;++i){
 			for(int j=0;j<size;++j){
 				System.out.println(map[i][j].getText()+i+" "+j);
+				System.out.println(map[i][j].getUIClassID());
 			}
 		}
 	}
@@ -157,7 +165,7 @@ public class Battle extends JPanel{
 	    }
 	    for(int i = 0; i < chosenSkillBattle.length; ++i)
 	        chosenSkillBattle[i].setVisible(true);
-	    backGround.setVisible(true);
+	    //backGround.setVisible(true);
 	}
 	public void gameOver(){
 		/////////////set Panel back?get gold??

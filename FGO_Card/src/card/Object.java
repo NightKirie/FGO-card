@@ -5,12 +5,12 @@ import javax.swing.JLabel;
 public class Object extends Card {
 	public Object(String scientificName){
 		super("Object."+scientificName);
-		hpShow=new JLabel();
+		/*hpShow=new JLabel();
 		hpShow.setBounds(0,0,50,50);
-		add(hpShow);
+		add(hpShow);*/
 	}
 	public int hp=0;	
-	public JLabel hpShow=new JLabel();
+	//public JLabel hpShow=new JLabel();
 	/*
 	 * object have hp,so every damage will in there first
 	 * ex code:
