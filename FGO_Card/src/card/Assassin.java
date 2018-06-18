@@ -6,6 +6,6 @@ public class Assassin extends Player{
 		name="Assassin";
 		this.hp=hp;
 		this.maxHP=hp;
-		setIcon(new ImageIcon(this.getClass().getResource("/image/Assassin_Menu.png")));
+		setIcon(new ImageIcon(this.getClass().getResource("/image/Assassin_Battle.jpg")));
 	}
 }

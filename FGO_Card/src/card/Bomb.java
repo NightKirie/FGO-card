@@ -8,7 +8,7 @@ public class Bomb extends Item {
 	public Bomb(int size){
 		super("Bomb");
 		hp=size;
-		ImageIcon icon  = new ImageIcon(this.getClass().getResource("/image/Bomb_Game.png"));
+		ImageIcon icon  = new ImageIcon(this.getClass().getResource("/image/Bomb_Battle.jpg"));
 	    Image image = icon.getImage();
 	    image = image.getScaledInstance(130,200, Image.SCALE_SMOOTH);
 	    icon.setImage(image);

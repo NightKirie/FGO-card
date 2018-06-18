@@ -31,7 +31,7 @@ public class Battle extends JPanel {
 	private final JLabel goldAmountIcon = new JLabel(""); // for show the gold amount icon
 	private final JLabel backGround = new JLabel(""); // for menu background picture
 	private final JLabel skillCDText[] = { new JLabel(), new JLabel(), new JLabel() }; //for show the skill cd
-	private final JTextField goldBattleNumber = new RoundedTextField(15); // for show the gold player get in battle
+	private final JLabel goldBattleNumber = new JLabel(); // for show the gold player get in battle
 	//////////////////////////////////////////
 
 	public Battle(int difficulty) {
@@ -57,6 +57,8 @@ public class Battle extends JPanel {
 		// Initial gold battle number
 		goldBattleNumber.setBounds(357, 0, 123, 50);
 		goldBattleNumber.setText("0");
+		goldBattleNumber.setFont(new Font("MV Boli", Font.PLAIN, 28));
+		goldBattleNumber.setForeground(Color.LIGHT_GRAY);
 		this.add(goldBattleNumber, 0);
 		// Initial back ground image
 		backGround.setBounds(0, 0, 480, 720);

@@ -9,7 +9,7 @@ public class Caster extends Player{
 		name="caster";
 		this.hp=hp;
 		this.maxHP=hp;
-		ImageIcon icon=new ImageIcon(this.getClass().getResource("/image/Caster_Menu.png"));
+		ImageIcon icon=new ImageIcon(this.getClass().getResource("/image/Caster_Battle.jpg"));
 		Image image = icon.getImage();
 	    image = image.getScaledInstance(150,200, Image.SCALE_SMOOTH);
 	    icon.setImage(image);

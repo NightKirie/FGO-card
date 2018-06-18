@@ -8,7 +8,7 @@ public class Lancer extends Player{
 		name="lancer";
 		this.hp=hp;
 		this.maxHP=hp;
-		setIcon(new ImageIcon(this.getClass().getResource("/image/Icon.png")));
+		setIcon(new ImageIcon(this.getClass().getResource("/image/Lancer_Battle.jpg")));
 	}
 	public void attack(Creature opponent) {
 		// TODO Auto-generated method stub

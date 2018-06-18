@@ -7,7 +7,7 @@ import javax.swing.ImageIcon;
 public class RedPotion extends Potion{
 	public RedPotion(int size) {
 		super("RedPotion");
-		ImageIcon icon=new ImageIcon(this.getClass().getResource("/image/RedPotion_Game.png"));
+		ImageIcon icon=new ImageIcon(this.getClass().getResource("/image/RedPotion_Battle.jpg"));
 		hp=size;
 		Image image = icon.getImage();
 	    image = image.getScaledInstance(130,200, Image.SCALE_SMOOTH);
