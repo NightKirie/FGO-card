@@ -29,6 +29,7 @@ public class Battle extends JPanel{
 	private final JLabel goldAmountIcon = new JLabel("");	//for show the gold amount icon
 	private final JLabel backGround = new JLabel("");		//for menu background picture
 	private final JTextField goldBattleNumber = new RoundedTextField(15);	//for show the gold player get in battle
+
 	//////////////////////////////////////////
 	
 	public Battle(int difficulty){
@@ -39,6 +40,9 @@ public class Battle extends JPanel{
 	        this.add(chosenSkillBattle[i],0);
 	        
 	    }
+		
+
+
 
 	    //Initial gold amount icon
 	    goldAmountIcon.setIcon(new ImageIcon(MainWindow.class.getResource("/image/Gold_Amount.png")));
@@ -51,7 +55,7 @@ public class Battle extends JPanel{
 	    //Initial back ground image
 	    backGround.setBounds(0, 0, 480, 720);
 	    backGround.setIcon(new ImageIcon(MainWindow.class.getResource("/image/InGameBackground.jpg")));
-	    this.add(backGround,5);
+	    this.add(backGround);
 	    
 
 	    goldBattleNumber.setVisible(true);
@@ -160,6 +164,7 @@ public class Battle extends JPanel{
 	    backGround.setVisible(true);
 	}
 	public void gameOver(){
-		/////////////set Panel back?get gold??
+		MainWindow.frame.goldAmount += gold;
+		MainWindow.frame.GameOver();
 	}
 }
