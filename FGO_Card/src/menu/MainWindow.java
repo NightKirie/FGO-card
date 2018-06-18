@@ -63,7 +63,7 @@ public class MainWindow extends JFrame {
 	private final Button skillButton = new Button(); // for go to skill page
 	private final Button startButton = new Button(); // for start the game
 	private final Button chararcterButton = new Button(); // for go to character page
-	private final Button achievementButton = new Button(); // for go to achievement page
+	private final Button tutorialButton = new Button(); // for go to achievement page
 	private final Button backButton = new Button(); // for any page to go back to the menu
 	private final Button leftButton = new Button(); // for character page to preview next character
 	private final Button rightButton = new Button(); // for character page to preview previous character
@@ -78,7 +78,7 @@ public class MainWindow extends JFrame {
 
 	private final JLabel menuTitle = new JLabel(""); // for menu title picture
 	private final JLabel backGround = new JLabel(""); // for menu background picture
-	private final JLabel nothingIsHere = new JLabel(""); // for the page is not done
+	private final JLabel tutorial = new JLabel(""); // for the page is not done
 	private final JLabel showCharacter = new JLabel(""); // for character page to show the character
 	private final JLabel settingText = new JLabel(""); // for setting page's title
 	private final JLabel goldAmountIcon = new JLabel(""); // for show the gold amount icon
@@ -190,15 +190,15 @@ public class MainWindow extends JFrame {
 		contentPane.add(chararcterButton);
 
 		// Initial achievementButton in Menu
-		achievementButton.setIcon(new ImageIcon(MainWindow.class.getResource("/image/Reward_Btn.png")));
-		achievementButton.setBounds(115, 410, 115, 130);
-		achievementButton.addMouseListener(new MouseAdapter() {
+		tutorialButton.setIcon(new ImageIcon(MainWindow.class.getResource("/image/Tutorial_Btn.png")));
+		tutorialButton.setBounds(115, 410, 115, 130);
+		tutorialButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
-				AchievementPage();
+				TutorialPage();
 			}
 		});
-		contentPane.add(achievementButton);
+		contentPane.add(tutorialButton);
 
 		// Initial backButton in Menu
 		backButton.setIcon(new ImageIcon(MainWindow.class.getResource("/image/Back_Btn.png")));
@@ -459,9 +459,9 @@ public class MainWindow extends JFrame {
 		contentPane.add(menuTitle);
 
 		// Initial nothingIsHere page in Menu
-		nothingIsHere.setIcon(new ImageIcon(MainWindow.class.getResource("/image/SorryForNothing.png")));
-		nothingIsHere.setBounds(115, 320, 250, 400);
-		contentPane.add(nothingIsHere);
+		tutorial.setIcon(new ImageIcon(MainWindow.class.getResource("/image/TutorialPic.png")));
+		tutorial.setBounds(0, 0, 480, 720);
+		contentPane.add(tutorial);
 
 		// Initial character preview picture in character page
 		showCharacter.setBounds(0, 0, 480, 720);
@@ -501,7 +501,7 @@ public class MainWindow extends JFrame {
 		startButton.setVisible(false);
 		chosenCharacterMenu.setVisible(false);
 		chararcterButton.setVisible(false);
-		achievementButton.setVisible(false);
+		tutorialButton.setVisible(false);
 		backButton.setVisible(false);
 		leftButton.setVisible(false);
 		rightButton.setVisible(false);
@@ -517,7 +517,7 @@ public class MainWindow extends JFrame {
 		levelText.setVisible(false);
 		upgradeText.setVisible(false);
 		menuTitle.setVisible(false);
-		nothingIsHere.setVisible(false);
+		tutorial.setVisible(false);
 		showCharacter.setVisible(false);
 		settingText.setVisible(false);
 		backGround.setVisible(false);
@@ -552,7 +552,7 @@ public class MainWindow extends JFrame {
 		startButton.setVisible(true);
 		chosenCharacterMenu.setVisible(true);
 		chararcterButton.setVisible(true);
-		achievementButton.setVisible(true);
+		tutorialButton.setVisible(true);
 		backButton.setVisible(false);
 		backButtonBattle.setVisible(false);
 		leftButton.setVisible(false);
@@ -570,7 +570,7 @@ public class MainWindow extends JFrame {
 		levelText.setVisible(false);
 		upgradeText.setVisible(false);
 		menuTitle.setVisible(true);
-		nothingIsHere.setVisible(false);
+		tutorial.setVisible(false);
 		showCharacter.setVisible(false);
 		settingText.setVisible(false);
 		backGround.setVisible(true);
@@ -590,7 +590,7 @@ public class MainWindow extends JFrame {
 		startButton.setVisible(false);
 		chosenCharacterMenu.setVisible(false);
 		chararcterButton.setVisible(false);
-		achievementButton.setVisible(false);
+		tutorialButton.setVisible(false);
 		backButton.setVisible(true);
 		leftButton.setVisible(true);
 		rightButton.setVisible(true);
@@ -607,7 +607,7 @@ public class MainWindow extends JFrame {
 		levelText.setVisible(true);
 		upgradeText.setVisible(true);
 		menuTitle.setVisible(false);
-		nothingIsHere.setVisible(false);
+		tutorial.setVisible(false);
 		showCharacter.setVisible(true);
 		settingText.setVisible(false);
 		backGround.setVisible(true);
@@ -638,7 +638,7 @@ public class MainWindow extends JFrame {
 		startButton.setVisible(false);
 		chosenCharacterMenu.setVisible(false);
 		chararcterButton.setVisible(false);
-		achievementButton.setVisible(false);
+		tutorialButton.setVisible(false);
 		backButton.setVisible(true);
 		leftButton.setVisible(false);
 		rightButton.setVisible(false);
@@ -655,16 +655,16 @@ public class MainWindow extends JFrame {
 		goldBattleNumber.setVisible(false);
 		levelText.setVisible(false);
 		upgradeText.setVisible(false);
-		nothingIsHere.setVisible(false);
+		tutorial.setVisible(false);
 		showCharacter.setVisible(false);
 		settingText.setVisible(false);
 		backGround.setVisible(true);
 	}
 
 	/**
-	 * call to go to achievement page
+	 * call to go to tutorial page
 	 */
-	public void AchievementPage() {
+	public void TutorialPage() {
 		for (int i = 0; i < chosenSkillMenu.length; ++i)
 			chosenSkillMenu[i].setVisible(false);
 		for (int i = 0; i < chosenSkillBattle.length; ++i)
@@ -673,7 +673,7 @@ public class MainWindow extends JFrame {
 		startButton.setVisible(false);
 		chosenCharacterMenu.setVisible(false);
 		chararcterButton.setVisible(false);
-		achievementButton.setVisible(false);
+		tutorialButton.setVisible(false);
 		backButton.setVisible(true);
 		leftButton.setVisible(false);
 		rightButton.setVisible(false);
@@ -684,13 +684,13 @@ public class MainWindow extends JFrame {
 			showSkill[i].setVisible(false);
 		musicSlider.setVisible(false);
 		fxSlider.setVisible(false);
-		goldAmountIcon.setVisible(true);
-		goldAmountNumber.setVisible(true);
+		goldAmountIcon.setVisible(false);
+		goldAmountNumber.setVisible(false);
 		goldBattleNumber.setVisible(false);
 		levelText.setVisible(false);
 		upgradeText.setVisible(false);
 		menuTitle.setVisible(false);
-		nothingIsHere.setVisible(true);
+		tutorial.setVisible(true);
 		showCharacter.setVisible(false);
 		settingText.setVisible(false);
 		backGround.setVisible(false);
@@ -709,7 +709,7 @@ public class MainWindow extends JFrame {
 		startButton.setVisible(false);
 		chosenCharacterMenu.setVisible(false);
 		chararcterButton.setVisible(false);
-		achievementButton.setVisible(false);
+		tutorialButton.setVisible(false);
 		backButton.setVisible(true);
 		leftButton.setVisible(false);
 		rightButton.setVisible(false);
@@ -726,7 +726,7 @@ public class MainWindow extends JFrame {
 		levelText.setVisible(false);
 		upgradeText.setVisible(false);
 		menuTitle.setVisible(false);
-		nothingIsHere.setVisible(false);
+		tutorial.setVisible(false);
 		showCharacter.setVisible(false);
 		settingText.setVisible(true);
 		backGround.setVisible(true);
@@ -757,6 +757,7 @@ public class MainWindow extends JFrame {
 
 		backButtonBattle.setVisible(true);
 		gameOverButton.setVisible(false);
+		startButton.setEnabled(false);
 
 		/*
 		 * backGround.setIcon(new
@@ -796,6 +797,7 @@ public class MainWindow extends JFrame {
 	public void BattleToMenu() {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		startButton.setEnabled(true);
 		MenuPage();
 	}
 
