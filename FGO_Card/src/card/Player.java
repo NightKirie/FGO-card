@@ -14,30 +14,29 @@ public class Player extends Creature{
 	public Player(String scientifficName)
 	{
 		super("Player."+scientifficName);
-		//ImageIcon cardPicture=null;
-		weaponshow.setBounds(50,150,50, 50);
-		//weaponpic.setBounds(0, 200, 50, 50);
+		weaponshow.setBounds(10,150,50, 50);
+		weaponpic.setBounds(100, 150, 50, 50);
 		weaponshow.setFont(new Font("MV Boli", Font.PLAIN, 28));
 		weaponshow.setForeground(Color.WHITE);
 		weaponshow.setText(Integer.toString(weapon.hp));
 		add(weaponshow);
-		//add(weaponpic);
+		add(weaponpic);
 	}
-	JLabel weaponpic;//weapon small picture to know what kind of weapon
+	JLabel weaponpic=new JLabel();//weapon small picture to know what kind of weapon
 	public void updateStatus(){
 		if(hp<=0) field.gameOver();
 	}
 	public void updateCard()
 	{
-		hpShow.setText("Hp:"+Integer.toString(hp));
-		weaponshow.setText("w:"+Integer.toString(weapon.hp));
+		hpShow.setText(Integer.toString(hp));
+		weaponshow.setText(Integer.toString(weapon.hp));
 		ImageIcon icon=null;
 		if(weapon!=null)
 		{
 			if(weapon.weapontype.equals("sword"))
-				icon  = new ImageIcon(this.getClass().getResource("/Image/sword.png"));
+				icon  = new ImageIcon(this.getClass().getResource("/image/Sword_Get.jpg"));
 			if(weapon.weapontype.equals("wand"))
-				icon  = new ImageIcon(this.getClass().getResource("/Image/wand.png"));
+				icon  = new ImageIcon(this.getClass().getResource("/image/Wand_Get.jpg"));
 			Image image = icon.getImage();
 		    image = image.getScaledInstance(50,50, Image.SCALE_SMOOTH);
 		    icon.setImage(image);

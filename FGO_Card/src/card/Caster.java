@@ -10,11 +10,11 @@ public class Caster extends Player{
 		this.hp=hp;
 		this.maxHP=hp;
 		hpShow.setText(Integer.toString(hp));
-		ImageIcon icon=new ImageIcon(this.getClass().getResource("/image/Caster_Battle.jpg"));
-		Image image = icon.getImage();
-	    image = image.getScaledInstance(150,200, Image.SCALE_SMOOTH);
-	    icon.setImage(image);
-		setIcon(icon);
+		setIcon(new ImageIcon(this.getClass().getResource("/image/Caster_Battle.jpg")));
+		weapon=new Wand(10);
+		ImageIcon icon=new ImageIcon(this.getClass().getResource("/image/Wand_Get.jpg"));
+		weaponpic.setIcon(icon);
+		weaponshow.setText(Integer.toString(weapon.hp));
 	}
 	public void attack(Creature opponent) {
 		// TODO Auto-generated method stub
