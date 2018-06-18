@@ -20,6 +20,7 @@ public class Minion extends Monster {
 		name="minion";
 		ImageIcon cardPicture=null;
 		hp=size;
+		hpShow.setText(Integer.toString(hp));
 		cardPicture = Minion[random.nextInt(6)];
 		setIcon(cardPicture);
 	}

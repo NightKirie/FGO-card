@@ -1,4 +1,6 @@
 package card;
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.Image;
 import java.awt.Point;
 import javax.swing.ImageIcon;
@@ -13,7 +15,11 @@ public class Bomb extends Item {
 	    image = image.getScaledInstance(130,200, Image.SCALE_SMOOTH);
 	    icon.setImage(image);
 		setIcon(icon);
-		bombcount.setBounds(0, 70,50,50);
+		hpShow.setText(Integer.toString(1));
+		bombcount.setBounds(0, 150,50,50);
+		bombcount.setFont(new Font("MV Boli", Font.PLAIN, 28));
+		bombcount.setForeground(Color.WHITE);
+		bombcount.setText(Integer.toString(hp));
 		add(bombcount);
 	}
 	public int countdown=5;
@@ -46,8 +52,8 @@ public class Bomb extends Item {
 		}
 	}
 	public void updateCard(){
-		//hpShow.setText(Integer.toString(hp));
-		//bombcount.setText("count"+Integer.toString(this.hp));
+		hpShow.setText(Integer.toString(hp));
+		bombcount.setText("count"+Integer.toString(this.hp));
 	}
 	//I'm not sure this can work or not
 	//You can put it in updateStatus XD

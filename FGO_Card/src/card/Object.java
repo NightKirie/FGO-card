@@ -9,13 +9,14 @@ public class Object extends Card {
 	public Object(String scientificName){
 		super("Object."+scientificName);
 		hpShow=new JLabel();
-		hpShow.setBounds(0,0,50,50);
+		hpShow.setBounds(100,0,50,50);
 		hpShow.setFont(new Font("MV Boli", Font.PLAIN, 28));
 		hpShow.setForeground(Color.WHITE);
+		hpShow.setText(Integer.toString(hp));
 		add(hpShow);
 	}
 	public int hp=0;	
-	public JLabel hpShow=new JLabel();
+	public JLabel hpShow=new JLabel("");
 	/*
 	 * object have hp,so every damage will in there first
 	 * ex code:
@@ -25,7 +26,7 @@ public class Object extends Card {
 	 */
 	public void updateCard()
 	{
-		//hpShow.setText(Integer.toString(hp));
+		hpShow.setText(Integer.toString(hp));
 	}
 	public void deadAction(){
 		Point p=field.getLocation(this);

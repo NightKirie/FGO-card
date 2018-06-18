@@ -11,6 +11,7 @@ public class Boss extends Monster {
 		cardPicture=new ImageIcon(this.getClass().getResource("/image/Boss_Battle.jpg"));
 		setIcon(cardPicture);
 		hp=size;
+		hpShow.setText(Integer.toString(hp));
 	}
 
 }

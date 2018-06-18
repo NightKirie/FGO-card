@@ -1,6 +1,8 @@
 package card;
 import character.Character;
 
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.Image;
 import java.awt.Point;
 
@@ -13,8 +15,11 @@ public class Player extends Creature{
 	{
 		super("Player."+scientifficName);
 		//ImageIcon cardPicture=null;
-		weaponshow.setBounds(0,70,50, 50);
+		weaponshow.setBounds(50,150,50, 50);
 		//weaponpic.setBounds(0, 200, 50, 50);
+		weaponshow.setFont(new Font("MV Boli", Font.PLAIN, 28));
+		weaponshow.setForeground(Color.WHITE);
+		weaponshow.setText(Integer.toString(weapon.hp));
 		add(weaponshow);
 		//add(weaponpic);
 	}
@@ -24,8 +29,8 @@ public class Player extends Creature{
 	}
 	public void updateCard()
 	{
-		//hpShow.setText("Hp:"+Integer.toString(hp));
-		//weaponshow.setText("w:"+Integer.toString(weapon.hp));
+		hpShow.setText("Hp:"+Integer.toString(hp));
+		weaponshow.setText("w:"+Integer.toString(weapon.hp));
 		ImageIcon icon=null;
 		if(weapon!=null)
 		{

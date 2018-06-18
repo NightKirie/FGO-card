@@ -8,6 +8,7 @@ public class Lancer extends Player{
 		name="lancer";
 		this.hp=hp;
 		this.maxHP=hp;
+		hpShow.setText(Integer.toString(hp));
 		setIcon(new ImageIcon(this.getClass().getResource("/image/Lancer_Battle.jpg")));
 	}
 	public void attack(Creature opponent) {
