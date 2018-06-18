@@ -1,5 +1,8 @@
 package card;
 import battle.Battle;
+
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.Point;
 import javax.swing.JLabel;
 public class Object extends Card {
@@ -7,6 +10,8 @@ public class Object extends Card {
 		super("Object."+scientificName);
 		hpShow=new JLabel();
 		hpShow.setBounds(0,0,50,50);
+		hpShow.setFont(new Font("MV Boli", Font.PLAIN, 28));
+		hpShow.setForeground(Color.WHITE);
 		add(hpShow);
 	}
 	public int hp=0;	

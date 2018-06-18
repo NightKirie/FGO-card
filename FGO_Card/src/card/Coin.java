@@ -6,7 +6,7 @@ public class Coin extends Item{
 	public Coin(int size) {
 		super("Coin");
 		hp=size;
-		setIcon(new ImageIcon(this.getClass().getResource("/image/Gold_Amount.png")));
+		setIcon(new ImageIcon(this.getClass().getResource("/image/Gold_Battle.jpg")));
 	}
 	public  void effect(Player input)
 	{
