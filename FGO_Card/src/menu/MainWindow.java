@@ -47,7 +47,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class MainWindow extends JFrame {
-	public static MainWindow frame;
+	public static MainWindow frame = new MainWindow();;
 	private static JPanel contentPane;
 	private static JPanel gameOverPane;
 	private static Battle battlePand;
@@ -113,7 +113,7 @@ public class MainWindow extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					MainWindow frame = new MainWindow();
+					//MainWindow frame = new MainWindow();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
