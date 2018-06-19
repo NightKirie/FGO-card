@@ -16,11 +16,10 @@ import java.awt.event.MouseEvent;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
-import java.awt.geom.Point2D;
 
 public class Battle extends JPanel {
 	int size = 3, skillSize = 3;
-	int difficulty, gold;
+	int difficulty, gold=0;
 	randomCard generater;
 
 	public Card[][] map;
@@ -122,7 +121,8 @@ public class Battle extends JPanel {
 		}
 		for (int i = 0; i < size; ++i) {
 			for (int j = 0; j < size; ++j) {
-				map[i][j].updateUI();
+				map[i][j].updateCard();
+				map[i][j].setLocation(15 + 150 * i, 100 + 200 * j);
 			}
 		}
 	}
@@ -180,6 +180,7 @@ public class Battle extends JPanel {
 		map[target.x][target.y] = generater.nextCard();
 		map[target.x][target.y].setField(this);
 		add(map[target.x][target.y]);
+		updateCard();
 	}
 
 	public void MenuToBattle() {
