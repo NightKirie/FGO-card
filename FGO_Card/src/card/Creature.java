@@ -8,7 +8,7 @@ public abstract class Creature extends Object{
 	public int maxHP;
 	public Status status;
 	public abstract void attack(Creature opponent);
-	public void updateStatus(){
+	public void updateHP(){
 		if(hp<=0){
 			Point p=field.getLocation(this);
 			field.addCard(new Coin(this.maxHP),p);

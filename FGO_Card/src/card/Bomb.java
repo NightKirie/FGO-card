@@ -37,19 +37,6 @@ public class Bomb extends Item {
 			}
 			field.addCard(new Coin(hp),location);
 			field.remove(this);
-			/*
-			for(int x=-1;x<=1;x+=2)
-			{
-				for(int y=-1;y<=1;y+=2)
-				{
-					if(location.x+x>=0&&location.x+x<=2&&location.y+y>=0&&location.y+y<=2)
-					{
-						((Object)Battle.map[location.x+x][location.y+y]).getBombDamage(this.hp);
-					}
-				}
-			}
-			this.hp=0;
-			*/
 		}
 	}
 	public void updateCard(){

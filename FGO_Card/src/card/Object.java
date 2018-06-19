@@ -24,7 +24,7 @@ public class Object extends Card {
 	 	hp-=damage;
 	 }
 	 */
-	public void updateStatus(){
+	public void updateHP(){
 		if(hp<=0){
 			Point p=field.getLocation((Card)this);
 			field.addCard(new Coin(10),p);

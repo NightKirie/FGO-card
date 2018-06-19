@@ -120,6 +120,7 @@ public class Battle extends JPanel {
 		}
 		for (int i = 0; i < size; ++i) {
 			for (int j = 0; j < size; ++j) {
+				if(map[i][j] instanceof card.Object) ((card.Object)map[i][j]).updateHP();
 				map[i][j].updateCard();
 				map[i][j].setLocation(15 + 150 * i, 100 + 200 * j);
 			}
@@ -208,6 +209,12 @@ public class Battle extends JPanel {
 
 	//when gameover call this function
 	public void gameOver() {
+		for(int i=0;i<size;++i){
+			for(int j=0;j<size;++j){
+				remove(map[i][j]);
+				map[i][j]=null;
+			}
+		}
 		MainWindow.frame.goldAmount += gold;
 		MainWindow.frame.GameOver();
 	}
