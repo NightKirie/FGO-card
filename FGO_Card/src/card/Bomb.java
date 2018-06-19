@@ -41,7 +41,7 @@ public class Bomb extends Item {
 	}
 	public void updateCard(){
 		hpShow.setText(Integer.toString(hp));
-		bombcount.setText(Integer.toString(this.hp));
+		bombcount.setText(Integer.toString(countdown));
 	}
 	//I'm not sure this can work or not
 	//You can put it in updateStatus XD
