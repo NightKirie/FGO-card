@@ -15,7 +15,4 @@ public abstract class Creature extends Object{
 			field.remove((Card)this);
 		}
 	}
-	public void updateCard(){
-	}
-
 }
