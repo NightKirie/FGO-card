@@ -31,11 +31,13 @@ public class Card extends JButton{
 			Point playerLocation=field.getLocation(field.player);
 			int direction=-1;
 			for(int i=0;i<4;++i){
-				if(Location.equals(Battle.addPoint(playerLocation,Battle.relation[i]))) direction=i;
+				if(Location.equals(Battle.addPoint(playerLocation,Battle.relation[i]))){
+					direction=i;
+					break;
+				}
 			}
 			if(direction==-1&&!(field.player instanceof Assassin)) return;
-			String[] scientificName=Card.this.getText().split(".");
-			System.out.println(Card.this.getText());
+			System.out.println(Card.this.getText()+"  "+Location);
 			if(Card.this instanceof Object){
 				if(Card.this instanceof Monster){
 					((Player)field.player).attack((Creature)Card.this);

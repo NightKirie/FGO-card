@@ -26,16 +26,18 @@ public class Object extends Card {
 	 */
 	public void updateCard()
 	{
+		if(hp<=0){
+			Point p=field.getLocation(this);
+			if(this instanceof Creature){
+				field.map[p.x][p.y]=new Coin(((Creature)this).maxHP);
+			}
+			else field.map[p.x][p.y]=new Coin(10);
+			return;
+		}
 		hpShow.setText(Integer.toString(hp));
 	}
-	public void deadAction(){
-		Point p=field.getLocation(this);
-		if(this instanceof Creature){
-			 field.map[p.x][p.y]=new Coin(((Creature)this).maxHP);
-		}
-		else field.map[p.x][p.y]=new Coin(10);
-		
-	}
+	/*public void deadAction(){
+	}*/
 	public void getSwordDamage(int damage)//sword damage
 	{
 		hp-=damage;
