@@ -14,6 +14,7 @@ public class Card extends JButton{
 		setLayout(null);
 		setMargin(new Insets(0, 0, 0, 0));
 		setContentAreaFilled(false);
+		this.addActionListener(new buttonListener());
 		//setBorderPainted(false); 
 	}
 	String name=null;
@@ -29,6 +30,7 @@ public class Card extends JButton{
 	//if need to change ImageIcon,use setIcon in set;(method in JButton)
 	private class buttonListener implements ActionListener{
 		public void actionPerformed(ActionEvent e){
+			System.out.println("hello");
 			Point Location=field.getLocation(Card.this);
 			Point playerLocation=field.getLocation(field.player);
 			int direction=-1;
@@ -37,6 +39,7 @@ public class Card extends JButton{
 			}
 			if(direction==-1&&!(field.player instanceof Assassin)) return;
 			String[] scientificName=Card.this.getText().split(".");
+			System.out.println(Card.this.getText());
 			if(scientificName[0].equals("Object")){
 				if(scientificName[1].equals("Creature")&&scientificName[2].equals("Monster")){
 					((Creature)field.player).attack((Creature)Card.this);
