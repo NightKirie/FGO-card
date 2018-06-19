@@ -39,7 +39,7 @@ public class Lancer extends Player{
 				field.swapCard(enemyLocation,myLocation);
 			}
 			else if(weapon instanceof Wand){
-				for(;field.inField(enemyLocation);Battle.addPoint(enemyLocation,Battle.relation[direction])){
+				for(;field.inField(enemyLocation);enemyLocation=Battle.addPoint(enemyLocation,Battle.relation[direction])){
 					if(field.map[enemyLocation.x][enemyLocation.y] instanceof Object)
 						((Object)field.map[enemyLocation.x][enemyLocation.y]).getwardDamage(damage);
 				}

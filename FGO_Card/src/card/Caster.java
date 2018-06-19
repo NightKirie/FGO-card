@@ -37,7 +37,7 @@ public class Caster extends Player{
 			weapon.hp-=damage;
 			if(weapon instanceof Sword)	opponent.getSwordDamage(opponent.hp);
 			else if(weapon instanceof Wand){
-				for(;field.inField(enemyLocation);Battle.addPoint(enemyLocation,Battle.relation[direction])){
+				for(;field.inField(enemyLocation);enemyLocation=Battle.addPoint(enemyLocation,Battle.relation[direction])){
 					if(		(field.map[enemyLocation.x][enemyLocation.y] instanceof Object)&&
 							!(field.map[enemyLocation.x][enemyLocation.y] instanceof RedPotion)&&
 							!(field.map[enemyLocation.x][enemyLocation.y] instanceof Weapon))
