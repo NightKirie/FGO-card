@@ -162,6 +162,7 @@ public class Battle extends JPanel {
 		// when use this function,the card on next direction will be remove
 		int backDirection = (direction + 2) % 4;
 		Point target = addPoint(position, relation[direction]);
+		remove(map[target.x][target.y]);
 		for (Point i = position; inField(i); i = addPoint(i, relation[backDirection])) {
 			map[target.x][target.y] = map[i.x][i.y];
 			target = i;
@@ -179,7 +180,7 @@ public class Battle extends JPanel {
 		map[target.x][target.y] = generater.nextCard();
 		map[target.x][target.y].setField(this);
 		map[target.x][target.y].setVisible(true);
-		add(map[target.x][target.y]);
+		add(map[target.x][target.y],0);
 		updateCard();
 	}
 
