@@ -31,10 +31,10 @@ public class Player extends Creature{
 	public void updateCard()
 	{
 		hpShow.setText(Integer.toString(hp));
-		weaponshow.setText(Integer.toString(weapon.hp));
 		ImageIcon icon=null;
 		if(weapon!=null)
 		{
+			weaponshow.setText(Integer.toString(weapon.hp));
 			if(weapon.weapontype.equals("Sword"))
 				icon  = new ImageIcon(this.getClass().getResource("/image/Sword_Get.jpg"));
 			if(weapon.weapontype.equals("Wand"))
@@ -44,8 +44,12 @@ public class Player extends Creature{
 		    //icon.setImage(image);
 			weaponpic.setIcon(icon);
 			weaponpic.setVisible(true);
+			weaponshow.setVisible(true);
 		}
-		else weaponpic.setVisible(false);
+		else{
+			weaponpic.setVisible(false);
+			weaponshow.setVisible(false);
+		}
 	}
 	public void attack(Creature opponent) {
 		// TODO Auto-generated method stub
