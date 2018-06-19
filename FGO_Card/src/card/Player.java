@@ -8,6 +8,8 @@ import java.awt.Point;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+
+import battle.Battle;
 public class Player extends Creature{
 	public Weapon weapon=new Sword(0);
 	public JLabel weaponshow=new JLabel("0");
@@ -41,24 +43,41 @@ public class Player extends Creature{
 		    //image = image.getScaledInstance(50,50, Image.SCALE_SMOOTH);
 		    //icon.setImage(image);
 			weaponpic.setIcon(icon);
+			weaponpic.setVisible(true);
 		}
+		else weaponpic.setVisible(false);
 	}
 	public void attack(Creature opponent) {
 		// TODO Auto-generated method stub
-		if(weapon.hp>0)
+		Point enemyLocation=field.getLocation(opponent);
+		Point myLocation=field.getLocation(this);
+		int direction=-1,damage=0;
+		for(int i=0;i<4;++i){
+			if(enemyLocation.equals(Battle.addPoint(myLocation,Battle.relation[i]))) direction=i;
+		}
+		if(weapon==null)
 		{
-			
-			if(weapon.hp>=opponent.hp)
-			{
-				weapon.hp-=opponent.hp;
-				if(weapon instanceof Sword)//sword attack
-				{
-					opponent.getSwordDamage(opponent.hp);
+			field.pickGold(opponent.hp);
+			hp-=opponent.hp;
+			field.remove(opponent);
+			field.moveCard(myLocation,direction);
+		}
+		else{
+			if(weapon.hp>opponent.hp) damage=opponent.hp;
+			else damage=weapon.hp;
+			weapon.hp-=damage;
+			if(weapon instanceof Sword)	opponent.getSwordDamage(opponent.hp);
+			else if(weapon instanceof Wand){
+				for(;field.inField(enemyLocation);Battle.addPoint(enemyLocation,Battle.relation[direction])){
+					if(field.map[enemyLocation.x][enemyLocation.y] instanceof Object)
+						((Object)field.map[enemyLocation.x][enemyLocation.y]).getwardDamage(damage);
 				}
+			}
+		}
+		if(weapon.hp<=0) weapon=null;
+/*
 				if(weapon instanceof Wand)//fire wand attack
 				{
-					Point enemyLocation=field.getLocation(opponent);
-					Point myLocation=field.getLocation(this);
 					int xdir=enemyLocation.x-myLocation.x;
 					int ydir=enemyLocation.y-myLocation.y;
 					if(xdir!=0&&(myLocation.x+2*xdir)>=0&&(myLocation.x+2*xdir)<=0)
@@ -97,7 +116,7 @@ public class Player extends Creature{
 				weapon.hp=0;
 			}
 		}
-		else if(weapon.hp==0||weapon==null)
+		else if(weapon==null||weapon.hp==0)
 		{
 			if(this.hp>opponent.hp)
 			{
@@ -109,6 +128,7 @@ public class Player extends Creature{
 				//game over!!
 			}
 		}
+		*/
 	}
 	public void pickUpWeapon(Weapon newWeapon){
 		if(weapon.hp<newWeapon.hp) weapon=newWeapon;

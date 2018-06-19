@@ -1,6 +1,6 @@
 package card;
 import java.awt.Point;
-
+import battle.Battle;
 import javax.swing.ImageIcon;
 public class Lancer extends Player{
 	public Lancer(int hp){
@@ -17,6 +17,36 @@ public class Lancer extends Player{
 	}
 	public void attack(Creature opponent) {
 		// TODO Auto-generated method stub
+		Point enemyLocation=field.getLocation(opponent);
+		Point myLocation=field.getLocation(this);
+		int direction=-1,damage=0;
+		for(int i=0;i<4;++i){
+			if(enemyLocation.equals(Battle.addPoint(myLocation,Battle.relation[i]))) direction=i;
+		}
+		if(weapon==null)
+		{
+			field.pickGold(opponent.hp);
+			hp-=opponent.hp;
+			field.remove(opponent);
+			field.moveCard(myLocation,direction);
+		}
+		else{
+			if(weapon.hp>opponent.hp) damage=opponent.hp;
+			else damage=weapon.hp;
+			weapon.hp-=damage;
+			if(weapon instanceof Sword){
+				opponent.getSwordDamage(opponent.hp);
+				field.swapCard(enemyLocation,myLocation);
+			}
+			else if(weapon instanceof Wand){
+				for(;field.inField(enemyLocation);Battle.addPoint(enemyLocation,Battle.relation[direction])){
+					if(field.map[enemyLocation.x][enemyLocation.y] instanceof Object)
+						((Object)field.map[enemyLocation.x][enemyLocation.y]).getwardDamage(damage);
+				}
+			}
+		}
+		if(weapon.hp<=0) weapon=null;
+		/*
 		if(weapon.hp>0)
 		{
 			
@@ -82,5 +112,6 @@ public class Lancer extends Player{
 				//game over!!
 			}
 		}
+		*/
 	}
 }

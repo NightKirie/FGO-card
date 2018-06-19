@@ -75,26 +75,28 @@ public class Battle extends JPanel {
 
 		map = new Card[size][];
 		generater = new randomCard(difficulty, difficulty);
+		switch (character.ChooseCharacter.getChosenID()) {
+			case 1:
+				player = new card.Caster(character.ChooseCharacter.getChosenMaxHP());
+				generater.setRate(2,0);
+				generater.setRate(3,30);
+				break;
+			case 2:
+				player = new card.Assassin(character.ChooseCharacter.getChosenMaxHP());
+				break;
+			case 3:
+				player = new card.Lancer(character.ChooseCharacter.getChosenMaxHP());
+				break;
+			default:
+				player = new card.Lancer(10);
+				break;
+		}
+		map[1][1] = player;
 		for (int i = 0; i < size; ++i) {
 			map[i] = new Card[size];
 			for (int j = 0; j < size; ++j) {
-				if (i == 1 && j == 1) {
-					switch (character.ChooseCharacter.getChosenID()) {
-					case 1:
-						player = new card.Caster(character.ChooseCharacter.getChosenMaxHP());
-						break;
-					case 2:
-						player = new card.Assassin(character.ChooseCharacter.getChosenMaxHP());
-						break;
-					case 3:
-						player = new card.Lancer(character.ChooseCharacter.getChosenMaxHP());
-						break;
-					default:
-						player = new card.Lancer(10);
-						break;
-					}
-					map[i][j] = player;
-				} else {
+				if (i == 1 && j == 1) continue;
+				else {
 					map[i][j] = generater.nextCard();
 				}
 				map[i][j].setLocation(15 + 150 * i, 100 + 200 * j);
