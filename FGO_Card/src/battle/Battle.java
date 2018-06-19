@@ -20,7 +20,7 @@ import javax.swing.border.EmptyBorder;
 public class Battle extends JPanel {
 	int size = 3, skillSize = 3;
 	int difficulty, gold=0;
-	randomCard generater;
+	public randomCard generater;
 
 	public Card[][] map;
 	public Card player;
