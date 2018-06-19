@@ -30,6 +30,7 @@ public class Object extends Card {
 		if(hp<=0){
 			Point p=field.getLocation(this);
 			field.map[p.x][p.y]=new Coin(10);
+			field.remove((Card)this);
 		}
 	}
 	/*public void deadAction(){
