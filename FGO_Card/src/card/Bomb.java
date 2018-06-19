@@ -19,7 +19,7 @@ public class Bomb extends Item {
 		bombcount.setBounds(0, 150,50,50);
 		bombcount.setFont(new Font("MV Boli", Font.PLAIN, 28));
 		bombcount.setForeground(Color.WHITE);
-		bombcount.setText(Integer.toString(hp));
+		bombcount.setText(Integer.toString(countdown));
 		add(bombcount);
 	}
 	public int countdown=5;
