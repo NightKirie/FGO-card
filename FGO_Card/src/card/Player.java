@@ -26,6 +26,8 @@ public class Player extends Creature{
 	}
 	JLabel weaponpic=new JLabel();//weapon small picture to know what kind of weapon
 	public void updateStatus(){
+	}
+	public void updateHP(){
 		if(hp<=0) field.gameOver();
 	}
 	public void updateCard()
