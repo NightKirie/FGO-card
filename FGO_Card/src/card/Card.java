@@ -60,7 +60,7 @@ public class Card extends JButton{
 					}
 					else if(Card.this instanceof Chest){
 						field.remove(Card.this);
-						field.map[Location.x][Location.y]=new Coin(80+field.generater.nextInt(40));
+						field.addCard(new Coin(80+field.generater.nextInt(40)),Location);
 					}
 				}
 			}
