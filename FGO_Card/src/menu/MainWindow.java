@@ -749,9 +749,9 @@ public class MainWindow extends JFrame {
 		battlePand.setBorder(new EmptyBorder(5, 5, 5, 5));
 		battlePand.setBackground(Color.BLACK);
 
-		
+		gameOverPane.add(gameOverButton, 0);
 		battlePand.add(backButtonBattle, 1);
-		
+		gameOverPane.setComponentZOrder(gameOverButton, 0);
 		
 		battlePand.MenuToBattle();
 		setContentPane(battlePand);
@@ -791,10 +791,10 @@ public class MainWindow extends JFrame {
 	}
 
 	// when gameover call this function
-	public static void GameOver() {
-		frame.setContentPane(gameOverPane);
+	public void GameOver() {
+		setContentPane(gameOverPane);
 		gameOverPane.setLayout(null);
-		frame.gameOverButton.setVisible(true);
+		gameOverButton.setVisible(true);
 	}
 
 	// for battlepand to menupand
