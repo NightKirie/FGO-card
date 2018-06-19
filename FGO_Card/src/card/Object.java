@@ -24,14 +24,16 @@ public class Object extends Card {
 	 	hp-=damage;
 	 }
 	 */
-	public void updateCard()
-	{
-		hpShow.setText(Integer.toString(hp));
+	public void updateStatus(){
 		if(hp<=0){
-			Point p=field.getLocation(this);
+			Point p=field.getLocation((Card)this);
 			field.map[p.x][p.y]=new Coin(10);
 			field.remove((Card)this);
 		}
+	}
+	public void updateCard()
+	{
+		hpShow.setText(Integer.toString(hp));
 	}
 	/*public void deadAction(){
 	}*/

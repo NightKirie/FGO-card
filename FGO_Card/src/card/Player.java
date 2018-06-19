@@ -42,9 +42,6 @@ public class Player extends Creature{
 		    //icon.setImage(image);
 			weaponpic.setIcon(icon);
 		}
-		if(hp<=0){
-			field.gameOver();
-		}
 	}
 	public void attack(Creature opponent) {
 		// TODO Auto-generated method stub

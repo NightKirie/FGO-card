@@ -36,6 +36,7 @@ public class Bomb extends Item {
 				if(field.inField(p)) ((Object)field.map[p.x][p.y]).getBombDamage(this.hp);
 			}
 			field.map[location.x][location.y]=new Coin(hp);
+			field.remove(this);
 			/*
 			for(int x=-1;x<=1;x+=2)
 			{

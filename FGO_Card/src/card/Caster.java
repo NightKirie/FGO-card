@@ -30,8 +30,8 @@ public class Caster extends Player{
 				}
 				if(weapon instanceof Wand)//fire wand attack
 				{
-					Point enemyLocation=field.getLocation(opponent);
-					Point myLocation=field.getLocation(this);
+					Point enemyLocation=field.getLocation((Card)opponent);
+					Point myLocation=field.getLocation((Card)this);
 					int xdir=enemyLocation.x-myLocation.x;
 					int ydir=enemyLocation.y-myLocation.y;
 					if(xdir!=0&&(myLocation.x+2*xdir)>=0&&(myLocation.x+2*xdir)<=0)
