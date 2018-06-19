@@ -112,8 +112,7 @@ public class Battle extends JPanel {
 			}
 		}
 	}
-
-	public void updateCard() {
+	public void updateStatus(){
 		for (int i = 0; i < size; ++i) {
 			for (int j = 0; j < size; ++j) {
 				map[i][j].updateStatus();
@@ -122,6 +121,13 @@ public class Battle extends JPanel {
 		for (int i = 0; i < size; ++i) {
 			for (int j = 0; j < size; ++j) {
 				if(map[i][j] instanceof card.Object) ((card.Object)map[i][j]).updateHP();
+			}
+		}
+	}
+
+	public void updateCard() {
+		for (int i = 0; i < size; ++i) {
+			for (int j = 0; j < size; ++j) {
 				map[i][j].updateCard();
 				map[i][j].setLocation(15 + 150 * i, 100 + 200 * j);
 			}
