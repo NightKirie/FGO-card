@@ -91,11 +91,10 @@ public class Battle extends JPanel {
 				player = new card.Lancer(10);
 				break;
 		}
-		map[1][1] = player;
 		for (int i = 0; i < size; ++i) {
 			map[i] = new Card[size];
 			for (int j = 0; j < size; ++j) {
-				if (i == 1 && j == 1) continue;
+				if (i == 1 && j == 1) map[1][1] = player;
 				else {
 					map[i][j] = generater.nextCard();
 				}
