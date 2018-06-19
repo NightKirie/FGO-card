@@ -31,8 +31,12 @@ public class Card extends JButton{
 		public void actionPerformed(ActionEvent e){
 			Point Location=field.getLocation(Card.this);
 			Point playerLocation=field.getLocation(field.player);
-			if(Math.abs(Location.x-playerLocation.x)+Math.abs(Location.y-playerLocation.y)!=1) return;
-			String[] scientificName=getUIClassID().split(".");
+			int direction=-1;
+			for(int i=0;i<4;++i){
+				if(Location.equals(Battle.addPoint(playerLocation,Battle.relation[i]))) direction=i;
+			}
+			if(direction==-1&&!(field.player instanceof Assassin)) return;
+			String[] scientificName=Card.this.getText().split(".");
 			if(scientificName[0].equals("Object")){
 				if(scientificName[1].equals("Creature")&&scientificName[2].equals("Monster")){
 					((Creature)field.player).attack((Creature)Card.this);
@@ -42,8 +46,13 @@ public class Card extends JButton{
 				switch(scientificName[2]){
 					case "Weapon":
 						((Player)field.player).pickUpWeapon((Weapon)Card.this);
+						if(direction>=0) field.moveCard(playerLocation,direction);
+						else field.map[Location.x][Location.y]=new Empty();
 						break;
 					case "Potion":
+						((Potion)Card.this).effect((Player)field.player);
+						if(direction>=0) field.moveCard(playerLocation,direction);
+						else field.map[Location.x][Location.y]=new Empty();
 						break;
 					case "Trap":
 						break;
@@ -51,6 +60,7 @@ public class Card extends JButton{
 						field.swapCard(Location,playerLocation);
 						break;
 					case "Coin":
+						field.pickGold(((Object)Card.this).hp);
 						break;
 				}
 			}
