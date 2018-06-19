@@ -135,7 +135,7 @@ public class Player extends Creature{
 		*/
 	}
 	public void pickUpWeapon(Weapon newWeapon){
-		if(weapon.hp<newWeapon.hp) weapon=newWeapon;
+		if(weapon==null||weapon.hp<newWeapon.hp) weapon=newWeapon;
 	}
 	
 	public void ability() {
