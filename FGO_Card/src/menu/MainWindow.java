@@ -49,6 +49,7 @@ import java.awt.event.ActionEvent;
 public class MainWindow extends JFrame {
 	public static MainWindow frame;
 	private static JPanel contentPane;
+	private static JPanel gameOverPane;
 	private static Battle battlePand;
 
 	private final JFXPanel fxPanel = new JFXPanel(); // for FX to play, not sure why
@@ -748,9 +749,10 @@ public class MainWindow extends JFrame {
 		battlePand.setBorder(new EmptyBorder(5, 5, 5, 5));
 		battlePand.setBackground(Color.BLACK);
 
-		battlePand.add(gameOverButton, 0);
+		gameOverPane.add(gameOverButton, 0);
 		battlePand.add(backButtonBattle, 1);
-
+		gameOverPane.setComponentZOrder(gameOverButton, 0);
+		
 		battlePand.MenuToBattle();
 		setContentPane(battlePand);
 		battlePand.setLayout(null);
@@ -790,6 +792,8 @@ public class MainWindow extends JFrame {
 
 	// when gameover call this function
 	public void GameOver() {
+		setContentPane(gameOverPane);
+		gameOverPane.setLayout(null);
 		gameOverButton.setVisible(true);
 	}
 
@@ -898,6 +902,10 @@ public class MainWindow extends JFrame {
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setBackground(Color.BLACK);
+		
+		gameOverPane = new JPanel();
+		gameOverPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		gameOverPane.setBackground(Color.BLACK);
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
