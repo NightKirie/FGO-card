@@ -57,6 +57,7 @@ public class Card extends JButton{
 					else if(Card.this instanceof Coin) field.pickGold(((Object)Card.this).hp);
 				}
 			}
+			field.updateCard();
 		}
 	} 
 }
