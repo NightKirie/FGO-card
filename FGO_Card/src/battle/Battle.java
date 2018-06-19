@@ -98,7 +98,6 @@ public class Battle extends JPanel {
 					map[i][j] = generater.nextCard();
 				}
 				map[i][j].setLocation(15 + 150 * i, 100 + 200 * j);
-				;
 				map[i][j].setField(this);
 
 				this.add(map[i][j], 0);
@@ -179,6 +178,7 @@ public class Battle extends JPanel {
 		}
 		map[target.x][target.y] = generater.nextCard();
 		map[target.x][target.y].setField(this);
+		map[target.x][target.y].setVisible(true);
 		add(map[target.x][target.y]);
 		updateCard();
 	}
