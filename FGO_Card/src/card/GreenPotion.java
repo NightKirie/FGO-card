@@ -5,21 +5,16 @@ import javax.swing.ImageIcon;
 public class GreenPotion extends Potion{
 	public GreenPotion(int size) {
 		super("GreenPotion");
-		hp=size;
-		hpShow.setText(Integer.toString(hp));
 		ImageIcon icon=new ImageIcon(this.getClass().getResource("/image/GreenPotion_Battle.jpg"));
 		Image image = icon.getImage();
 	    image = image.getScaledInstance(130,200, Image.SCALE_SMOOTH);
 	    icon.setImage(image);
 		setIcon(icon);
-		
+		hp=size;
+		updateCard();
 	}
 	
 	public void effect(Player input) {
 		input.hp-=this.hp;
-		if(input.hp <= 0)
-		{
-			//gameover
-		}
 	}
 }

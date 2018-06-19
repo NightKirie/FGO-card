@@ -15,12 +15,11 @@ public class Bomb extends Item {
 	    image = image.getScaledInstance(130,200, Image.SCALE_SMOOTH);
 	    icon.setImage(image);
 		setIcon(icon);
-		hpShow.setText(Integer.toString(hp));
 		bombcount.setBounds(0, 150,50,50);
 		bombcount.setFont(new Font("MV Boli", Font.PLAIN, 28));
 		bombcount.setForeground(Color.WHITE);
-		bombcount.setText(Integer.toString(countdown));
 		add(bombcount);
+		updateCard();
 	}
 	public int countdown=5;
 	public JLabel bombcount=new JLabel("0");

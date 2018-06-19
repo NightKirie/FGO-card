@@ -59,8 +59,7 @@ public class Card extends JButton{
 						field.moveCard(playerLocation,direction);
 					}
 					else if(Card.this instanceof Chest){
-						field.remove(Card.this);
-						field.addCard(new Coin(80+field.generater.nextInt(40)),Location);
+						((Chest)Card.this).open();
 					}
 				}
 			}
@@ -71,7 +70,6 @@ public class Card extends JButton{
 				}
 			}
 			field.updateStatus();
-			field.updateCard();
 		}
 	} 
 }

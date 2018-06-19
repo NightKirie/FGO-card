@@ -12,18 +12,10 @@ public class Object extends Card {
 		hpShow.setBounds(100,0,50,50);
 		hpShow.setFont(new Font("MV Boli", Font.PLAIN, 28));
 		hpShow.setForeground(Color.WHITE);
-		hpShow.setText(Integer.toString(hp));
 		add(hpShow);
 	}
 	public int hp=0;	
 	public JLabel hpShow=new JLabel("");
-	/*
-	 * object have hp,so every damage will in there first
-	 * ex code:
-	 public void getFireDamage(int damage){
-	 	hp-=damage;
-	 }
-	 */
 	public void updateHP(){
 		if(hp<=0){
 			Point p=field.getLocation((Card)this);

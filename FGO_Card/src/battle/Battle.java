@@ -103,7 +103,6 @@ public class Battle extends JPanel {
 
 				this.add(map[i][j], 0);
 				map[i][j].setVisible(true);
-
 			}
 		}
 		for (int i = 0; i < size; ++i) {
@@ -111,6 +110,7 @@ public class Battle extends JPanel {
 				System.out.println(map[i][j].getText() + i + " " + j);
 			}
 		}
+		updateCard();
 	}
 	public void updateStatus(){
 		for (int i = 0; i < size; ++i) {
@@ -123,6 +123,7 @@ public class Battle extends JPanel {
 				if(map[i][j] instanceof card.Object) ((card.Object)map[i][j]).updateHP();
 			}
 		}
+		updateCard();
 	}
 
 	public void updateCard() {

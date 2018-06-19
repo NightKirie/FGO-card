@@ -6,6 +6,7 @@ public class Trap extends Item {
 	public Trap(int hp){
 		super("Trap");
 		this.hp=hp;
+		updateCard();
 	}
 	public boolean hurttag=true;
 	@Override
@@ -15,20 +16,13 @@ public class Trap extends Item {
 	}
 	public void updateStatus()
 	{
-		if(hurttag)
-		{
-			hurttag=false;
-			this.setIcon(new ImageIcon(this.getClass().getResource("/image/Icon.png")));
-		}
-		if(!hurttag)
-		{
-			hurttag=true;
-			this.setIcon(new ImageIcon(this.getClass().getResource("/image/Icon.png")));
-		}
+		hurttag=!hurttag;
 	}
 	public void updateUI()
 	{
 		hpShow.setText(Integer.toString(hp));
+		if(hurttag) this.setIcon(new ImageIcon(this.getClass().getResource("/image/Icon.png")));
+		else this.setIcon(new ImageIcon(this.getClass().getResource("/image/Icon.png")));
 	}
 	public void StepTrap(Player player)
 	{

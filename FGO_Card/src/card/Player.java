@@ -20,7 +20,6 @@ public class Player extends Creature{
 		weaponpic.setBounds(100, 150, 50, 50);
 		weaponshow.setFont(new Font("MV Boli", Font.PLAIN, 28));
 		weaponshow.setForeground(Color.WHITE);
-		weaponshow.setText(Integer.toString(weapon.hp));
 		add(weaponshow);
 		add(weaponpic);
 	}
