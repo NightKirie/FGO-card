@@ -33,9 +33,9 @@ public class Player extends Creature{
 		ImageIcon icon=null;
 		if(weapon!=null)
 		{
-			if(weapon.weapontype.equals("sword"))
+			if(weapon.weapontype.equals("Sword"))
 				icon  = new ImageIcon(this.getClass().getResource("/image/Sword_Get.jpg"));
-			if(weapon.weapontype.equals("wand"))
+			if(weapon.weapontype.equals("Wand"))
 				icon  = new ImageIcon(this.getClass().getResource("/image/Wand_Get.jpg"));
 			//Image image = icon.getImage();
 		    //image = image.getScaledInstance(50,50, Image.SCALE_SMOOTH);
