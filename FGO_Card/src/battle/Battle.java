@@ -88,7 +88,7 @@ public class Battle extends JPanel {
 				player = new card.Lancer(character.ChooseCharacter.getChosenMaxHP());
 				break;
 			default:
-				player = new card.Lancer(10);
+				player = new card.Caster(10);
 				break;
 		}
 		for (int i = 0; i < size; ++i) {
