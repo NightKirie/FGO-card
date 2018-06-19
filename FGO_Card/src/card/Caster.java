@@ -45,7 +45,7 @@ public class Caster extends Player{
 				}
 			}
 		}
-		if(weapon.hp<=0) weapon=null;
+		if(weapon!=null&&weapon.hp<=0) weapon=null;
 		/*if(weapon.hp>0)
 		{
 			

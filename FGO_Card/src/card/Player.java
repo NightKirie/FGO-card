@@ -78,7 +78,7 @@ public class Player extends Creature{
 				}
 			}
 		}
-		if(weapon.hp<=0) weapon=null;
+		if(weapon!=null&&weapon.hp<=0) weapon=null;
 /*
 				if(weapon instanceof Wand)//fire wand attack
 				{
