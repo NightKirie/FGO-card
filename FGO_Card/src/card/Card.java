@@ -46,16 +46,19 @@ public class Card extends JButton{
 					if(Card.this instanceof Weapon){
 						((Player)field.player).pickUpWeapon((Weapon)Card.this);
 						if(direction>=0) field.moveCard(playerLocation,direction);
-						else field.map[Location.x][Location.y]=new Empty();
+						else field.addCard(new Empty(),Location);
 					}
 					else if(Card.this instanceof Potion){
 						((Potion)Card.this).effect((Player)field.player);
 						if(direction>=0) field.moveCard(playerLocation,direction);
-						else field.map[Location.x][Location.y]=new Empty();
+						else field.addCard(new Empty(),Location);
 					}
 					else if(Card.this instanceof Bomb) field.swapCard(Location,playerLocation);
 					else if(Card.this instanceof Coin) field.pickGold(((Object)Card.this).hp);
 				}
+			}
+			else if(Card.this instanceof Empty){
+				if(direction>=0) field.moveCard(playerLocation,direction);
 			}
 			field.updateCard();
 		}

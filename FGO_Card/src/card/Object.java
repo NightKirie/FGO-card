@@ -27,8 +27,7 @@ public class Object extends Card {
 	public void updateStatus(){
 		if(hp<=0){
 			Point p=field.getLocation((Card)this);
-			field.map[p.x][p.y]=new Coin(10);
-			this.setVisible(false);
+			field.addCard(new Coin(10),p);
 			field.remove((Card)this);
 		}
 	}

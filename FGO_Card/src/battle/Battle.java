@@ -177,11 +177,14 @@ public class Battle extends JPanel {
 				target = i;
 			}
 		}
-		map[target.x][target.y] = generater.nextCard();
-		map[target.x][target.y].setField(this);
-		map[target.x][target.y].setVisible(true);
-		add(map[target.x][target.y],0);
+		addCard(generater.nextCard(),target);
 		updateCard();
+	}
+	public void addCard(Card c,Point p){
+		map[p.x][p.y]=c;
+		c.setField(this);
+		c.setVisible(true);
+		add(c,0);
 	}
 
 	public void MenuToBattle() {
