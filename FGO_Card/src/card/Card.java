@@ -21,10 +21,6 @@ public class Card extends JButton{
 	public void setField(Battle f){field=f;}
 	public void updateStatus(){}
 	public void updateCard(){}
-	//public String scientificName=null;
-	//use getUIClassID() to get scientificName;(method in JButton)
-	//the scientificName should be in type:"class.class.name"
-	//ex:Object.Creature.Player.Lancer
 	
 	//public ImageIcon cardPicture=null;
 	//if need to change ImageIcon,use setIcon in set;(method in JButton)
@@ -40,31 +36,23 @@ public class Card extends JButton{
 			if(direction==-1&&!(field.player instanceof Assassin)) return;
 			String[] scientificName=Card.this.getText().split(".");
 			System.out.println(Card.this.getText());
-			if(scientificName[0].equals("Object")){
-				if(scientificName[1].equals("Creature")&&scientificName[2].equals("Monster")){
-					((Creature)field.player).attack((Creature)Card.this);
+			if(Card.this instanceof Object){
+				if(Card.this instanceof Monster){
+					((Player)field.player).attack((Creature)Card.this);
 				}
-			}
-			else{//Item
-				switch(scientificName[2]){
-					case "Weapon":
+				else{//Item
+					if(Card.this instanceof Weapon){
 						((Player)field.player).pickUpWeapon((Weapon)Card.this);
 						if(direction>=0) field.moveCard(playerLocation,direction);
 						else field.map[Location.x][Location.y]=new Empty();
-						break;
-					case "Potion":
+					}
+					else if(Card.this instanceof Potion){
 						((Potion)Card.this).effect((Player)field.player);
 						if(direction>=0) field.moveCard(playerLocation,direction);
 						else field.map[Location.x][Location.y]=new Empty();
-						break;
-					case "Trap":
-						break;
-					case "Bomb":
-						field.swapCard(Location,playerLocation);
-						break;
-					case "Coin":
-						field.pickGold(((Object)Card.this).hp);
-						break;
+					}
+					else if(Card.this instanceof Bomb) field.swapCard(Location,playerLocation);
+					else if(Card.this instanceof Coin) field.pickGold(((Object)Card.this).hp);
 				}
 			}
 		}
