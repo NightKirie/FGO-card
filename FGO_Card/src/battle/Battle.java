@@ -219,8 +219,7 @@ public class Battle extends JPanel {
 		System.out.println("gameover");
 		for(int i=0;i<size;++i){
 			for(int j=0;j<size;++j){
-				this.remove(map[i][j]);
-				map[i][j]=null;
+				map[i][j].setVisible(false);
 			}
 		}
 		MainWindow.goldAmount += gold;
