@@ -70,7 +70,7 @@ public class Player extends Creature{
 			if(weapon.hp>opponent.hp) damage=opponent.hp;
 			else damage=weapon.hp;
 			weapon.hp-=damage;
-			if(weapon instanceof Sword)	opponent.getSwordDamage(opponent.hp);
+			if(weapon instanceof Sword)	opponent.getSwordDamage(damage);
 			else if(weapon instanceof Wand){
 				for(;field.inField(enemyLocation);enemyLocation=Battle.addPoint(enemyLocation,Battle.relation[direction])){
 					if(field.map[enemyLocation.x][enemyLocation.y] instanceof Object)

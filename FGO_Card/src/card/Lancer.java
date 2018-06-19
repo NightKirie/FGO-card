@@ -35,7 +35,7 @@ public class Lancer extends Player{
 			else damage=weapon.hp;
 			weapon.hp-=damage;
 			if(weapon instanceof Sword){
-				opponent.getSwordDamage(opponent.hp);
+				opponent.getSwordDamage(damage);
 				field.swapCard(enemyLocation,myLocation);
 			}
 			else if(weapon instanceof Wand){
