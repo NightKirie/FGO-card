@@ -15,7 +15,7 @@ public class Bomb extends Item {
 	    image = image.getScaledInstance(130,200, Image.SCALE_SMOOTH);
 	    icon.setImage(image);
 		setIcon(icon);
-		hpShow.setText(Integer.toString(1));
+		hpShow.setText(Integer.toString(hp));
 		bombcount.setBounds(0, 150,50,50);
 		bombcount.setFont(new Font("MV Boli", Font.PLAIN, 28));
 		bombcount.setForeground(Color.WHITE);
@@ -41,7 +41,7 @@ public class Bomb extends Item {
 	}
 	public void updateCard(){
 		hpShow.setText(Integer.toString(hp));
-		bombcount.setText("count"+Integer.toString(this.hp));
+		bombcount.setText(Integer.toString(this.hp));
 	}
 	//I'm not sure this can work or not
 	//You can put it in updateStatus XD
