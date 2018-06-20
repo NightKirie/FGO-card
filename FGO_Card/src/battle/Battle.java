@@ -19,9 +19,10 @@ import javax.swing.border.EmptyBorder;
 
 public class Battle extends JPanel {
 	int size = 3, skillSize = 3;
-	int difficulty, gold=0;
+	int difficulty, gold=0,moves=0;
+	public int skillCD[]=new int[3],skillMaxCD[]={-1,-1,-1},skillID[]={0,0,0};
 	public randomCard generater;
-
+	Skill skill=new Skill(this);
 	public Card[][] map;
 	public Card player;
 
@@ -42,6 +43,7 @@ public class Battle extends JPanel {
 		}
 
 		for (int i = 0; i < 3; ++i) {
+			skillCD[i]=ChooseSkill.getSkillMaxCD(ChooseSkill.getChooseID(i));
 			skillCDText[i].setBounds(10 + 70 * i, 60, 55, 55);
 			skillCDText[i].setText("0");
 			skillCDText[i].setFont(new Font("MV Boli", Font.PLAIN, 28));
@@ -118,6 +120,13 @@ public class Battle extends JPanel {
 				map[i][j].updateStatus();
 			}
 		}
+		for(int i=0;i<skillCD.length;++i){
+			if(skillCD[i]>0) --skillCD[i];
+			else if(skillCD[i]==0){
+				skill.skillActive(skillID[i]);
+				skillCD[i]=skillMaxCD[i];
+			}
+		}
 		for (int i = 0; i < size; ++i) {
 			for (int j = 0; j < size; ++j) {
 				if(map[i][j] instanceof card.Object) ((card.Object)map[i][j]).updateHP();
@@ -132,6 +141,10 @@ public class Battle extends JPanel {
 				map[i][j].updateCard();
 				map[i][j].setLocation(15 + 150 * i, 100 + 200 * j);
 			}
+		}
+		//set skill Cd text
+		for (int i = 0; i < skillCDText.length; ++i) {
+			skillCDText[i].setText(Integer.toString(skillCD[i]));
 		}
 	}
 
@@ -199,19 +212,21 @@ public class Battle extends JPanel {
 	public void MenuToBattle() {
 		// set the skill icon
 		for (int i = 0; i < chosenSkillBattle.length; ++i) {
-			if (ChooseSkill.getChooseID(i) != 0)
+			if (ChooseSkill.getChooseID(i) != 0){
 				chosenSkillBattle[i].setIcon(ChooseSkill.getSkillMenu(ChooseSkill.getChooseID(i)));
-			else
-				chosenSkillBattle[i].setIcon(null);
+				chosenSkillBattle[i].setVisible(true);
+			}
+			else chosenSkillBattle[i].setIcon(null);
 		}
-		for (int i = 0; i < chosenSkillBattle.length; ++i)
-			chosenSkillBattle[i].setVisible(true);
 		// set backGround visible in battle
 		backGround.setVisible(true);
-		//set skill Cd text when initial
+
 		for (int i = 0; i < skillCDText.length; ++i) {
-			skillCDText[i].setVisible(true);
-			skillCDText[i].setText(Integer.toString(ChooseSkill.getSkillMaxCD(ChooseSkill.getChooseID(i))));
+			skillID[i]=ChooseSkill.getChooseID(i);
+			if(skillID[i]>0){
+				skillCD[i]=skillMaxCD[i]=ChooseSkill.getSkillMaxCD(skillID[i]);
+				skillCDText[i].setVisible(true);
+			}
 		}
 	}
 
