@@ -122,7 +122,7 @@ public class Battle extends JPanel {
 		}
 		for(int i=0;i<skillCD.length;++i){
 			if(skillCD[i]>0) --skillCD[i];
-			else if(skillCD[i]==0){
+			if(skillCD[i]==0){
 				skill.skillActive(skillID[i]);
 				skillCD[i]=skillMaxCD[i];
 			}
@@ -227,6 +227,7 @@ public class Battle extends JPanel {
 				skillCD[i]=skillMaxCD[i]=ChooseSkill.getSkillMaxCD(skillID[i]);
 				skillCDText[i].setVisible(true);
 			}
+			else skillCDText[i].setVisible(false);
 		}
 	}
 

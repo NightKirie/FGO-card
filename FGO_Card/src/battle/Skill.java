@@ -24,7 +24,7 @@ public class Skill{
 		}
 	}
 	void weaponBoost(){
-		((Player)field.player).weapon.hp+=3+ChooseSkill.getSkillLevel(2);
+		if(((Player)field.player).weapon!=null)	((Player)field.player).weapon.hp+=3+ChooseSkill.getSkillLevel(2);
 	}
 	void skillBoost(){
 		for(int i=0;i<3;++i){
