@@ -46,6 +46,7 @@ public class Skill{
 		}
 	}
 	void summonSword(){
-		((Player)field.player).pickUpWeapon(new Sword(5+2*ChooseSkill.getSkillLevel(5)*2));
+		if(field.player instanceof Caster) ((Player)field.player).pickUpWeapon(new Wand(5+2*ChooseSkill.getSkillLevel(5)*2));
+		else ((Player)field.player).pickUpWeapon(new Sword(5+2*ChooseSkill.getSkillLevel(5)*2));
 	}
 }
