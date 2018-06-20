@@ -32,7 +32,7 @@ public class Bomb extends Item {
 			Point location=field.getLocation(this);
 			for(int i=0;i<Battle.relation.length;++i){
 				Point p=Battle.addPoint(location,Battle.relation[i]);
-				if(field.inField(p)) ((Object)field.map[p.x][p.y]).getBombDamage(this.hp);
+				if(field.inField(p)&&(field.map[p.x][p.y] instanceof Object)) ((Object)field.map[p.x][p.y]).getBombDamage(this.hp);
 			}
 			field.addCard(new Coin(hp),location);
 			field.remove(this);
