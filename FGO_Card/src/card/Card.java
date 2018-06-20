@@ -71,7 +71,7 @@ public class Card extends JButton{
 					field.moveCard(playerLocation,direction);
 				}
 			}
-			field.updateStatus();
+			if(!(Card.this instanceof Player)) field.updateStatus();
 		}
 	} 
 }
