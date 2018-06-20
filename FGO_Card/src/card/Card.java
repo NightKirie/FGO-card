@@ -53,7 +53,7 @@ public class Card extends JButton{
 						if(direction>=0) field.moveCard(playerLocation,direction);
 						else field.addCard(new Empty(),Location);
 					}
-					else if(Card.this instanceof Bomb) field.swapCard(Location,playerLocation);
+					else if((Card.this instanceof Bomb)&&direction>=0) field.swapCard(Location,playerLocation);
 					else if(Card.this instanceof Coin){
 						field.pickGold(((Object)Card.this).hp);
 						field.remove(Card.this);
