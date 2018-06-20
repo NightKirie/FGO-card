@@ -43,6 +43,7 @@ public class Card extends JButton{
 				else{//Item
 					if(Card.this instanceof Weapon){
 						((Player)field.player).pickUpWeapon((Weapon)Card.this);
+						field.remove(Card.this);
 						if(direction>=0) field.moveCard(playerLocation,direction);
 						else field.addCard(new Empty(),Location);
 					}
@@ -56,7 +57,8 @@ public class Card extends JButton{
 					else if(Card.this instanceof Coin){
 						field.pickGold(((Object)Card.this).hp);
 						field.remove(Card.this);
-						field.moveCard(playerLocation,direction);
+						if(direction>=0)field.moveCard(playerLocation,direction);
+						else field.addCard(new Empty(),Location);
 					}
 					else if(Card.this instanceof Chest){
 						((Chest)Card.this).open();
