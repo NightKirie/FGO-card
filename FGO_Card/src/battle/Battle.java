@@ -38,13 +38,13 @@ public class Battle extends JPanel {
 
 		// frank870622 add/////////////////////////////////////////////////////
 		for (int i = 0; i < 3; ++i) {
-			chosenSkillBattle[i].setBounds(10 + 70 * i, 10, 55, 55);
+			chosenSkillBattle[i].setBounds(100 + 70 * i, 10, 55, 55);
 			this.add(chosenSkillBattle[i], 0);
 		}
 
 		for (int i = 0; i < 3; ++i) {
 			skillCD[i]=ChooseSkill.getSkillMaxCD(ChooseSkill.getChooseID(i));
-			skillCDText[i].setBounds(10 + 70 * i, 60, 55, 55);
+			skillCDText[i].setBounds(100 + 70 * i, 60, 55, 55);
 			skillCDText[i].setText("0");
 			skillCDText[i].setFont(new Font("MV Boli", Font.PLAIN, 28));
 			skillCDText[i].setForeground(Color.LIGHT_GRAY);

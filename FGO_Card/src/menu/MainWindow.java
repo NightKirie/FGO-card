@@ -214,7 +214,7 @@ public class MainWindow extends JFrame {
 
 		// Initial backButton in Menu
 		backButtonBattle.setIcon(new ImageIcon(MainWindow.class.getResource("/image/Back_Btn.png")));
-		backButtonBattle.setBounds(0, 621, 97, 99);
+		backButtonBattle.setBounds(0, 0, 97, 99);
 		backButtonBattle.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {

@@ -1,7 +1,7 @@
-character:1/1 2/1 3/1
-skill:1/1 2/1 3/1 4/1 5/1
+character:1/1 2/3 3/1
+skill:1/4 2/1 3/1 4/1 5/1
 character_chosen:2
-skill_chosen:1 4 0
-gold:3734
+skill_chosen:1 3 4
+gold:3461
 music:0.28
 fx:0.72
