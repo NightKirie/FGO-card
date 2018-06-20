@@ -13,7 +13,7 @@ public class Skill{
 			case 2:weaponBoost();break;
 			case 3:skillBoost();break;
 			case 4:healing();break;
-			case 5:summonSword();break;
+			case 5:summonWeapon();break;
 		}
 	}
 	void allDamage(){
@@ -45,7 +45,7 @@ public class Skill{
 			//heal poison?
 		}
 	}
-	void summonSword(){
+	void summonWeapon(){
 		if(field.player instanceof Caster) ((Player)field.player).pickUpWeapon(new Wand(5+2*ChooseSkill.getSkillLevel(5)*2));
 		else ((Player)field.player).pickUpWeapon(new Sword(5+2*ChooseSkill.getSkillLevel(5)*2));
 	}
