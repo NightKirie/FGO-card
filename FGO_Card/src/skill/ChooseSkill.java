@@ -91,7 +91,9 @@ public class ChooseSkill {
 	 * return the maxCD of skill
 	 */
 	public static int getSkillMaxCD(int ID){
-		return skillCD[ID-1];
+		if(ID <= 5 && ID > 0)
+			return skillCD[ID-1];
+		else return -1;
 	}
 	
 	/**
