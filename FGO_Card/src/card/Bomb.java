@@ -36,6 +36,7 @@ public class Bomb extends Item {
 				if(field.inField(p)&&(field.map[p.x][p.y] instanceof Object)) ((Object)field.map[p.x][p.y]).getBombDamage(this.hp);
 			}
 			field.addCard(new Coin(hp),location);
+			this.setVisible(false);
 			field.remove(this);
 		}
 	}
