@@ -186,6 +186,7 @@ public class Battle extends JPanel {
 		Point target = addPoint(position, relation[direction]);
 		remove(map[target.x][target.y]);
 		for (Point i = position; inField(i); i = addPoint(i, relation[backDirection])) {
+			map[target.x][target.y]=map[i.x][i.y];
 			timer.schedule(new Animation(this,i,direction),0,50);
 			target = i;
 		}
@@ -197,6 +198,7 @@ public class Battle extends JPanel {
 			} while (!inField(position));
 			direction=(backDirection+2)%4;
 			for (Point i = position; inField(i); i = addPoint(i, relation[backDirection])){
+				map[target.x][target.y]=map[i.x][i.y];
 				timer.schedule(new Animation(this,i,direction),0,50);
 				target = i;
 			}

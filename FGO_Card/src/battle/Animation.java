@@ -56,12 +56,9 @@ public class Animation extends TimerTask{
 			System.out.println(a+" "+b+" "+s+" "+rs+" "+direction);
 			if(direction>=0){//move one card
 				Point next=Battle.addPoint(a,Battle.relation[direction]);
-				field.map[next.x][next.y]=ca;
 				field.map[next.x][next.y].setLocation(15+150*next.x,100+200*next.y);
 			}
 			else if(rs!=null){//swap card
-				field.map[a.x][a.y]=cb;
-				field.map[b.x][b.y]=ca;
 				field.map[a.x][a.y].setLocation(15+150*a.x,100+200*a.y);
 				field.map[b.x][b.y].setLocation(15+150*b.x,100+200*b.y);
 			}
