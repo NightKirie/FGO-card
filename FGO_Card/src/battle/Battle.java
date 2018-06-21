@@ -143,7 +143,7 @@ public class Battle extends JPanel {
 			}
 		}
 		//set skill Cd text
-		for (int i = 0; i < skillCDText.length; ++i) {
+		for (int i = 0; i < skillCDText.length; ++i){
 			skillCDText[i].setText(Integer.toString(skillCD[i]));
 		}
 	}
@@ -245,23 +245,27 @@ public class Battle extends JPanel {
 		MainWindow.goldAmount += gold;
 		MainWindow.frame.GameOver();
 	}
-	public void moveCardAnimation(Point a,Point b){//not sure this translate...
+	public void moveCardAnimation(Point a,Point b){
+		Point sa=new Point(15+150*a.x,100+200*a.y);
 		Point s=new Point(15*(b.x-a.x),20*(b.y-a.y));
 		try{
 			for(int i=0;i<10;++i){
 				TimeUnit.MILLISECONDS.sleep(50);
-				map[a.x][a.y].setLocation(addPoint(map[a.x][a.y].getLocation(),s));
+				sa=addPoint(sa,s);
+				map[a.x][a.y].setLocation(sa);
 			}
 		}
 		catch(InterruptedException e){}
 	}
-	public void swapCardAnimation(Point a,Point b){//not sure this translate...
-		Point s=new Point(15*(b.x-a.x),20*(b.y-a.y));
-		Point rs=new Point(-s.x,-s.y);
+	public void swapCardAnimation(Point a,Point b){
+		Point sa=new Point(15+150*a.x,100+200*a.y),sb=new Point(15+150*b.x,100+200*b.y);
+		Point s=new Point(15*(b.x-a.x),20*(b.y-a.y)),rs=new Point(-s.x,-s.y);
 		try{
 			for(int i=0;i<10;++i){
-				map[a.x][a.y].setLocation(addPoint(map[a.x][a.y].getLocation(),s));
-				map[b.x][b.y].setLocation(addPoint(map[b.x][b.y].getLocation(),rs));
+				sa=addPoint(sa,s);
+				map[a.x][a.y].setLocation(sa);
+				sa=addPoint(sb,rs);
+				map[b.x][b.y].setLocation(sb);
 				TimeUnit.MILLISECONDS.sleep(50);
 			}
 		}
@@ -271,6 +275,7 @@ public class Battle extends JPanel {
 		Point o=getLocation();
 		Point a=addPoint(o,new Point(3,4));
 		Point b=addPoint(o,new Point(-3,-4));
+		System.out.println("the panel is at: "+o);
 		try{
 			for(int i=0;i<count;++i){
 				setLocation(a);
