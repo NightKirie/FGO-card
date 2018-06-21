@@ -17,8 +17,9 @@ public class Chest extends Item {
 	}
 	public void open(){
 		Point p=field.getLocation(this);
-		field.remove(this);
 		field.addCard(new Coin(80+field.generater.nextInt(40)),p);
+		this.setVisible(false);
+		field.remove(this);
 	}
 	@Override
 	public void effect(Player input) {

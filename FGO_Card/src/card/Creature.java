@@ -12,6 +12,7 @@ public abstract class Creature extends Object{
 		if(hp<=0){
 			Point p=field.getLocation(this);
 			field.addCard(new Coin(this.maxHP),p);
+			this.setVisible(false);
 			field.remove((Card)this);
 		}
 	}
