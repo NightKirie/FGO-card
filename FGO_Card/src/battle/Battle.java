@@ -187,7 +187,7 @@ public class Battle extends JPanel {
 		Point target = addPoint(position, relation[direction]);
 		remove(map[target.x][target.y]);
 		for (Point i = position; inField(i); i = addPoint(i, relation[backDirection])) {
-			timer.schedule(new Animation(this,i,direction),0,50);
+			timer.schedule(new Animation(this,new Point(i),direction),0,50);
 			target = i;
 		}
 		if (target.equals(position)) {// need move other card if player move from side
@@ -198,7 +198,7 @@ public class Battle extends JPanel {
 			} while (!inField(position));
 			direction=(backDirection+2)%4;
 			for (Point i = position; inField(i); i = addPoint(i, relation[backDirection])){
-				timer.schedule(new Animation(this,i,direction),0,50);
+				timer.schedule(new Animation(this,new Point(i),direction),0,50);
 				target = i;
 			}
 		}
