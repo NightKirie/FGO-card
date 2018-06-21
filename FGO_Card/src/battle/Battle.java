@@ -205,6 +205,7 @@ public class Battle extends JPanel {
 				timer.schedule(new Animation(this,map[i.x][i.y],direction),0,50);
 				map[target.x][target.y]=map[i.x][i.y];
 				target = i;
+				System.out.println("rotate!");
 			}
 		}
 		addCard(generater.nextCard(),target);
