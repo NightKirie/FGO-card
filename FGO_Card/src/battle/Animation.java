@@ -4,10 +4,9 @@ import card.Card;
 import java.util.TimerTask;
 import java.awt.Point;
 public class Animation extends TimerTask{
-	public Animation(Battle field,Point position,int direction){//move
+	public Animation(Battle field,Card c,int direction){//move
 		this.field=field;
-		a=new Point(position);
-		ca=field.map[a.x][a.y];
+		ca=c;
 		this.direction=direction;
 		s=new Point(15*Battle.relation[direction].x,20*Battle.relation[direction].y);
 		moveDelay=10;
@@ -55,12 +54,12 @@ public class Animation extends TimerTask{
 		else{
 			System.out.println(a+" "+b+" "+s+" "+rs+" "+direction);
 			if(direction>=0){//move one card
-				Point next=Battle.addPoint(a,Battle.relation[direction]);
-				field.map[next.x][next.y].setLocation(15+150*next.x,100+200*next.y);
+				//Point next=Battle.addPoint(a,Battle.relation[direction]);
+				//field.map[next.x][next.y].setLocation(15+150*next.x,100+200*next.y);
 			}
 			else if(rs!=null){//swap card
-				field.map[a.x][a.y].setLocation(15+150*a.x,100+200*a.y);
-				field.map[b.x][b.y].setLocation(15+150*b.x,100+200*b.y);
+				//field.map[a.x][a.y].setLocation(15+150*a.x,100+200*a.y);
+				//field.map[b.x][b.y].setLocation(15+150*b.x,100+200*b.y);
 			}
 			--field.animationDelay;
 			cancel();
