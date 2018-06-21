@@ -167,6 +167,9 @@ public class Battle extends JPanel {
 
 	public void swapCard(Point a, Point b) {
 		timer.schedule(new Animation(this,a,b),0,50);
+		Card tmp=map[a.x][a.y];
+		map[a.x][a.y]=map[b.x][b.y];
+		map[b.x][b.y]=tmp;
 	}
 
 	public static Point addPoint(Point a, Point b) {
