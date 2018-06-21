@@ -22,6 +22,7 @@ public class Battle extends JPanel {
 	int size = 3, skillSize = 3;
 	int difficulty, gold=0,moves=0;
 	public int skillCD[]=new int[3],skillMaxCD[]={-1,-1,-1},skillID[]={0,0,0};
+	public int animationDelay=0;
 	public randomCard generater;
 	Skill skill=new Skill(this);
 	public Card[][] map;
@@ -121,6 +122,7 @@ public class Battle extends JPanel {
 				map[i][j].updateStatus();
 			}
 		}
+		while(animationDelay!=0){}//wait animation
 		for(int i=0;i<skillCD.length;++i){
 			if(skillCD[i]>0) --skillCD[i];
 			if(skillCD[i]==0){

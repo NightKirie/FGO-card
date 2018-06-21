@@ -11,6 +11,7 @@ public class Animation extends TimerTask{
 		this.direction=direction;
 		s=new Point(15*Battle.relation[direction].x,20*Battle.relation[direction].y);
 		moveDelay=10;
+		++field.animationDelay;
 	}
 	public Animation(Battle field,Point a,Point b){//swap
 		this.field=field;
@@ -21,13 +22,15 @@ public class Animation extends TimerTask{
 		s=new Point(15*(b.x-a.x),20*(b.y-a.y));
 		rs=new Point(-s.x,-s.y);
 		moveDelay=10;
+		++field.animationDelay;
 	}
 	public Animation(Battle field,int Delay){//shake
+		this.field=field;
 		s=field.getLocation();
 		a=Battle.addPoint(s,new Point(3,4));
 		b=Battle.addPoint(s,new Point(-3,-4));
-		this.field=field;
 		moveDelay=Delay;
+		++field.animationDelay;
 	}
 	int moveDelay=0,direction=-1;
 	Point a=null,b=null,s=null,rs=null;
@@ -62,6 +65,7 @@ public class Animation extends TimerTask{
 				field.map[a.x][a.y].setLocation(15+150*a.x,100+200*a.y);
 				field.map[b.x][b.y].setLocation(15+150*b.x,100+200*b.y);
 			}
+			--field.animationDelay;
 			cancel();
 		}
 	}
