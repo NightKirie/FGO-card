@@ -214,6 +214,7 @@ public class Battle extends JPanel {
 		map[p.x][p.y]=c;
 		c.setField(this);
 		c.setVisible(true);
+		c.setLocation(15 + 150*p.x, 100 + 200*p.y);
 		add(c,0);
 	}
 
