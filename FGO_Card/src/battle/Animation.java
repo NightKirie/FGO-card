@@ -52,7 +52,6 @@ public class Animation extends TimerTask{
 			--moveDelay;	
 		}
 		else{
-			System.out.println(a+" "+b+" "+s+" "+rs+" "+direction);
 			if(direction>=0){//move one card
 				//Point next=Battle.addPoint(a,Battle.relation[direction]);
 				//field.map[next.x][next.y].setLocation(15+150*next.x,100+200*next.y);

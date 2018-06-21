@@ -134,6 +134,8 @@ public class Battle extends JPanel {
 				if(map[i][j] instanceof card.Object) ((card.Object)map[i][j]).updateHP();
 			}
 		}
+		++moves;
+		if(moves%20==0) ++randomCard.difficulty;
 		updateCard();
 	}
 
