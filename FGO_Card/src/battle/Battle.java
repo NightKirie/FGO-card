@@ -122,7 +122,6 @@ public class Battle extends JPanel {
 				map[i][j].updateStatus();
 			}
 		}
-		while(animationDelay!=0){}//wait animation
 		for(int i=0;i<skillCD.length;++i){
 			if(skillCD[i]>0) --skillCD[i];
 			if(skillCD[i]==0){
