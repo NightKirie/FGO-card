@@ -39,7 +39,9 @@ public class Card extends JButton{
 			if(direction==-1&&!(field.player instanceof Assassin)) return;
 			System.out.println(Card.this.getText()+"  "+Location);
 			if(Card.this instanceof Object){
-				if(Card.this instanceof Monster) ((Player)field.player).attack((Creature)Card.this);
+				if(Card.this instanceof Monster){
+					if(direction>=0) ((Player)field.player).attack((Creature)Card.this);
+				}
 				else{//Item
 					if(Card.this instanceof Weapon){
 						((Player)field.player).pickUpWeapon((Weapon)Card.this);
