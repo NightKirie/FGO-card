@@ -3,11 +3,11 @@ package battle;
 import card.*;
 import java.util.Random;
 public class randomCard extends Random{
-	public static int difficulty=0;
+	public static int difficulty=0,startdifficulty=0;
 	static int probabilityType=1,typeSize=8;
 	int[] probability,rate;
 	public randomCard(int gameDifficulty,int gameProbability){
-		difficulty=gameDifficulty;
+		startdifficulty=difficulty=gameDifficulty;
 		probability=new int[typeSize];
 		probabilityType=gameProbability;
 		rate=new int[typeSize];
@@ -16,11 +16,11 @@ public class randomCard extends Random{
 	public int getProbability(){return probabilityType;}
 	public void setProbability(int p){
 		switch(p){
-			case 1:rate[0]=30;rate[1]=1;rate[2]=15;rate[3]=15;rate[4]=15;rate[5]=7;rate[6]=10;rate[7]=10;break;
-			case 2:rate[0]=30;rate[1]=1;rate[2]=15;rate[3]=15;rate[4]=15;rate[5]=7;rate[6]=10;rate[7]=10;break;
-			case 3:rate[0]=30;rate[1]=1;rate[2]=15;rate[3]=15;rate[4]=15;rate[5]=7;rate[6]=10;rate[7]=10;break;
-			case 4:rate[0]=30;rate[1]=1;rate[2]=15;rate[3]=15;rate[4]=15;rate[5]=7;rate[6]=10;rate[7]=10;break;
-			case 5:rate[0]=30;rate[1]=1;rate[2]=15;rate[3]=15;rate[4]=15;rate[5]=7;rate[6]=10;rate[7]=10;break;
+			case 1:rate[0]=30;rate[1]=1;rate[2]=15;rate[3]=15;rate[4]=10;rate[5]=3;rate[6]=10;rate[7]=7;break;
+			case 2:rate[0]=30;rate[1]=2;rate[2]=15;rate[3]=10;rate[4]=10;rate[5]=5;rate[6]=10;rate[7]=7;break;
+			case 3:rate[0]=30;rate[1]=5;rate[2]=15;rate[3]=10;rate[4]=10;rate[5]=7;rate[6]=10;rate[7]=7;break;
+			case 4:rate[0]=30;rate[1]=10;rate[2]=15;rate[3]=10;rate[4]=7;rate[5]=9;rate[6]=15;rate[7]=7;break;
+			//case 5:rate[0]=30;rate[1]=1;rate[2]=15;rate[3]=15;rate[4]=15;rate[5]=7;rate[6]=10;rate[7]=10;break;
 		}
 		update();
 	}
@@ -43,13 +43,13 @@ public class randomCard extends Random{
 	public Card nextCard(){
 		int r=nextInt(probability[typeSize-1]);
 		Card newCard=null;
-		if(r<probability[0]) newCard=new Minion(difficulty*5+nextInt(5));
-		else if(r<probability[1]) newCard=new Boss(difficulty*20+nextInt(10));
-		else if(r<probability[2]) newCard=new Sword(difficulty*5);
-		else if(r<probability[3]) newCard=new Wand(difficulty*5);
-		else if(r<probability[4]) newCard=new RedPotion(3+nextInt(5));
-		else if(r<probability[5]) newCard=new GreenPotion(difficulty*5+nextInt(3));
-		else if(r<probability[6]) newCard=new Bomb(difficulty*5+nextInt(3));
+		if(r<probability[0]) newCard=new Minion(startdifficulty*3+difficulty*2+nextInt(5));
+		else if(r<probability[1]) newCard=new Boss(startdifficulty*3+difficulty*20+nextInt(10));
+		else if(r<probability[2]) newCard=new Sword(startdifficulty*2+difficulty*2+nextInt(5));
+		else if(r<probability[3]) newCard=new Wand(startdifficulty*2+difficulty*2+nextInt(5));
+		else if(r<probability[4]) newCard=new RedPotion(3+nextInt(6));
+		else if(r<probability[5]) newCard=new GreenPotion(startdifficulty*4+difficulty*1+nextInt(3));
+		else if(r<probability[6]) newCard=new Bomb(startdifficulty*2+difficulty*3+nextInt(3));
 		else if(r<probability[7]) newCard=new Chest(nextInt(5)+5);
 		newCard.updateUI();
 		return newCard;

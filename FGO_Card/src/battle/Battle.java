@@ -135,7 +135,7 @@ public class Battle extends JPanel {
 			}
 		}
 		++moves;
-		if(moves%20==0) ++randomCard.difficulty;
+		if(moves%10==0) ++randomCard.difficulty;
 		updateCard();
 	}
 
