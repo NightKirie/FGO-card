@@ -182,12 +182,13 @@ public class Battle extends JPanel {
 	public void moveCard(Point position, int direction) {
 		// 0:up,1:right,2:down,3:left
 		// when use this function,the card on next direction will be remove
+		if(direction<0) System.out.println("move no direction error");
 		int backDirection = (direction + 2) % 4;
 		Point target = addPoint(position, relation[direction]);
 		remove(map[target.x][target.y]);
 		for (Point i = position; inField(i); i = addPoint(i, relation[backDirection])) {
-			map[target.x][target.y]=map[i.x][i.y];
 			timer.schedule(new Animation(this,i,direction),0,50);
+			map[target.x][target.y]=map[i.x][i.y];
 			target = i;
 		}
 		if (target.equals(position)) {// need move other card if player move from side
@@ -198,8 +199,8 @@ public class Battle extends JPanel {
 			} while (!inField(position));
 			direction=(backDirection+2)%4;
 			for (Point i = position; inField(i); i = addPoint(i, relation[backDirection])){
-				map[target.x][target.y]=map[i.x][i.y];
 				timer.schedule(new Animation(this,i,direction),0,50);
+				map[target.x][target.y]=map[i.x][i.y];
 				target = i;
 			}
 		}
