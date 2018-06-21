@@ -1,5 +1,6 @@
 package battle;
 
+import card.Card;
 import java.util.TimerTask;
 import java.awt.Point;
 public class Animation extends TimerTask{
@@ -43,6 +44,17 @@ public class Animation extends TimerTask{
 			}
 			--moveDelay;	
 		}
-		else cancel();
+		else{
+			if(direction>=0){//move one card
+				Point next=Battle.addPoint(a,Battle.relation[direction]);
+				field.map[next.x][next.y]=field.map[a.x][a.y];
+			}
+			else if(rs!=null){//swap card
+				Card tmp=field.map[a.x][a.y];
+				field.map[a.x][a.y]=field.map[b.x][b.y];
+				field.map[b.x][b.y]=tmp;
+			}
+			cancel();
+		}
 	}
 }
