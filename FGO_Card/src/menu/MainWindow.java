@@ -756,7 +756,9 @@ public class MainWindow extends JFrame {
 		battlePand.MenuToBattle();
 		setContentPane(battlePand);
 		battlePand.setLayout(null);
-
+		
+		backButtonBattle.setEnabled(false);
+		backButtonBattle.setEnabled(true);
 		backButtonBattle.setVisible(true);
 		gameOverButton.setVisible(false);
 		startButton.setEnabled(false);
