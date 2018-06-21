@@ -8,14 +8,14 @@ import menu.MainWindow;
 import menu.RoundedTextField;
 import card.*;
 
-//import character.Caster;
-
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
+
+import java.util.concurrent.TimeUnit;
 
 public class Battle extends JPanel {
 	int size = 3, skillSize = 3;
@@ -164,6 +164,7 @@ public class Battle extends JPanel {
 	}
 
 	public void swapCard(Point a, Point b) {
+		swapCardAnimation(a,b);
 		Card tmp = map[a.x][a.y];
 		map[a.x][a.y] = map[b.x][b.y];
 		map[b.x][b.y] = tmp;
@@ -186,6 +187,7 @@ public class Battle extends JPanel {
 		Point target = addPoint(position, relation[direction]);
 		remove(map[target.x][target.y]);
 		for (Point i = position; inField(i); i = addPoint(i, relation[backDirection])) {
+			moveCardAnimation(i,target);
 			map[target.x][target.y] = map[i.x][i.y];
 			target = i;
 		}
@@ -195,6 +197,7 @@ public class Battle extends JPanel {
 				position = addPoint(position, relation[direction]);
 			} while (!inField(position));
 			for (Point i = position; inField(i); i = addPoint(i, relation[backDirection])) {
+				moveCardAnimation(i,target);
 				map[target.x][target.y] = map[i.x][i.y];
 				target = i;
 			}
@@ -241,5 +244,42 @@ public class Battle extends JPanel {
 		}
 		MainWindow.goldAmount += gold;
 		MainWindow.frame.GameOver();
+	}
+	public void moveCardAnimation(Point a,Point b){//not sure this translate...
+		Point s=new Point(15*(b.x-a.x),20*(b.y-a.y));
+		try{
+			for(int i=0;i<10;++i){
+				TimeUnit.MILLISECONDS.sleep(50);
+				map[a.x][a.y].setLocation(addPoint(map[a.x][a.y].getLocation(),s));
+			}
+		}
+		catch(InterruptedException e){}
+	}
+	public void swapCardAnimation(Point a,Point b){//not sure this translate...
+		Point s=new Point(15*(b.x-a.x),20*(b.y-a.y));
+		Point rs=new Point(-s.x,-s.y);
+		try{
+			for(int i=0;i<10;++i){
+				map[a.x][a.y].setLocation(addPoint(map[a.x][a.y].getLocation(),s));
+				map[b.x][b.y].setLocation(addPoint(map[b.x][b.y].getLocation(),rs));
+				TimeUnit.MILLISECONDS.sleep(50);
+			}
+		}
+		catch(InterruptedException e){}
+	}
+	public void shakeAnimation(int count){
+		Point o=getLocation();
+		Point a=addPoint(o,new Point(3,4));
+		Point b=addPoint(o,new Point(-3,-4));
+		try{
+			for(int i=0;i<count;++i){
+				setLocation(a);
+				TimeUnit.MILLISECONDS.sleep(50);
+				setLocation(b);
+				TimeUnit.MILLISECONDS.sleep(50);
+			}
+		}
+		catch(InterruptedException e){}
+		setLocation(o);
 	}
 }

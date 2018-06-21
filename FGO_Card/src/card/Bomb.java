@@ -30,6 +30,7 @@ public class Bomb extends Item {
 		if(countdown==0)
 		{
 			Point location=field.getLocation(this);
+			field.shakeAnimation(5);
 			for(int i=0;i<Battle.relation.length;++i){
 				Point p=Battle.addPoint(location,Battle.relation[i]);
 				if(field.inField(p)&&(field.map[p.x][p.y] instanceof Object)) ((Object)field.map[p.x][p.y]).getBombDamage(this.hp);
