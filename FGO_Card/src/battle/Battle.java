@@ -197,12 +197,13 @@ public class Battle extends JPanel {
 		}
 		if (target.equals(position)) {// need move other card if player move from side
 			backDirection=direction;
+			Point newPos=position;
 			do {// check where the next card need to be move
 				backDirection = (backDirection + 1) % 4;
-				position = addPoint(position, relation[backDirection]);
-			} while (!inField(position));
+				newPos = addPoint(position, relation[backDirection]);
+			} while (!inField(newPos));
 			direction=(backDirection+2)%4;
-			for (Point i = position; inField(i); i = addPoint(i, relation[backDirection])){
+			for (Point i = newPos; inField(i); i = addPoint(i, relation[backDirection])){
 				timer.schedule(new Animation(this,map[i.x][i.y],direction),0,50);
 				map[target.x][target.y]=map[i.x][i.y];
 				target = i;
