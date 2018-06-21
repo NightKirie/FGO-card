@@ -73,6 +73,10 @@ public class MainWindow extends JFrame {
 	private final Button upgradeButton = new Button();
 	private final Button backButtonBattle = new Button();
 	private final Button gameOverButton = new Button(); // the gameover button
+	private final Button easyButton = new Button();
+	private final Button medianButton = new Button();
+	private final Button hardButton = new Button();
+	private final Button hellButton = new Button();
 
 	private final SkillButton[] showSkill = { new SkillButton(), new SkillButton(), new SkillButton(),
 			new SkillButton(), new SkillButton() };
@@ -147,10 +151,7 @@ public class MainWindow extends JFrame {
 			chosenSkillMenu[i].setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			contentPane.add(chosenSkillMenu[i]);
 		}
-		skillButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-			}
-		});
+
 
 		// Initial skillButton in Menu
 		skillButton.setIcon(new ImageIcon(MainWindow.class.getResource("/image/Skill_Btn.png")));
@@ -169,7 +170,7 @@ public class MainWindow extends JFrame {
 		startButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
-				StartGame();
+				DifficultyChoose();
 			}
 		});
 		contentPane.add(startButton);
@@ -354,6 +355,50 @@ public class MainWindow extends JFrame {
 			}
 		});
 		contentPane.add(upgradeButton);
+		
+		//Initial the easy button in difficulty
+		easyButton.setIcon(new ImageIcon(MainWindow.class.getResource("/image/Easy_Btn.png")));
+		easyButton.setBounds(115, 255, 95, 135);
+		easyButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent arg0) {
+				StartGame(1);
+			}
+		});
+		contentPane.add(easyButton);
+		
+		//Initial the median button in difficulty
+		medianButton.setIcon(new ImageIcon(MainWindow.class.getResource("/image/Median_Btn.png")));
+		medianButton.setBounds(250, 255, 95, 135);
+		medianButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent arg0) {
+				StartGame(1);
+			}
+		});
+		contentPane.add(medianButton);
+		
+		//Initial the hard button in difficulty
+		hardButton.setIcon(new ImageIcon(MainWindow.class.getResource("/image/Hard_Btn.png")));
+		hardButton.setBounds(115, 410, 95, 135);
+		hardButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent arg0) {
+				StartGame(3);
+			}
+		});
+		contentPane.add(hardButton);
+		
+		//Initial the hell button in difficulty
+		hellButton.setIcon(new ImageIcon(MainWindow.class.getResource("/image/Hell_Btn.png")));
+		hellButton.setBounds(250, 410, 95, 135);
+		hellButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent arg0) {
+				StartGame(4);
+			}
+		});
+		contentPane.add(hellButton);
 
 		// Initial the skills in skill page
 		for (int i = 0; i < showSkill.length; ++i) {
@@ -509,6 +554,10 @@ public class MainWindow extends JFrame {
 		settingButton.setVisible(false);
 		confirmButton.setVisible(false);
 		upgradeButton.setVisible(false);
+		easyButton.setVisible(false);
+		medianButton.setVisible(false);
+		hardButton.setVisible(false);
+		hellButton.setVisible(false);
 		for (int i = 0; i < showSkill.length; ++i)
 			showSkill[i].setVisible(false);
 		musicSlider.setVisible(false);
@@ -561,6 +610,10 @@ public class MainWindow extends JFrame {
 		settingButton.setVisible(true);
 		confirmButton.setVisible(false);
 		upgradeButton.setVisible(false);
+		easyButton.setVisible(false);
+		medianButton.setVisible(false);
+		hardButton.setVisible(false);
+		hellButton.setVisible(false);
 		for (int i = 0; i < showSkill.length; ++i)
 			showSkill[i].setVisible(false);
 		musicSlider.setVisible(false);
@@ -598,6 +651,10 @@ public class MainWindow extends JFrame {
 		settingButton.setVisible(false);
 		confirmButton.setVisible(true);
 		upgradeButton.setVisible(true);
+		easyButton.setVisible(false);
+		medianButton.setVisible(false);
+		hardButton.setVisible(false);
+		hellButton.setVisible(false);
 		for (int i = 0; i < showSkill.length; ++i)
 			showSkill[i].setVisible(false);
 		musicSlider.setVisible(false);
@@ -646,6 +703,10 @@ public class MainWindow extends JFrame {
 		settingButton.setVisible(false);
 		confirmButton.setVisible(true);
 		upgradeButton.setVisible(true);
+		easyButton.setVisible(false);
+		medianButton.setVisible(false);
+		hardButton.setVisible(false);
+		hellButton.setVisible(false);
 		for (int i = 0; i < showSkill.length; ++i)
 			showSkill[i].setVisible(true);
 		musicSlider.setVisible(false);
@@ -681,6 +742,10 @@ public class MainWindow extends JFrame {
 		settingButton.setVisible(false);
 		confirmButton.setVisible(false);
 		upgradeButton.setVisible(false);
+		easyButton.setVisible(false);
+		medianButton.setVisible(false);
+		hardButton.setVisible(false);
+		hellButton.setVisible(false);
 		for (int i = 0; i < showSkill.length; ++i)
 			showSkill[i].setVisible(false);
 		musicSlider.setVisible(false);
@@ -717,6 +782,10 @@ public class MainWindow extends JFrame {
 		settingButton.setVisible(false);
 		confirmButton.setVisible(false);
 		upgradeButton.setVisible(false);
+		easyButton.setVisible(false);
+		medianButton.setVisible(false);
+		hardButton.setVisible(false);
+		hellButton.setVisible(false);
 		for (int i = 0; i < showSkill.length; ++i)
 			showSkill[i].setVisible(false);
 		musicSlider.setVisible(true);
@@ -737,15 +806,61 @@ public class MainWindow extends JFrame {
 		fxSlider.setValue((int) (fxVolume * 100.0));
 	}
 
+	
+	public void DifficultyChoose() {
+		for (int i = 0; i < chosenSkillMenu.length; ++i)
+			chosenSkillMenu[i].setVisible(false);
+		for (int i = 0; i < chosenSkillBattle.length; ++i)
+			chosenSkillBattle[i].setVisible(false);
+		skillButton.setVisible(false);
+		startButton.setVisible(false);
+		chosenCharacterMenu.setVisible(false);
+		chararcterButton.setVisible(false);
+		tutorialButton.setVisible(false);
+		backButton.setVisible(true);
+		leftButton.setVisible(false);
+		rightButton.setVisible(false);
+		settingButton.setVisible(false);
+		confirmButton.setVisible(false);
+		upgradeButton.setVisible(false);
+		easyButton.setVisible(true);
+		medianButton.setVisible(true);
+		hardButton.setVisible(true);
+		hellButton.setVisible(true);
+		for (int i = 0; i < showSkill.length; ++i)
+			showSkill[i].setVisible(false);
+		musicSlider.setVisible(false);
+		fxSlider.setVisible(false);
+		goldAmountIcon.setVisible(false);
+		goldAmountNumber.setVisible(false);
+		goldBattleNumber.setVisible(false);
+		levelText.setVisible(false);
+		upgradeText.setVisible(false);
+		menuTitle.setVisible(true);
+		tutorial.setVisible(false);
+		showCharacter.setVisible(false);
+		settingText.setVisible(false);
+		backGround.setVisible(true);
+		
+		//for unknown reason to reset the button
+		easyButton.setEnabled(false);
+		easyButton.setEnabled(true);
+		medianButton.setEnabled(false);
+		medianButton.setEnabled(true);
+		hardButton.setEnabled(false);
+		hardButton.setEnabled(true);
+		hellButton.setEnabled(false);
+		hellButton.setEnabled(true);
+	}
 	/**
 	 * call to start the game
 	 */
-	public void StartGame() {
+	public void StartGame(int difficulty) {
 		menuBGM.stop();
 		gameBGM.setCycleCount(MediaPlayer.INDEFINITE);
 		gameBGM.play();
 
-		battlePand = new Battle(1);
+		battlePand = new Battle(difficulty);
 		battlePand.setBorder(new EmptyBorder(5, 5, 5, 5));
 		battlePand.setBackground(Color.BLACK);
 
