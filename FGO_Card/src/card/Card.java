@@ -26,7 +26,7 @@ public class Card extends JButton{
 	//if need to change ImageIcon,use setIcon in set;(method in JButton)
 	private class buttonListener implements ActionListener{
 		public void actionPerformed(ActionEvent e){
-			System.out.println("hello");
+			//System.out.println("hello");
 			Point Location=field.getLocation(Card.this);
 			Point playerLocation=field.getLocation(field.player);
 			int direction=-1;
@@ -37,7 +37,7 @@ public class Card extends JButton{
 				}
 			}
 			if(direction==-1&&!(field.player instanceof Assassin)) return;
-			System.out.println(Card.this.getText()+"  "+Location);
+			//System.out.println(Card.this.getText()+"  "+Location);
 			if(Card.this instanceof Object){
 				if(Card.this instanceof Monster){
 					if(direction>=0){

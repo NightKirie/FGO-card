@@ -108,11 +108,11 @@ public class Battle extends JPanel {
 				map[i][j].setVisible(true);
 			}
 		}
-		for (int i = 0; i < size; ++i) {
+		/*for (int i = 0; i < size; ++i) {
 			for (int j = 0; j < size; ++j) {
 				System.out.println(map[i][j].getText() + i + " " + j);
 			}
-		}
+		}*/
 		updateCard();
 	}
 	public void updateStatus(){
