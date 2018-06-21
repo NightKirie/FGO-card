@@ -193,6 +193,7 @@ public class Battle extends JPanel {
 			timer.schedule(new Animation(this,map[i.x][i.y],direction),0,50);
 			map[target.x][target.y]=map[i.x][i.y];
 			target = i;
+			System.out.println("direction1:"+direction);
 		}
 		if (target.equals(position)) {// need move other card if player move from side
 			backDirection=direction;
@@ -205,7 +206,7 @@ public class Battle extends JPanel {
 				timer.schedule(new Animation(this,map[i.x][i.y],direction),0,50);
 				map[target.x][target.y]=map[i.x][i.y];
 				target = i;
-				System.out.println("rotate!");
+				System.out.println("direction2:"+direction);
 			}
 		}
 		addCard(generater.nextCard(),target);
