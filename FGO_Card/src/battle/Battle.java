@@ -137,14 +137,12 @@ public class Battle extends JPanel {
 	}
 
 	public void updateCard() {
-		/*
 		for (int i = 0; i < size; ++i) {
 			for (int j = 0; j < size; ++j) {
 				map[i][j].updateCard();
-				map[i][j].setLocation(15 + 150 * i, 100 + 200 * j);
+				//map[i][j].setLocation(15 + 150 * i, 100 + 200 * j);
 			}
 		}
-		*/
 		//set skill Cd text
 		for (int i = 0; i < skillCDText.length; ++i){
 			skillCDText[i].setText(Integer.toString(skillCD[i]));
