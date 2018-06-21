@@ -15,9 +15,10 @@ import java.awt.event.MouseEvent;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
-import java.util.concurrent.TimeUnit;
+import java.util.Timer;
 
 public class Battle extends JPanel {
+	public Timer timer=new Timer();
 	int size = 3, skillSize = 3;
 	int difficulty, gold=0,moves=0;
 	public int skillCD[]=new int[3],skillMaxCD[]={-1,-1,-1},skillID[]={0,0,0};
@@ -164,7 +165,7 @@ public class Battle extends JPanel {
 	}
 
 	public void swapCard(Point a, Point b) {
-		swapCardAnimation(a,b);
+		timer.schedule(new Animation(this,a,b),50);
 		Card tmp = map[a.x][a.y];
 		map[a.x][a.y] = map[b.x][b.y];
 		map[b.x][b.y] = tmp;
@@ -187,17 +188,19 @@ public class Battle extends JPanel {
 		Point target = addPoint(position, relation[direction]);
 		remove(map[target.x][target.y]);
 		for (Point i = position; inField(i); i = addPoint(i, relation[backDirection])) {
-			moveCardAnimation(i,target);
+			timer.schedule(new Animation(this,i,direction),50);
 			map[target.x][target.y] = map[i.x][i.y];
 			target = i;
 		}
 		if (target.equals(position)) {// need move other card if player move from side
+			backDirection=direction;
 			do {// check where the next card need to be move
-				direction = (direction + 1) % 4;
-				position = addPoint(position, relation[direction]);
+				backDirection = (backDirection + 1) % 4;
+				position = addPoint(position, relation[backDirection]);
 			} while (!inField(position));
+			direction=(backDirection+2)%4;
 			for (Point i = position; inField(i); i = addPoint(i, relation[backDirection])) {
-				moveCardAnimation(i,target);
+				timer.schedule(new Animation(this,i,direction),50);
 				map[target.x][target.y] = map[i.x][i.y];
 				target = i;
 			}
@@ -244,47 +247,5 @@ public class Battle extends JPanel {
 		}
 		MainWindow.goldAmount += gold;
 		MainWindow.frame.GameOver();
-	}
-	public void moveCardAnimation(Point a,Point b){
-		Point sa=new Point(15+150*a.x,100+200*a.y);
-		Point s=new Point(15*(b.x-a.x),20*(b.y-a.y));
-		try{
-			for(int i=0;i<10;++i){
-				TimeUnit.MILLISECONDS.sleep(50);
-				sa=addPoint(sa,s);
-				map[a.x][a.y].setLocation(sa);
-			}
-		}
-		catch(InterruptedException e){}
-	}
-	public void swapCardAnimation(Point a,Point b){
-		Point sa=new Point(15+150*a.x,100+200*a.y),sb=new Point(15+150*b.x,100+200*b.y);
-		Point s=new Point(15*(b.x-a.x),20*(b.y-a.y)),rs=new Point(-s.x,-s.y);
-		try{
-			for(int i=0;i<10;++i){
-				sa=addPoint(sa,s);
-				map[a.x][a.y].setLocation(sa);
-				sa=addPoint(sb,rs);
-				map[b.x][b.y].setLocation(sb);
-				TimeUnit.MILLISECONDS.sleep(50);
-			}
-		}
-		catch(InterruptedException e){}
-	}
-	public void shakeAnimation(int count){
-		Point o=getLocation();
-		Point a=addPoint(o,new Point(3,4));
-		Point b=addPoint(o,new Point(-3,-4));
-		System.out.println("the panel is at: "+o);
-		try{
-			for(int i=0;i<count;++i){
-				setLocation(a);
-				TimeUnit.MILLISECONDS.sleep(50);
-				setLocation(b);
-				TimeUnit.MILLISECONDS.sleep(50);
-			}
-		}
-		catch(InterruptedException e){}
-		setLocation(o);
 	}
 }
