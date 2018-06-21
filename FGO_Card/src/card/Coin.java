@@ -1,6 +1,7 @@
 package card;
 
 import javax.swing.ImageIcon;
+import java.awt.Point;
 
 public class Coin extends Item{
 	public Coin(int size) {
@@ -9,7 +10,16 @@ public class Coin extends Item{
 		setIcon(new ImageIcon(this.getClass().getResource("/image/Gold_Battle.jpg")));
 		updateCard();
 	}
-	public  void effect(Player input)
+	public void updateHP(){
+		if(hp<=0){
+			Point p=field.getLocation(this);
+			field.addCard(new Empty(),p);
+			this.setVisible(false);
+			field.remove((Card)this);
+		}
+	
+	}
+	public void effect(Player input)
 	{
 		
 	}

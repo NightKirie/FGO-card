@@ -21,6 +21,7 @@ public class Object extends Card {
 			Point p=field.getLocation((Card)this);
 			if(p!=null){
 				field.addCard(new Coin(10),p);
+				this.setVisible(false);
 				field.remove((Card)this);
 			}
 		}
