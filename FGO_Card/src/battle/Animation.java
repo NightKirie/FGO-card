@@ -40,15 +40,15 @@ public class Animation extends TimerTask{
 	public void run(){
 		if(moveDelay>0){
 			if(direction>=0){//move one card
-				ca.setLocation(Battle.addPoint(field.map[a.x][a.y].getLocation(),s));
+				ca.setLocation(Battle.addPoint(ca.getLocation(),s));
 			}
 			else if(rs==null){//shake
 				if(moveDelay%2==0) field.setLocation(a);
 				else field.setLocation(b);
 			}
 			else{//swap
-				ca.setLocation(Battle.addPoint(field.map[a.x][a.y].getLocation(),s));
-				cb.setLocation(Battle.addPoint(field.map[b.x][b.y].getLocation(),rs));
+				ca.setLocation(Battle.addPoint(ca.getLocation(),s));
+				cb.setLocation(Battle.addPoint(ca.getLocation(),rs));
 			}
 			--moveDelay;	
 		}
