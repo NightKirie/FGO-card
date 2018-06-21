@@ -48,7 +48,7 @@ public class Animation extends TimerTask{
 			}
 			else{//swap
 				ca.setLocation(Battle.addPoint(ca.getLocation(),s));
-				cb.setLocation(Battle.addPoint(ca.getLocation(),rs));
+				cb.setLocation(Battle.addPoint(cb.getLocation(),rs));
 			}
 			--moveDelay;	
 		}
