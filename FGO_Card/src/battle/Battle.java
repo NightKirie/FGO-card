@@ -167,7 +167,7 @@ public class Battle extends JPanel {
 	}
 
 	public void swapCard(Point a, Point b) {
-		timer.schedule(new Animation(this,a,b),50);
+		timer.schedule(new Animation(this,a,b),0,50);
 	}
 
 	public static Point addPoint(Point a, Point b) {
@@ -187,7 +187,7 @@ public class Battle extends JPanel {
 		Point target = addPoint(position, relation[direction]);
 		remove(map[target.x][target.y]);
 		for (Point i = position; inField(i); i = addPoint(i, relation[backDirection])) {
-			timer.schedule(new Animation(this,i,direction),50);
+			timer.schedule(new Animation(this,i,direction),0,50);
 			target = i;
 		}
 		if (target.equals(position)) {// need move other card if player move from side
@@ -197,8 +197,8 @@ public class Battle extends JPanel {
 				position = addPoint(position, relation[backDirection]);
 			} while (!inField(position));
 			direction=(backDirection+2)%4;
-			for (Point i = position; inField(i); i = addPoint(i, relation[backDirection])) {
-				timer.schedule(new Animation(this,i,direction),50);
+			for (Point i = position; inField(i); i = addPoint(i, relation[backDirection])){
+				timer.schedule(new Animation(this,i,direction),0,50);
 				target = i;
 			}
 		}
