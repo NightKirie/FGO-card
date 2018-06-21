@@ -6,14 +6,15 @@ import java.awt.Point;
 public class Animation extends TimerTask{
 	public Animation(Battle field,Point position,int direction){//move
 		this.field=field;
-		a=position;
+		a=new Point(position);
 		this.direction=direction;
+		s=new Point(15*Battle.relation[direction].x,20*Battle.relation[direction].y);
 		moveDelay=10;
 	}
 	public Animation(Battle field,Point a,Point b){//swap
 		this.field=field;
-		this.a=a;
-		this.b=b;
+		this.a=new Point(a);
+		this.b=new Point(b);
 		s=new Point(15*(b.x-a.x),20*(b.y-a.y));
 		rs=new Point(-s.x,-s.y);
 		moveDelay=10;
@@ -32,7 +33,7 @@ public class Animation extends TimerTask{
 	public void run(){
 		if(moveDelay>0){
 			if(direction>=0){//move one card
-				field.map[a.x][a.y].setLocation(15*Battle.relation[direction].x,20*Battle.relation[direction].y);
+				field.map[a.x][a.y].setLocation(Battle.addPoint(field.map[a.x][a.y].getLocation(),s));
 			}
 			else if(rs==null){//shake
 				if(moveDelay%2==0) field.setLocation(a);
