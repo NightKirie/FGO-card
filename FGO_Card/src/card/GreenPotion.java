@@ -16,5 +16,9 @@ public class GreenPotion extends Potion{
 	
 	public void effect(Player input) {
 		input.hp-=this.hp;
+		if(input.hp<=0)
+		{
+			input.hp=1;
+		}
 	}
 }
