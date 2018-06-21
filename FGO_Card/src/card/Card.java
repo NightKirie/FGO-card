@@ -50,14 +50,20 @@ public class Card extends JButton{
 						((Player)field.player).pickUpWeapon((Weapon)Card.this);
 						field.remove(Card.this);
 						if(direction>=0) field.moveCard(playerLocation,direction);
-						else field.addCard(new Empty(),Location);
+						else{
+							Card.this.setVisible(false);
+							field.addCard(new Empty(),Location);
+						}
 						field.updateStatus();
 					}
 					else if(Card.this instanceof Potion){
 						((Potion)Card.this).effect((Player)field.player);
 						field.remove(Card.this);
 						if(direction>=0) field.moveCard(playerLocation,direction);
-						else field.addCard(new Empty(),Location);
+						else{
+							Card.this.setVisible(false);
+							field.addCard(new Empty(),Location);
+						}
 						field.updateStatus();
 					}
 					else if((Card.this instanceof Bomb)&&direction>=0){
@@ -68,7 +74,10 @@ public class Card extends JButton{
 						field.pickGold(((Object)Card.this).hp);
 						field.remove(Card.this);
 						if(direction>=0)field.moveCard(playerLocation,direction);
-						else field.addCard(new Empty(),Location);
+						else{
+							Card.this.setVisible(false);
+							field.addCard(new Empty(),Location);
+						}
 						field.updateStatus();
 					}
 					else if(Card.this instanceof Chest){
