@@ -1,5 +1,6 @@
 package card;
 
+import menu.MainWindow;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Image;
@@ -7,8 +8,13 @@ import java.awt.Point;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import battle.*;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 
 public class Bomb extends Item {
+	private final MediaPlayer bombFX = new MediaPlayer(
+			new Media(getClass().getResource("/audio/Bomb_FX.mp3").toString())); // for menu BGM
+	
 	public Bomb(int size){
 		super("Bomb");
 		hp=size;
@@ -31,6 +37,8 @@ public class Bomb extends Item {
 		--countdown;
 		if(countdown==0)
 		{
+			bombFX.setVolume(MainWindow.getFxVolume());
+			bombFX.play();
 			Point location=field.getLocation(this);
 			field.timer.schedule(new battle.Animation(field,5),0,50);
 			for(int i=0;i<Battle.relation.length;++i){

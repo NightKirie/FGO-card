@@ -6,8 +6,13 @@ import java.awt.event.ActionListener;
 import java.awt.Insets;
 import java.awt.Point;
 import battle.Battle;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import menu.MainWindow;
 
 public class Card extends JButton{
+	private final MediaPlayer potionFX = new MediaPlayer(
+			new Media(getClass().getResource("/audio/Potion_FX.mp3").toString())); // for menu BGM
 	Battle field;
 	public Card(String scientificName){
 		super(scientificName);
@@ -55,6 +60,8 @@ public class Card extends JButton{
 						field.updateStatus();
 					}
 					else if(Card.this instanceof Potion){
+						potionFX.setVolume(MainWindow.getFxVolume());
+						potionFX.play();
 						((Potion)Card.this).effect((Player)field.player);
 						
 						if(direction>=0) field.moveCard(playerLocation,direction);

@@ -3,6 +3,9 @@ package battle;
 import skill.*;
 import menu.MainWindow;
 import card.*;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+
 import java.awt.*;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -26,6 +29,8 @@ public class Battle extends JPanel {
 	private final JLabel backGround = new JLabel(""); // for menu background picture
 	private final JLabel skillCDText[] = { new JLabel(), new JLabel(), new JLabel() }; //for show the skill cd
 	private final JLabel goldBattleNumber = new JLabel(); // for show the gold player get in battle
+	private final MediaPlayer bombFX = new MediaPlayer(
+			new Media(getClass().getResource("/audio/Gold_FX.mp3").toString())); // for menu BGM
 	//////////////////////////////////////////
 
 	public Battle(int difficulty) {
@@ -140,6 +145,9 @@ public class Battle extends JPanel {
 	}
 
 	public void pickGold(int number) {
+		bombFX.stop();
+		bombFX.setVolume(MainWindow.getFxVolume());
+		bombFX.play();
 		gold += number;
 		goldBattleNumber.setText(Integer.toString(gold));
 	}

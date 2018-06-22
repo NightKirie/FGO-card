@@ -563,6 +563,10 @@ public class MainWindow extends JFrame {
 		settingText.setVisible(false);
 		backGround.setVisible(false);
 	}
+	
+	public static double getFxVolume() {
+		return fxVolume;
+	}
 
 	// call to show the menu page
 	public void MenuPage() {

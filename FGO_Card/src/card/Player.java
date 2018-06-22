@@ -7,7 +7,12 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
 import battle.Battle;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import menu.MainWindow;
 public class Player extends Creature{
+	private final MediaPlayer pickupFX = new MediaPlayer(
+			new Media(getClass().getResource("/audio/PickUP_FX.mp3").toString())); // for menu BGM
 	public Weapon weapon=new Sword(0);
 	public JLabel weaponshow=new JLabel("0");
 	public Player(String scientifficName)
@@ -133,6 +138,9 @@ public class Player extends Creature{
 		*/
 	}
 	public void pickUpWeapon(Weapon newWeapon){
+		pickupFX.stop();
+		pickupFX.setVolume(MainWindow.getFxVolume());
+		pickupFX.play();
 		if(weapon==null||weapon.hp<newWeapon.hp) weapon=newWeapon;
 	}
 	
