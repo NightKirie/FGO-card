@@ -15,18 +15,15 @@ public class Card extends JButton{
 		setMargin(new Insets(0, 0, 0, 0));
 		setContentAreaFilled(false);
 		this.addActionListener(new buttonListener());
-		//setBorderPainted(false); 
 	}
 	String name=null;
 	public void setField(Battle f){field=f;}
 	public void updateStatus(){}
 	public void updateCard(){}
 	
-	//public ImageIcon cardPicture=null;
 	//if need to change ImageIcon,use setIcon in set;(method in JButton)
 	private class buttonListener implements ActionListener{
 		public void actionPerformed(ActionEvent e){
-			//System.out.println("hello");
 			Point Location=field.getLocation(Card.this);
 			Point playerLocation=field.getLocation(field.player);
 			int direction=-1;
@@ -37,7 +34,6 @@ public class Card extends JButton{
 				}
 			}
 			if(direction==-1&&!(field.player instanceof Assassin)) return;
-			//System.out.println(Card.this.getText()+"  "+Location);
 			if(Card.this instanceof Object){
 				if(Card.this instanceof Monster){
 					if(direction>=0){
@@ -48,22 +44,24 @@ public class Card extends JButton{
 				else{//Item
 					if(Card.this instanceof Weapon){
 						((Player)field.player).pickUpWeapon((Weapon)Card.this);
-						field.remove(Card.this);
+						
 						if(direction>=0) field.moveCard(playerLocation,direction);
 						else{
 							Card.this.setVisible(false);
 							field.addCard(new Empty(),Location);
 						}
+						field.remove(Card.this);
 						field.updateStatus();
 					}
 					else if(Card.this instanceof Potion){
 						((Potion)Card.this).effect((Player)field.player);
-						field.remove(Card.this);
+						
 						if(direction>=0) field.moveCard(playerLocation,direction);
 						else{
 							Card.this.setVisible(false);
 							field.addCard(new Empty(),Location);
 						}
+						field.remove(Card.this);
 						field.updateStatus();
 					}
 					else if((Card.this instanceof Bomb)&&direction>=0){
@@ -72,12 +70,13 @@ public class Card extends JButton{
 					}
 					else if(Card.this instanceof Coin){
 						field.pickGold(((Object)Card.this).hp);
-						field.remove(Card.this);
+						
 						if(direction>=0)field.moveCard(playerLocation,direction);
 						else{
 							Card.this.setVisible(false);
 							field.addCard(new Empty(),Location);
 						}
+						field.remove(Card.this);
 						field.updateStatus();
 					}
 					else if(Card.this instanceof Chest){
