@@ -1,4 +1,5 @@
 package card;
+
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Image;
@@ -6,6 +7,7 @@ import java.awt.Point;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import battle.*;
+
 public class Bomb extends Item {
 	public Bomb(int size){
 		super("Bomb");

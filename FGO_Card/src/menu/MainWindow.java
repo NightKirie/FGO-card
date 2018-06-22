@@ -17,34 +17,23 @@ import java.awt.event.FocusEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.net.URISyntaxException;
-
 import javafx.embed.swing.JFXPanel;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javax.swing.JSlider;
 import javax.swing.event.ChangeListener;
-
-import org.omg.CORBA.PRIVATE_MEMBER;
-
 import battle.Battle;
-
 import javax.swing.event.ChangeEvent;
 import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import java.awt.Cursor;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
 public class MainWindow extends JFrame {
 	public static MainWindow frame = new MainWindow();;
@@ -58,7 +47,7 @@ public class MainWindow extends JFrame {
 			new Media(getClass().getResource("/audio/Menu_BGM.mp3").toString())); // for menu BGM
 	private final MediaPlayer gameBGM = new MediaPlayer(
 			new Media(getClass().getResource("/audio/InGame_BGM.mp3").toString())); // for in game BGM
-	private final MediaPlayer trolling_Fx = new MediaPlayer(
+	private MediaPlayer trolling_Fx = new MediaPlayer(
 			new Media(getClass().getResource("/audio/Trolling_Sound.mp3").toString())); // for LOLs
 
 	private final Button skillButton = new Button(); // for go to skill page
@@ -446,7 +435,9 @@ public class MainWindow extends JFrame {
 		menuTitle.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent arg0) {
-				trolling_Fx.stop();
+				//trolling_Fx.stop();
+				trolling_Fx = new MediaPlayer(
+						new Media(getClass().getResource("/audio/Trolling_Sound.mp3").toString()));
 				trolling_Fx.setVolume(fxVolume);
 				trolling_Fx.play();
 			}
@@ -877,34 +868,6 @@ public class MainWindow extends JFrame {
 		backButtonBattle.setVisible(true);
 		gameOverButton.setVisible(false);
 		startButton.setEnabled(false);
-
-		/*
-		 * backGround.setIcon(new
-		 * ImageIcon(MainWindow.class.getResource("/image/InGameBackground.jpg")));
-		 * 
-		 * for(int i = 0; i < chosenSkillMenu.length; ++i)
-		 * chosenSkillMenu[i].setVisible(false); for(int i = 0; i <
-		 * chosenSkillBattle.length; ++i) { if(ChooseSkill.getChooseID(i) != 0)
-		 * chosenSkillBattle[i].setIcon(ChooseSkill.getSkillMenu(ChooseSkill.getChooseID
-		 * (i))); else chosenSkillBattle[i].setIcon(null); } for(int i = 0; i <
-		 * chosenSkillBattle.length; ++i) chosenSkillBattle[i].setVisible(true);
-		 * skillButton.setVisible(false); startButton.setVisible(false);
-		 * chosenCharacterMenu.setVisible(false); chararcterButton.setVisible(false);
-		 * achievementButton.setVisible(false); backButton.setVisible(true);
-		 * leftButton.setVisible(false); rightButton.setVisible(false);
-		 * settingButton.setVisible(false); confirmButton.setVisible(false);
-		 * upgradeButton.setVisible(false); for(int i = 0; i < showSkill.length; ++i)
-		 * showSkill[i].setVisible(false); musicSlider.setVisible(false);
-		 * fxSlider.setVisible(false); goldAmountIcon.setVisible(true);
-		 * goldAmountNumber.setVisible(false); goldBattleNumber.setVisible(true);
-		 * levelText.setVisible(false); upgradeText.setVisible(false);
-		 * menuTitle.setVisible(false); nothingIsHere.setVisible(false);
-		 * showCharacter.setVisible(false); settingText.setVisible(false);
-		 * backGround.setVisible(true);
-		 * 
-		 * goldBattleNumber.setText("0");
-		 */
-
 	}
 
 	// when gameover call this function

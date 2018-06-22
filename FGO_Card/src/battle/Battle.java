@@ -1,19 +1,9 @@
 package battle;
 
-import skill.ChooseSkill;
-import character.ChooseCharacter;
-import javafx.scene.control.TextField;
-import menu.Button;
+import skill.*;
 import menu.MainWindow;
-import menu.RoundedTextField;
-import card.Card;
-
-import java.awt.Point;
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-
+import card.*;
+import java.awt.*;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
@@ -111,11 +101,6 @@ public class Battle extends JPanel {
 				map[i][j].setVisible(true);
 			}
 		}
-		/*for (int i = 0; i < size; ++i) {
-			for (int j = 0; j < size; ++j) {
-				System.out.println(map[i][j].getText() + i + " " + j);
-			}
-		}*/
 		updateCard();
 	}
 	public void updateStatus(){

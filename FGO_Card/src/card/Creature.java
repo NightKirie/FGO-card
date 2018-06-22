@@ -1,6 +1,7 @@
 package card;
 
 import java.awt.Point;
+
 public abstract class Creature extends Object{
 	public Creature(String ScientificName){
 		super("Creature."+ScientificName);

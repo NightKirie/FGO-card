@@ -1,8 +1,5 @@
 package card;
 
-import javax.swing.ImageIcon;
-
-
 public class Weapon extends Item {
 	public String weapontype;
 	public Weapon(String scientificName)//,int whp,int attackrange,String type)

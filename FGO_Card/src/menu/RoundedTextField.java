@@ -7,8 +7,6 @@ import java.awt.Shape;
 import java.awt.geom.RoundRectangle2D;
 import javax.swing.JTextField;
 
-
-
 public class RoundedTextField extends JTextField{
 	private Shape shape;
 	

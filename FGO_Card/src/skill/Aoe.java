@@ -1,7 +1,5 @@
 package skill;
 
-import character.Assassin;
-
 public class Aoe extends Skill {
 	public static int ID = 1;
 	public static int level = 1;

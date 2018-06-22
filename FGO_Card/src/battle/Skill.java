@@ -1,13 +1,8 @@
 package battle;
-import java.awt.Point;
-import card.Card;
-import card.Player;
-import card.Monster;
-import card.Creature;
-import card.Caster;
-import card.Sword;
-import card.Wand;
-import skill.ChooseSkill;
+
+import card.*;
+import skill.*;
+
 public class Skill{
 	Battle field;
 	public Skill(Battle f){

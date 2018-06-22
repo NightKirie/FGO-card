@@ -1,10 +1,10 @@
 package card;
-import battle.Battle;
 
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Point;
 import javax.swing.JLabel;
+
 public class Object extends Card {
 	public Object(String scientificName){
 		super("Object."+scientificName);

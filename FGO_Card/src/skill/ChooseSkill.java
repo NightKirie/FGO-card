@@ -2,9 +2,6 @@ package skill;
 
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
-
-import com.sun.org.apache.bcel.internal.generic.RETURN;
-
 import menu.MainWindow;
 
 public class ChooseSkill {

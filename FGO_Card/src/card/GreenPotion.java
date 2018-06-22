@@ -1,5 +1,7 @@
 package card;
+
 import java.awt.Image;
+
 
 import javax.swing.ImageIcon;
 public class GreenPotion extends Potion{

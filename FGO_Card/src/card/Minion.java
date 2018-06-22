@@ -2,6 +2,7 @@ package card;
 
 import javax.swing.ImageIcon;
 
+
 import menu.MainWindow;
 import java.util.Random;
 public class Minion extends Monster {

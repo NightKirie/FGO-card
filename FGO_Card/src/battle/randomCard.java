@@ -2,6 +2,7 @@ package battle;
 
 import card.*;
 import java.util.Random;
+
 public class randomCard extends Random{
 	public static int difficulty=0,startdifficulty=0;
 	static int probabilityType=1,typeSize=8;

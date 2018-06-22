@@ -1,8 +1,9 @@
 package card;
-import java.awt.Image;
+
 import java.awt.Point;
 import battle.Battle;
 import javax.swing.ImageIcon;
+
 public class Caster extends Player{
 	public Caster(int hp){
 		super("Caster");

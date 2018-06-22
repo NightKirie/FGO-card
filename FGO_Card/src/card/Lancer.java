@@ -1,7 +1,9 @@
 package card;
+
 import java.awt.Point;
 import battle.Battle;
 import javax.swing.ImageIcon;
+
 public class Lancer extends Player{
 	public Lancer(int hp){
 		super("Lancer");

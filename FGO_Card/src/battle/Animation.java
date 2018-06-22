@@ -3,6 +3,8 @@ package battle;
 import card.Card;
 import java.util.TimerTask;
 import java.awt.Point;
+
+
 public class Animation extends TimerTask{
 	public Animation(Battle field,Card c,int direction){//move
 		this.field=field;

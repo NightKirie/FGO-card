@@ -1,5 +1,5 @@
 package card;
-import javax.swing.ImageIcon;
+
 public class Monster extends Creature {
 	public Monster(String scientificName)
 	{
