@@ -1,14 +1,16 @@
 package battle;
 
-import skill.*;
-import character.*;
+import skill.ChooseSkill;
+import character.ChooseCharacter;
 import javafx.scene.control.TextField;
 import menu.Button;
 import menu.MainWindow;
 import menu.RoundedTextField;
-import card.*;
+import card.Card;
 
-import java.awt.*;
+import java.awt.Point;
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
